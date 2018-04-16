@@ -5,7 +5,7 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     static private GameController instance;      // instance of the GameController
-    public enum CursorType { HAND, CUT };
+    public enum CursorType { HAND, CUT, PIECE };
     private CursorType activeCursor;
 
     public static GameController Instance
