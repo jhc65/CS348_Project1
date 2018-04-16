@@ -41,3 +41,18 @@ TagManager:
   - name: Default
     uniqueID: 0
     locked: 0
+  - name: Background
+    uniqueID: 3062364205
+    locked: 0
+  - name: Inventory
+    uniqueID: 2516435137
+    locked: 0
+  - name: Pieces
+    uniqueID: 3534597045
+    locked: 0
+  - name: HoverPreview
+    uniqueID: 3363938005
+    locked: 0
+  - name: UI
+    uniqueID: 3966375629
+    locked: 0
