@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class Cuttable : MonoBehaviour
 {
-
     [SerializeField] private GameObject resultOfCut;
     private GameController gc;
 
@@ -16,24 +15,28 @@ public class Cuttable : MonoBehaviour
 
     void OnMouseOver()
     {
-        resultOfCut.SetActive(true);
+        if (gc.ActiveCursor == GameController.CursorType.CUT)
+        {
+            resultOfCut.SetActive(true);
+
+            if (Input.GetMouseButtonDown(0))
+            {
+                // Zak's code to change inventory numbers
+                //Inventory.Decrease(enum-for-this-piece) <-- calls ui change too
+                //Inventory.Increase(enum-for-increased-piece, number-to-add) <-- calls ui change too
+            }
+            if (Input.GetMouseButtonDown(1))
+            {
+                resultOfCut.SetActive(false);
+            }
+        }
     }
 
     void OnMouseExit()
     {
-        resultOfCut.SetActive(false);
-    }
-
-    void OnMouseDown()
-    {
-        if(gc.ActiveCursor == GameController.CursorType.CUT)
+        if (gc.ActiveCursor == GameController.CursorType.CUT)
         {
-            // Zak's code to change inventory numbers
-        }
-        else if(gc.ActiveCursor == GameController.CursorType.HAND)
-        {
-            // Joe's code to change the cursor and stuff
+            resultOfCut.SetActive(false);
         }
     }
-
 }

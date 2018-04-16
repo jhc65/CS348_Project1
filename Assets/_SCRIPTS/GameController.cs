@@ -22,5 +22,21 @@ public class GameController : MonoBehaviour
     private void Awake()
     {
         instance = this;
+        activeCursor = CursorType.HAND;
+    }
+
+    void Update()
+    {
+        if (Input.GetMouseButtonDown(1))
+        {
+            if (activeCursor == CursorType.CUT)
+            {
+                activeCursor = CursorType.HAND;
+            }
+            else if (activeCursor == CursorType.HAND)
+            {
+                activeCursor = CursorType.CUT;
+            }
+        }
     }
 }
