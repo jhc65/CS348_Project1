@@ -5,37 +5,36 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     static private GameController instance;      // instance of the GameController
-    public enum CursorType { HAND, CUT };
-    private CursorType activeCursor;
+    private Constants.Global.CursorType activeCursor;
 
     public static GameController Instance
     {
         get { return instance; }
     }
 
-    public CursorType ActiveCursor
+    public Constants.Global.CursorType ActiveCursor
     {
         get { return activeCursor; }
         set { activeCursor = value; }
     }
 
-    private void Awake()
+    void Awake()
     {
         instance = this;
-        activeCursor = CursorType.HAND;
+        activeCursor = Constants.Global.CursorType.HAND;
     }
 
     void Update()
     {
         if (Input.GetMouseButtonDown(1))
         {
-            if (activeCursor == CursorType.CUT)
+            if (activeCursor == Constants.Global.CursorType.CUT)
             {
-                activeCursor = CursorType.HAND;
+                activeCursor = Constants.Global.CursorType.HAND;
             }
-            else if (activeCursor == CursorType.HAND)
+            else if (activeCursor == Constants.Global.CursorType.HAND)
             {
-                activeCursor = CursorType.CUT;
+                activeCursor = Constants.Global.CursorType.CUT;
             }
         }
     }
