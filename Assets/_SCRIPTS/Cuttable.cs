@@ -15,7 +15,7 @@ public class Cuttable : MonoBehaviour
 
     void OnMouseOver()
     {
-        if (gc.ActiveCursor == GameController.CursorType.CUT)
+        if (gc.ActiveCursor == Constants.Global.CursorType.CUT)
         {
             resultOfCut.SetActive(true);
 
@@ -34,7 +34,7 @@ public class Cuttable : MonoBehaviour
 
     void OnMouseExit()
     {
-        if (gc.ActiveCursor == GameController.CursorType.CUT)
+        if (gc.ActiveCursor == Constants.Global.CursorType.CUT)
         {
             resultOfCut.SetActive(false);
         }
