@@ -17,7 +17,7 @@ Shader "Custom/DrawSimple"
  
             struct VertexToFragment
             {
-                float4 pos:SV_POSITION;
+                float4 pos:POSITION;
             };
  
             //just get the position correct
