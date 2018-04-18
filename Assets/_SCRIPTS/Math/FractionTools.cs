@@ -140,6 +140,16 @@ public static class FractionTools {
             return (a.numerator * b.denominator > b.numerator * a.denominator);
         }
 
+        public static explicit operator double (Fraction f)
+        {
+            return ((double)f.numerator / (double)f.denominator);
+        }
+
+        public static explicit operator float (Fraction f)
+        {
+            return ((float)f.numerator / (float)f.denominator);
+        }
+
         /// <summary>
         /// Simplify a fraction, leaving it in improper form
         /// </summary>
