@@ -60,7 +60,7 @@ public class Piece : MonoBehaviour {
         //{
         //    Destroy(gameObject);
         //    gc.ActiveCursor = Constants.Global.CursorType.HAND;
-        //    inv.Increase(length, 1);
+        //    //inv.Increase(length, 1);
         //    // change cursor to open hand
         //}
 
@@ -98,7 +98,10 @@ public class Piece : MonoBehaviour {
                 Debug.Log("Piece dropped in zone!");
                 BuildZone bz = collision.GetComponent<BuildZone>();
                 if (bz != null && bz.TryPlacePiece(this))
+                {
                     placed = true;
+                    gc.ActiveCursor = Constants.Global.CursorType.HAND;
+                }
             }
         }
     }
