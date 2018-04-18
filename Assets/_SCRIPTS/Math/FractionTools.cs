@@ -25,6 +25,12 @@ public static class FractionTools {
 
         public static Fraction operator+ (Fraction a, Fraction b)
         {
+            /* Technically there can't be a 0, but this allows for 0/0 as a fraction */
+            if (a.denominator == 0)
+                return b;
+            else if (b.denominator == 0)
+                return a;
+
             Fraction result = new Fraction();
 
             /* Get a common denominator. Doesn't have to be least, as we'll simplify at the end */
@@ -39,6 +45,12 @@ public static class FractionTools {
 
         public static Fraction operator- (Fraction a, Fraction b)
         {
+            /* Technically there can't be a 0, but this allows for 0/0 as a fraction */
+            if (a.denominator == 0)
+                return b;
+            else if (b.denominator == 0)
+                return a;
+                
             Fraction result = new Fraction();
 
             /* Get a common denominator. Doesn't have to be least, as we'll simplify at the end */
@@ -53,6 +65,12 @@ public static class FractionTools {
 
         public static Fraction operator* (Fraction a, Fraction b)
         {
+            /* Technically there can't be a 0, but this allows for 0/0 as a fraction */
+            if (a.denominator == 0)
+                return b;
+            else if (b.denominator == 0)
+                return a;
+                
             Fraction result = new Fraction(a.numerator * b.numerator, a.denominator * b.denominator);
             
             result.Simplify();
@@ -61,6 +79,12 @@ public static class FractionTools {
 
         public static Fraction operator/ (Fraction a, Fraction b)
         {
+            /* Technically there can't be a 0, but this allows for 0/0 as a fraction */
+            if (a.denominator == 0)
+                return b;
+            else if (b.denominator == 0)
+                return a;
+                
             Fraction result = new Fraction(a.numerator * b.denominator, a.denominator * b.numerator);
 
             result.Simplify();
@@ -92,7 +116,11 @@ public static class FractionTools {
 
         public static bool operator== (Fraction a, Fraction b)
         {
-            return (a.numerator == b.numerator && a.denominator == b.denominator);
+            Fraction aSimplified = new Fraction(a);
+            aSimplified.Simplify();
+            Fraction bSimplified = new Fraction(b);
+            bSimplified.Simplify();
+            return (aSimplified.numerator == bSimplified.numerator && aSimplified.denominator == bSimplified.denominator);
         }
 
         public static bool operator!= (Fraction a, Fraction b)
@@ -102,11 +130,13 @@ public static class FractionTools {
 
         public static bool operator< (Fraction a, Fraction b)
         {
+            /// TODO: Handle 0/0
             return (a.numerator * b.denominator < b.numerator * a.denominator);
         }
 
         public static bool operator> (Fraction a, Fraction b)
         {
+            /// TODO: Handle 0/0
             return (a.numerator * b.denominator > b.numerator * a.denominator);
         }
 
@@ -131,6 +161,10 @@ public static class FractionTools {
         /// <returns>The whole number remaining, if any</returns>
         public int Reduce()
         {
+            /* Don't try to reduce a fraction over 0 */
+            if (denominator == 0)
+                return 0;
+            
             /* Remove the whole number portion */
             int excess = numerator / denominator;
             numerator = numerator % denominator;
@@ -189,6 +223,13 @@ public static class FractionTools {
         public Fraction ToImproperFraction()
         {
             return new Fraction(wholeNumber * fraction.denominator + fraction.numerator, fraction.denominator);
+        }
+
+        public static MixedNumber operator+ (MixedNumber a, Fraction b)
+        {
+            MixedNumber result = new MixedNumber(a.wholeNumber, a.fraction + b);
+            result.wholeNumber += result.fraction.Reduce();
+            return result;
         }
 
         public static MixedNumber operator+ (MixedNumber a, MixedNumber b)
