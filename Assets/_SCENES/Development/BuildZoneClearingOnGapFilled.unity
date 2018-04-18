@@ -403,20 +403,6 @@ Prefab:
       propertyPath: m_RootOrder
       value: 6
       objectReference: {fileID: 0}
-    - target: {fileID: 4654276111627768, guid: 49951b81a54af3c4db86d57d6c854977, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: -0.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 114080643063678846, guid: 49951b81a54af3c4db86d57d6c854977,
-        type: 2}
-      propertyPath: _gapNumerator
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114080643063678846, guid: 49951b81a54af3c4db86d57d6c854977,
-        type: 2}
-      propertyPath: _gapDenominator
-      value: 2
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 49951b81a54af3c4db86d57d6c854977, type: 2}
   m_IsPrefabParent: 0

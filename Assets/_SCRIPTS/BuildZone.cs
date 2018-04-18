@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class BuildZone : MonoBehaviour {
 
@@ -15,11 +16,15 @@ public class BuildZone : MonoBehaviour {
 	private FractionTools.Fraction _gapFilled;
 	private List<Piece> _piecesInZone;
 
+	private Text _equation;
+
 	// Use this for initialization
 	void Start () {
 		_piecesInZone = new List<Piece>();
 		_gapFilled = FractionTools.Fraction.Zero();
 		_gapSize = new FractionTools.Fraction(_gapNumerator, _gapDenominator);
+		_equation = this.GetComponentInChildren<Text>();
+		UpdateEquationUI(); /* Set the initial equation */
 	}
 	
 	public bool TryPlacePiece(Piece p)
@@ -34,6 +39,7 @@ public class BuildZone : MonoBehaviour {
 			SnapPiece(p);
 			_piecesInZone.Add(p);
 			_gapFilled += p.Value;
+			UpdateEquationUI();
 			/* Check if the gap has been filled */
 			//Debug.Log("Gap filled: " + _gapFilled + ", gap size: " + _gapSize);
 			if (_gapFilled == _gapSize)
@@ -101,12 +107,16 @@ public class BuildZone : MonoBehaviour {
 		_gapNumerator = value.numerator;
 		_gapDenominator = value.denominator;
 		_gapSize = new FractionTools.Fraction(value);
+
+		UpdateEquationUI();
 	}
 
 	public void ClearBuildZone()
 	{
 		/* Clear out _gapFilled */
 		_gapFilled = FractionTools.Fraction.Zero();
+		/* Clear out _gapSize */
+		_gapSize = FractionTools.Fraction.Zero();
 		/* Clear out _piecesInZone */
 		if (_piecesInZone.Count > 0)
 		{
@@ -116,5 +126,44 @@ public class BuildZone : MonoBehaviour {
 				_piecesInZone.RemoveAt(i);
 			}
 		}
+		/* Clear out Equation UI */
+		UpdateEquationUI();
+	}
+
+	private string GapEquation()
+	{
+		string result = "";
+		
+		if (_piecesInZone.Count > 0)
+		{
+			/* Append each piece's fraction using addition */
+			foreach(Piece p in _piecesInZone)
+				result += p.Value + " + ";
+
+			/* Remove the last + */
+			result = result.Remove(result.Length - 3);
+
+		}
+		else
+		{
+			/* Put some question marks? */
+			result += "? + ?";
+		}
+
+		if (_gapFilled != _gapSize)
+		{
+			/* Append the "you aren't done yet" part */
+			result += " + ...";
+		}
+
+		/* Append the total gap size */
+		result += " = " + _gapSize;
+
+		return result;
+	}
+
+	private void UpdateEquationUI()
+	{
+		_equation.text = GapEquation();
 	}
 }
