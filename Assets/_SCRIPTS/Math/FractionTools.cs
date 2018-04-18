@@ -139,6 +139,10 @@ public static class FractionTools {
 
             return excess;
         }
+
+        public override string ToString(){
+            return numerator + "/" + denominator;
+        }
     }
 
     public struct MixedNumber
@@ -260,6 +264,10 @@ public static class FractionTools {
         public static bool operator >(MixedNumber a, MixedNumber b)
         {
             return (a.ToImproperFraction() > b.ToImproperFraction());
+        }
+
+        public override string ToString(){
+            return wholeNumber + " & " + fraction;
         }
     }
 
