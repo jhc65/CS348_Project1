@@ -134,6 +134,16 @@ public static class FractionTools {
             return (a.numerator * b.denominator < b.numerator * a.denominator);
         }
 
+        public static bool operator<= (Fraction a, Fraction b)
+        {
+            return a < b || a == b;
+        }
+
+        public static bool operator>= (Fraction a, Fraction b)
+        {
+            return a > b || a == b;
+        }
+
         public static bool operator> (Fraction a, Fraction b)
         {
             /// TODO: Handle 0/0

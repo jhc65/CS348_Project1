@@ -38,4 +38,38 @@ public class GameController : MonoBehaviour
             }
         }
     }
+
+    public void OnGapFilled()
+    {
+        Debug.Log("Gap has been filled!");
+        /* For now, clear out the existing build zone, and choose a random new fraction
+         *
+         * TODO: Slide the screen to the next build zone
+         */
+
+         /* Get the BuildZone */
+         GameObject buildZoneGameObject = GameObject.FindGameObjectWithTag("BuildZone");
+         if (buildZoneGameObject == null)
+         {
+             Debug.LogError("No build zone found upon winning.");
+             return;
+         }
+
+         /* Clear out the gap */
+         BuildZone buildZoneScript = buildZoneGameObject.GetComponent<BuildZone>();
+         if (buildZoneScript == null)
+         {
+             Debug.LogError(buildZoneGameObject.name + " is tagged as a BuildZone, but is missing the BuildZone script.");
+             return;
+         }
+         buildZoneScript.ClearBuildZone();
+
+         /* Choose a random new improper fraction */
+         /// TODO: Make this based on difficulty and some form of probability distribution
+         FractionTools.Fraction newGapSize = new FractionTools.Fraction(Random.Range(1, 5), Random.Range(2, 10));
+         Debug.Log("<color=blue>New gap size: " + newGapSize + "</color>");
+         buildZoneScript.SetGapSize(newGapSize);
+
+         /// TODO: Restock the player's inventory
+    }
 }
