@@ -9,6 +9,9 @@ public class Piece : MonoBehaviour {
     private Vector3 cursorPos;
     bool placed = false;
     bool isPickedUp = false;
+
+    public int Numerator, Denominator;
+    public FractionTools.Fraction Value;
     #endregion
 
     #region Piece Methods
@@ -38,6 +41,7 @@ public class Piece : MonoBehaviour {
         //transform.position = new Vector3(transform.position.x, transform.position.y, 0);
         startPos = transform.position;
         gc = GameController.Instance;
+        Value = new FractionTools.Fraction(Numerator, Denominator);
     }
 	
 	// Update is called once per frame
@@ -87,8 +91,15 @@ public class Piece : MonoBehaviour {
 
     // OnTriggerSTAY (2D)
     private void OnTriggerStay2D(Collider2D collision) {
-        if (collision.CompareTag("BuildArea") && Input.GetMouseButtonUp(0)) {
-            placed = true;
+        if (collision.CompareTag("BuildZone"))
+        {
+            if (Input.GetMouseButtonUp(0))
+            {
+                Debug.Log("Piece dropped in zone!");
+                BuildZone bz = collision.GetComponent<BuildZone>();
+                if (bz != null && bz.TryPlacePiece(this))
+                    placed = true;
+            }
         }
     }
     #endregion
