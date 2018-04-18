@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class BuildZone : MonoBehaviour {
 
-	public int GapNumerator;
-	public int GapDenominator;
-	public FractionTools.Fraction GapSize;
+    [SerializeField] private int GapNumerator;
+    [SerializeField] private int GapDenominator;
+	private FractionTools.Fraction GapSize;
 	private FractionTools.Fraction _gapFilled;
 	private List<Piece> _piecesInZone;
 
