@@ -1,6 +1,23 @@
-﻿
+﻿using System;
 using System.Collections.Generic;
 public static class FractionTools {
+
+    public class ZeroInDenominatorException: Exception
+{
+    public ZeroInDenominatorException()
+    {
+    }
+
+    public ZeroInDenominatorException(string message)
+        : base(message)
+    {
+    }
+
+    public ZeroInDenominatorException(string message, Exception inner)
+        : base(message, inner)
+    {
+    }
+}
 
     public struct Fraction
     {
@@ -13,24 +30,27 @@ public static class FractionTools {
         /// <param name="f">Instance to copy</param>
         public Fraction(Fraction f)
         {
+            if (f.denominator == 0)
+                throw new ZeroInDenominatorException();
             numerator = f.numerator;
             denominator = f.denominator;
         }
 
         public Fraction(int n, int d)
         {
+            if (d == 0)
+                throw new ZeroInDenominatorException();
             numerator = n;
             denominator = d;
         }
 
+        public static Fraction Zero()
+        {
+            return new Fraction(0,1);
+        }
+
         public static Fraction operator+ (Fraction a, Fraction b)
         {
-            /* Technically there can't be a 0, but this allows for 0/0 as a fraction */
-            if (a.denominator == 0)
-                return b;
-            else if (b.denominator == 0)
-                return a;
-
             Fraction result = new Fraction();
 
             /* Get a common denominator. Doesn't have to be least, as we'll simplify at the end */
@@ -45,12 +65,7 @@ public static class FractionTools {
 
         public static Fraction operator- (Fraction a, Fraction b)
         {
-            /* Technically there can't be a 0, but this allows for 0/0 as a fraction */
-            if (a.denominator == 0)
-                return b;
-            else if (b.denominator == 0)
-                return a;
-                
+               
             Fraction result = new Fraction();
 
             /* Get a common denominator. Doesn't have to be least, as we'll simplify at the end */
@@ -65,12 +80,6 @@ public static class FractionTools {
 
         public static Fraction operator* (Fraction a, Fraction b)
         {
-            /* Technically there can't be a 0, but this allows for 0/0 as a fraction */
-            if (a.denominator == 0)
-                return b;
-            else if (b.denominator == 0)
-                return a;
-                
             Fraction result = new Fraction(a.numerator * b.numerator, a.denominator * b.denominator);
             
             result.Simplify();
@@ -79,12 +88,6 @@ public static class FractionTools {
 
         public static Fraction operator/ (Fraction a, Fraction b)
         {
-            /* Technically there can't be a 0, but this allows for 0/0 as a fraction */
-            if (a.denominator == 0)
-                return b;
-            else if (b.denominator == 0)
-                return a;
-                
             Fraction result = new Fraction(a.numerator * b.denominator, a.denominator * b.numerator);
 
             result.Simplify();

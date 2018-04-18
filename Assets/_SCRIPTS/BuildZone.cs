@@ -18,7 +18,7 @@ public class BuildZone : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		_piecesInZone = new List<Piece>();
-		_gapFilled = new FractionTools.Fraction(0, 0);
+		_gapFilled = FractionTools.Fraction.Zero();
 		_gapSize = new FractionTools.Fraction(_gapNumerator, _gapDenominator);
 	}
 	
@@ -106,7 +106,7 @@ public class BuildZone : MonoBehaviour {
 	public void ClearBuildZone()
 	{
 		/* Clear out _gapFilled */
-		_gapFilled = new FractionTools.Fraction(0, 0);
+		_gapFilled = FractionTools.Fraction.Zero();
 		/* Clear out _piecesInZone */
 		if (_piecesInZone.Count > 0)
 		{
