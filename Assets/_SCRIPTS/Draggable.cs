@@ -15,7 +15,12 @@ public class Draggable : MonoBehaviour {
     private GameObject pieceToDrag;
     [SerializeField]
     private GameObject highlight;
+    [SerializeField]
+    private GameObject newPiece;
     #endregion
+    #endregion
+
+    #region Draggable Functions
     #endregion
 
     #region Unity Overrides
@@ -26,8 +31,13 @@ public class Draggable : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		
-	}
+        if (Input.GetMouseButtonDown(0)) {
+            RaycastHit hitInfo = new RaycastHit();
+            if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo)) {
+                gameObject.transform.position = hitInfo.collider.transform.position;
+            }
+        }
+    }
 
     // Mouse OVER
     private void OnMouseOver() {
@@ -44,9 +54,16 @@ public class Draggable : MonoBehaviour {
 
     // changes cursor to match selected tool
     void OnMouseDown() {
-        hotSpot = new Vector2(cursorTexture.width * 0.5f, cursorTexture.height * 0.5f);
-        Cursor.SetCursor(cursorTexture, hotSpot, CursorMode.ForceSoftware);
-        GameController.Instance.ActiveCursor = cursorType;
+        if (gc.ActiveCursor == Constants.Global.CursorType.CUT) {
+            hotSpot = new Vector2(cursorTexture.width * 0.5f, cursorTexture.height * 0.5f);
+            Cursor.SetCursor(cursorTexture, hotSpot, CursorMode.ForceSoftware);
+            gc.ActiveCursor = cursorType;
+        }
+        else if (gc.ActiveCursor == Constants.Global.CursorType.HAND) {
+            //Cursor.SetCursor(CLOSED_HAND_CURSOR_TEXTURE, Vector2.zero, CursorMode.ForceSoftware);
+            gc.ActiveCursor = Constants.Global.CursorType.PIECE;
+            Instantiate(newPiece, gameObject.transform.position, Quaternion.Euler(0f, 0f, 0f)); 
+        }
     }
 
     // Mouse EXIT
