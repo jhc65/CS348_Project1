@@ -75,7 +75,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.5, y: 0}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0, y: 0.5}
@@ -102,6 +102,7 @@ MonoBehaviour:
   spriteCenterOffset: 3.75
   numerator: 1
   denominator: 2
+  length: 0
 --- !u!212 &212896947112156056
 SpriteRenderer:
   m_ObjectHideFlags: 1
