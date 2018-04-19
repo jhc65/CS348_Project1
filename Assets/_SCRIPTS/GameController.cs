@@ -71,6 +71,7 @@ public class GameController : MonoBehaviour
 
         /* Play a confetti effect and wait a few seconds for it to finish */
         EffectsManager.Instance.PlayEffect(EffectsManager.Effects.Confetti);
+        EffectsManager.Instance.PlayEffect(EffectsManager.Effects.Yay);
         yield return new WaitForSeconds(delayOnWin);
 
         /* For now, clear out the existing build zone, and choose a random new fraction

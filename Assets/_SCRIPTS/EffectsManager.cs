@@ -2,12 +2,21 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+[RequireComponent(typeof(AudioSource))]
 public class EffectsManager : MonoBehaviour {
 
 	public static EffectsManager Instance;
-	public enum Effects {Confetti};
+	public enum Effects {
+		// Visual
+		Confetti,
+		
+		//Auditory
+		Yay};
 
 	[SerializeField] private GameObject Confetti;
+	[SerializeField] private AudioClip Yay;
+
+	private AudioSource audioSource;
 
 	void Awake()
 	{
@@ -19,6 +28,7 @@ public class EffectsManager : MonoBehaviour {
 		else
 		{
 			Instance = this;
+			Instance.audioSource = GetComponent<AudioSource>();
 		}
 	}
 
@@ -28,6 +38,9 @@ public class EffectsManager : MonoBehaviour {
 		{
 			case Effects.Confetti:
 				Instantiate(Confetti); /* The Confetti particle system has autoDestroy */
+			break;
+			case Effects.Yay:
+				audioSource.PlayOneShot(Yay);
 			break;
 			default:
 
