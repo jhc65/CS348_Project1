@@ -44,4 +44,9 @@ public class Cuttable : MonoBehaviour
             resultOfCut.SetActive(false);
         }
     }
+
+    private void OnDisable()
+    {
+        resultOfCut.SetActive(false);
+    }
 }

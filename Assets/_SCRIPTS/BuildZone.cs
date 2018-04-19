@@ -14,20 +14,20 @@ public class BuildZone : MonoBehaviour {
 	[SerializeField] private int _gapDenominator;
 	private FractionTools.Fraction _gapSize;
 	private FractionTools.Fraction _gapFilled;
-	private List<Piece> _piecesInZone;
+	private List<Placeable> _piecesInZone;
 
 	private Text _equation;
 
 	// Use this for initialization
 	void Start () {
-		_piecesInZone = new List<Piece>();
+		_piecesInZone = new List<Placeable>();
 		_gapFilled = FractionTools.Fraction.Zero();
 		_gapSize = new FractionTools.Fraction(_gapNumerator, _gapDenominator);
 		_equation = this.GetComponentInChildren<Text>();
 		UpdateEquationUI(); /* Set the initial equation */
 	}
 	
-	public bool TryPlacePiece(Piece p)
+	public bool TryPlacePiece(Placeable p)
 	{
 		//Debug.Log("Trying to place the piece...");
 		//Debug.Log("Gap: " + _gapSize + ", piece:" + p.Value + ", filled: " + _gapFilled);
@@ -52,7 +52,7 @@ public class BuildZone : MonoBehaviour {
 		return successful;
 	}
 
-	private void SnapPiece(Piece p)
+	private void SnapPiece(Placeable p)
 	{
 		//Debug.Log("Attempting to snap piece...");
 		Vector3 targetPos;
@@ -137,7 +137,7 @@ public class BuildZone : MonoBehaviour {
 		if (_piecesInZone.Count > 0)
 		{
 			/* Append each piece's fraction using addition */
-			foreach(Piece p in _piecesInZone)
+			foreach(Placeable p in _piecesInZone)
 				result += p.Value + " + ";
 
 			/* Remove the last + */

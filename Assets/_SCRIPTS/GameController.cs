@@ -5,7 +5,10 @@ using UnityEngine;
 public class GameController : MonoBehaviour
 {
     static private GameController instance;      // instance of the GameController
+    [SerializeField] private Texture2D[] cursorTextures;    // custom cursor sprites
+    private Vector2 cursorHotSpot;                          // center of custom cursor icon
     private Constants.Global.CursorType activeCursor;
+    [SerializeField] private Piece[] pieces;
 
     public static GameController Instance
     {
@@ -15,13 +18,34 @@ public class GameController : MonoBehaviour
     public Constants.Global.CursorType ActiveCursor
     {
         get { return activeCursor; }
-        set { activeCursor = value; }
+        set {
+            activeCursor = value;
+            int index = 0;
+            switch (activeCursor)
+            {
+                case Constants.Global.CursorType.HAND:
+                    index = 0;
+                    foreach(Piece piece in pieces)
+                        piece.EnableDraggable();
+                    break;
+                case Constants.Global.CursorType.DRAG:
+                    index = 1;
+                    break;
+                case Constants.Global.CursorType.CUT:
+                    index = 2;
+                    foreach (Piece piece in pieces)
+                        piece.EnableCuttables();
+                    break;
+            }
+            cursorHotSpot = new Vector2(cursorTextures[index].width * 0.5f, cursorTextures[index].height * 0.5f);
+            Cursor.SetCursor(cursorTextures[index], cursorHotSpot, CursorMode.ForceSoftware);
+        }
     }
 
     void Awake()
     {
         instance = this;
-        activeCursor = Constants.Global.CursorType.HAND;
+        ActiveCursor = Constants.Global.CursorType.HAND;
     }
 
     void Update()
@@ -30,11 +54,11 @@ public class GameController : MonoBehaviour
         {
             if (activeCursor == Constants.Global.CursorType.CUT)
             {
-                activeCursor = Constants.Global.CursorType.HAND;
+                ActiveCursor = Constants.Global.CursorType.HAND;
             }
             else if (activeCursor == Constants.Global.CursorType.HAND)
             {
-                activeCursor = Constants.Global.CursorType.CUT;
+                ActiveCursor = Constants.Global.CursorType.CUT;
             }
         }
     }
