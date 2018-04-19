@@ -43,7 +43,7 @@ public class BuildZone : MonoBehaviour {
 			/* Check if the gap has been filled */
 			//Debug.Log("Gap filled: " + _gapFilled + ", gap size: " + _gapSize);
 			if (_gapFilled == _gapSize)
-				GameController.Instance.OnGapFilled();
+				StartCoroutine(GameController.Instance.OnGapFilled());
 		}
 		else{
 			Debug.Log("Piece doesn't want to take a fit! Gap filled: " + _gapFilled + ", piece size: " + p.Value + ", gap size: " + _gapSize);
