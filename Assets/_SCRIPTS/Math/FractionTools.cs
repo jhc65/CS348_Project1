@@ -394,7 +394,7 @@ public static class FractionTools {
         while (pfact > 0)
         {
             /* If there is no remainder, then it is a factor */
-            if (pfact % n == 0)
+            if (n % pfact == 0)
                 factors.Add(pfact);
             pfact--;
         }
