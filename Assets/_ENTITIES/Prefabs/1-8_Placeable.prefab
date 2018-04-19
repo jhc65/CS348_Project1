@@ -102,6 +102,7 @@ MonoBehaviour:
   spriteCenterOffset: 0.9375
   numerator: 1
   denominator: 8
+  length: 6
 --- !u!212 &212896947112156056
 SpriteRenderer:
   m_ObjectHideFlags: 1

@@ -5,18 +5,20 @@ using UnityEngine;
 public class Placeable : MonoBehaviour {
 #region Variables
     private GameController gc;
+    private Inventory inv;
     private Vector3 startPos;
     private Vector3 cursorPos;
     private bool placed = false;
     private bool isPickedUp = true;
+    private FractionTools.Fraction value;
 
     [SerializeField] float spriteCenterOffset;
     [SerializeField] private int numerator;
     [SerializeField] private int denominator;
-    [SerializeField] private FractionTools.Fraction value;
-#endregion
+    [SerializeField] private Constants.Global.PieceLength length;
+    #endregion
 
-#region Piece Methods
+    #region Piece Methods
     public FractionTools.Fraction Value
     {
         get { return value; }
@@ -45,11 +47,11 @@ public class Placeable : MonoBehaviour {
 
 #region Unity Overrides
 
-    // Use this for initialization
     void Start () {
-        //transform.position = new Vector3(transform.position.x, transform.position.y, 0);
         startPos = transform.position;
+        startPos.x = startPos.x - spriteCenterOffset;
         gc = GameController.Instance;
+        inv = Inventory.Instance;
         value = new FractionTools.Fraction(numerator, denominator);
     }
 	
@@ -59,30 +61,18 @@ public class Placeable : MonoBehaviour {
         //if (Input.GetMouseButton(0) && !placed)     // follow mouse
         //{
         //    cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //    cursorPos.x = cursorPos.x - spriteCenterOffset;
         //    transform.position = Vector2.Lerp(transform.position, cursorPos, 0.5f);
         //}
         //if (!Input.GetMouseButton(0) && !placed)         // return to start if mouse is released
         //{
         //    transform.position = Vector2.Lerp(transform.position, startPos, 0.2f);
+        //    gc.ActiveCursor = Constants.Global.CursorType.HAND;
         //}
         //if (!Input.GetMouseButton(0) && IsWithin(transform.position, startPos))     // destroy when back to start position
         //{
         //    Destroy(gameObject);
-        //    gc.ActiveCursor = Constants.Global.CursorType.HAND;
-        //    //inv.Increase(length, 1);
-        //    // change cursor to open hand
-        //}
-
-        //if (Input.GetMouseButtonDown(0)) {
-        //    RaycastHit hitInfo = new RaycastHit();
-        //    if (Physics.Raycast(Camera.main.ScreenPointToRay(Input.mousePosition), out hitInfo)) {
-        //        gameObject.transform.position = hitInfo.collider.transform.position;
-        //    }
-        //}
-        //if (Input.GetMouseButton(0) && !placed) {
-        //    cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //    cursorPos.x = cursorPos.x - spriteCenterOffset;
-        //    isPickedUp = true;
+        //    inv.Increase(length, 1);
         //}
 
         // Joe's preferred method
