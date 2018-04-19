@@ -87,8 +87,12 @@ public class Placeable : MonoBehaviour {
     // OnTriggerSTAY (2D)
     private void OnTriggerStay2D(Collider2D collision)
     {
+        if (placed)
+            return;
+
         if (collision.CompareTag("BuildZone"))
         {
+            Debug.Log("in");
             if (Input.GetMouseButtonUp(0))
             {
                 Debug.Log("Piece dropped in zone!");
