@@ -9,6 +9,8 @@ public class GameController : MonoBehaviour
     private Vector2 cursorHotSpot;                          // center of custom cursor icon
     private Constants.CursorType activeCursor;
     [SerializeField] private Piece[] pieces;
+    [SerializeField] private GameObject background;
+    [SerializeField] private GameObject cam;
 
     public static GameController Instance
     {
@@ -61,6 +63,8 @@ public class GameController : MonoBehaviour
                 ActiveCursor = Constants.CursorType.CUT;
             }
         }
+
+        cam.transform.position = new Vector3(cam.transform.position.x + 0.001f, cam.transform.position.y, cam.transform.position.z);
     }
 
     public void OnGapFilled()
