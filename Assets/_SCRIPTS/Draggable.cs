@@ -8,7 +8,7 @@ public class Draggable : MonoBehaviour {
     private Inventory inv;
 
     #region Serialized Privates
-    [SerializeField] private Constants.Global.PieceLength length;
+    [SerializeField] private Constants.PieceLength length;
     [SerializeField] private GameObject highlight;
     [SerializeField] private GameObject newPiece;
     #endregion
@@ -26,12 +26,12 @@ public class Draggable : MonoBehaviour {
     // Mouse OVER
     private void OnMouseOver()
     {
-        if (gc.ActiveCursor == Constants.Global.CursorType.HAND)
+        if (gc.ActiveCursor == Constants.CursorType.HAND)
         {
             highlight.SetActive(true);
             if (Input.GetMouseButtonDown(0))
             {
-                gc.ActiveCursor = Constants.Global.CursorType.DRAG;
+                gc.ActiveCursor = Constants.CursorType.DRAG;
                 highlight.SetActive(false);
                 Instantiate(newPiece, transform.position, Quaternion.identity);
                 inv.Decrease(length);
@@ -46,7 +46,7 @@ public class Draggable : MonoBehaviour {
     // Mouse EXIT
     private void OnMouseExit()
     {
-       if (gc.ActiveCursor == Constants.Global.CursorType.HAND)
+       if (gc.ActiveCursor == Constants.CursorType.HAND)
         {
             highlight.SetActive(false);
         }

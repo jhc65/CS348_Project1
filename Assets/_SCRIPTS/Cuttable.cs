@@ -5,8 +5,8 @@ using UnityEngine;
 public class Cuttable : MonoBehaviour
 {
     [SerializeField] private GameObject resultOfCut;
-    [SerializeField] private Constants.Global.PieceLength parentLength;
-    [SerializeField] private Constants.Global.PieceLength cutLength;
+    [SerializeField] private Constants.PieceLength parentLength;
+    [SerializeField] private Constants.PieceLength cutLength;
     [SerializeField] private int numCuts;
     private GameController gc;
     private Inventory inv;
@@ -20,7 +20,7 @@ public class Cuttable : MonoBehaviour
 
     void OnMouseOver()
     {
-        if (gc.ActiveCursor == Constants.Global.CursorType.CUT)
+        if (gc.ActiveCursor == Constants.CursorType.CUT)
         {
             resultOfCut.SetActive(true);
 
@@ -39,7 +39,7 @@ public class Cuttable : MonoBehaviour
 
     void OnMouseExit()
     {
-        if (gc.ActiveCursor == Constants.Global.CursorType.CUT)
+        if (gc.ActiveCursor == Constants.CursorType.CUT)
         {
             resultOfCut.SetActive(false);
         }
