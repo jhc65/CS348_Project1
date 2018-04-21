@@ -1,6 +1,23 @@
-﻿
+﻿using System;
 using System.Collections.Generic;
 public static class FractionTools {
+
+    public class ZeroInDenominatorException: Exception
+{
+    public ZeroInDenominatorException()
+    {
+    }
+
+    public ZeroInDenominatorException(string message)
+        : base(message)
+    {
+    }
+
+    public ZeroInDenominatorException(string message, Exception inner)
+        : base(message, inner)
+    {
+    }
+}
 
     public struct Fraction
     {
@@ -13,14 +30,23 @@ public static class FractionTools {
         /// <param name="f">Instance to copy</param>
         public Fraction(Fraction f)
         {
+            if (f.denominator == 0)
+                throw new ZeroInDenominatorException();
             numerator = f.numerator;
             denominator = f.denominator;
         }
 
         public Fraction(int n, int d)
         {
+            if (d == 0)
+                throw new ZeroInDenominatorException();
             numerator = n;
             denominator = d;
+        }
+
+        public static Fraction Zero()
+        {
+            return new Fraction(0,1);
         }
 
         public static Fraction operator+ (Fraction a, Fraction b)
@@ -39,6 +65,7 @@ public static class FractionTools {
 
         public static Fraction operator- (Fraction a, Fraction b)
         {
+               
             Fraction result = new Fraction();
 
             /* Get a common denominator. Doesn't have to be least, as we'll simplify at the end */
@@ -92,7 +119,11 @@ public static class FractionTools {
 
         public static bool operator== (Fraction a, Fraction b)
         {
-            return (a.numerator == b.numerator && a.denominator == b.denominator);
+            Fraction aSimplified = new Fraction(a);
+            aSimplified.Simplify();
+            Fraction bSimplified = new Fraction(b);
+            bSimplified.Simplify();
+            return (aSimplified.numerator == bSimplified.numerator && aSimplified.denominator == bSimplified.denominator);
         }
 
         public static bool operator!= (Fraction a, Fraction b)
@@ -102,12 +133,34 @@ public static class FractionTools {
 
         public static bool operator< (Fraction a, Fraction b)
         {
+            /// TODO: Handle 0/0
             return (a.numerator * b.denominator < b.numerator * a.denominator);
+        }
+
+        public static bool operator<= (Fraction a, Fraction b)
+        {
+            return a < b || a == b;
+        }
+
+        public static bool operator>= (Fraction a, Fraction b)
+        {
+            return a > b || a == b;
         }
 
         public static bool operator> (Fraction a, Fraction b)
         {
+            /// TODO: Handle 0/0
             return (a.numerator * b.denominator > b.numerator * a.denominator);
+        }
+
+        public static explicit operator double (Fraction f)
+        {
+            return ((double)f.numerator / (double)f.denominator);
+        }
+
+        public static explicit operator float (Fraction f)
+        {
+            return ((float)f.numerator / (float)f.denominator);
         }
 
         /// <summary>
@@ -131,6 +184,10 @@ public static class FractionTools {
         /// <returns>The whole number remaining, if any</returns>
         public int Reduce()
         {
+            /* Don't try to reduce a fraction over 0 */
+            if (denominator == 0)
+                return 0;
+            
             /* Remove the whole number portion */
             int excess = numerator / denominator;
             numerator = numerator % denominator;
@@ -138,6 +195,10 @@ public static class FractionTools {
             Simplify();
 
             return excess;
+        }
+
+        public override string ToString(){
+            return numerator + "/" + denominator;
         }
     }
 
@@ -185,6 +246,13 @@ public static class FractionTools {
         public Fraction ToImproperFraction()
         {
             return new Fraction(wholeNumber * fraction.denominator + fraction.numerator, fraction.denominator);
+        }
+
+        public static MixedNumber operator+ (MixedNumber a, Fraction b)
+        {
+            MixedNumber result = new MixedNumber(a.wholeNumber, a.fraction + b);
+            result.wholeNumber += result.fraction.Reduce();
+            return result;
         }
 
         public static MixedNumber operator+ (MixedNumber a, MixedNumber b)
@@ -261,6 +329,10 @@ public static class FractionTools {
         {
             return (a.ToImproperFraction() > b.ToImproperFraction());
         }
+
+        public override string ToString(){
+            return wholeNumber + " & " + fraction;
+        }
     }
 
     /// <summary>
@@ -322,7 +394,7 @@ public static class FractionTools {
         while (pfact > 0)
         {
             /* If there is no remainder, then it is a factor */
-            if (pfact % n == 0)
+            if (n % pfact == 0)
                 factors.Add(pfact);
             pfact--;
         }

@@ -5,25 +5,30 @@ using UnityEngine;
 public class Cuttable : MonoBehaviour
 {
     [SerializeField] private GameObject resultOfCut;
+    [SerializeField] private Constants.Global.PieceLength parentLength;
+    [SerializeField] private Constants.Global.PieceLength cutLength;
+    [SerializeField] private int numCuts;
     private GameController gc;
+    private Inventory inv;
 
 
     void Start()
     {
         gc = GameController.Instance;
+        inv = Inventory.Instance;
     }
 
     void OnMouseOver()
     {
-        if (gc.ActiveCursor == GameController.CursorType.CUT)
+        if (gc.ActiveCursor == Constants.Global.CursorType.CUT)
         {
             resultOfCut.SetActive(true);
 
             if (Input.GetMouseButtonDown(0))
             {
                 // Zak's code to change inventory numbers
-                //Inventory.Decrease(enum-for-this-piece) <-- calls ui change too
-                //Inventory.Increase(enum-for-increased-piece, number-to-add) <-- calls ui change too
+                inv.Decrease(parentLength);
+                inv.Increase(cutLength, numCuts);
             }
             if (Input.GetMouseButtonDown(1))
             {
@@ -34,9 +39,14 @@ public class Cuttable : MonoBehaviour
 
     void OnMouseExit()
     {
-        if (gc.ActiveCursor == GameController.CursorType.CUT)
+        if (gc.ActiveCursor == Constants.Global.CursorType.CUT)
         {
             resultOfCut.SetActive(false);
         }
+    }
+
+    private void OnDisable()
+    {
+        resultOfCut.SetActive(false);
     }
 }
