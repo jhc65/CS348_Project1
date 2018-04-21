@@ -1,16 +1,19 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
     static private GameController instance;      // instance of the GameController
     [SerializeField] private Texture2D[] cursorTextures;    // custom cursor sprites
-    private Vector2 cursorHotSpot;                          // center of custom cursor icon
     private Constants.CursorType activeCursor;
     [SerializeField] private Piece[] pieces;
     [SerializeField] private GameObject background;
     [SerializeField] private GameObject cam;
+
+    [SerializeField] private GameObject pauseMenu;
+    [SerializeField] private GameObject optionsMenu;
 
     public static GameController Instance
     {
@@ -39,7 +42,7 @@ public class GameController : MonoBehaviour
                         piece.EnableCuttables();
                     break;
             }
-            cursorHotSpot = new Vector2(cursorTextures[index].width * 0.5f, cursorTextures[index].height * 0.5f);
+            Vector2 cursorHotSpot = new Vector2(cursorTextures[index].width * 0.5f, cursorTextures[index].height * 0.5f);
             Cursor.SetCursor(cursorTextures[index], cursorHotSpot, CursorMode.ForceSoftware);
         }
     }
@@ -100,4 +103,70 @@ public class GameController : MonoBehaviour
 
          /// TODO: Restock the player's inventory
     }
+
+    public void MenuCursorSet()
+    {
+        Vector2 cursorHotSpot = new Vector2(cursorTextures[3].width * 0.5f, cursorTextures[3].height * 0.5f);
+        Cursor.SetCursor(cursorTextures[3], cursorHotSpot, CursorMode.ForceSoftware);
+    }
+
+    public void MenuCursorUnSet()
+    {
+        if (pauseMenu.activeSelf)   // don't unset if the PointerExit was caused by the menu blocking the button
+        {
+            Debug.Log("joke's on you, unity!");
+            return;
+        }
+        ActiveCursor = activeCursor;
+    }
+
+    public void UndoClick()
+    {
+        // TODO:
+        // 1) Get active Build Zone
+        // 2) Remove the top piece from the queue
+        // 3) Update the equation and build zone image
+        // 4) Animate it going back to the inventory?
+        // 5) Increase the inventory number
+    }
+
+    public void RestartClick()
+    {
+        // TODO:
+        // 1) Get active Build Zone
+        // 2) Loop until Build Zone is empty:
+            // a) Remove the top piece from the queue
+            // b) Update the equation and build zone image
+            // c) Animate it going back to the inventory?
+            // d) Increase the inventory number
+    }
+
+    public void PauseClick()
+    {
+        // TODO: pause de game
+        pauseMenu.SetActive(true);
+        MenuCursorSet();
+    }
+
+    public void PlayClick()
+    {
+        // TODO: unpause de game
+        pauseMenu.SetActive(false);
+        MenuCursorUnSet();
+    }
+
+    public void OptionsClick()
+    {
+        optionsMenu.SetActive(true);
+        pauseMenu.SetActive(false);
+    }
+
+    public void BackClick()
+    {
+        pauseMenu.SetActive(true);
+        optionsMenu.SetActive(false);
+    }
+
+    public void QuitClick()
+    { SceneManager.LoadScene("Menu"); }
 }

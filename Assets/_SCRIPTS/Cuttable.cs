@@ -20,6 +20,10 @@ public class Cuttable : MonoBehaviour
 
     void OnMouseOver()
     {
+        // ignore hover if a menu is active
+        if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
+            return;
+
         if (gc.ActiveCursor == Constants.CursorType.CUT)
         {
             resultOfCut.SetActive(true);

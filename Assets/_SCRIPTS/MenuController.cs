@@ -19,6 +19,16 @@ public class MenuController : MonoBehaviour
     [SerializeField] private Toggle multipleGapsToggle;
     [SerializeField] private ToggleGroup colorToggles;
 
+    [SerializeField] private Texture2D cursorTexture;
+
+
+    private void Start()
+    {
+        // TODO: set mouse cursor to generic arrow
+        //Vector2 cursorHotSpot = new Vector2(cursorTextures[index].width * 0.5f, cursorTextures[index].height * 0.5f);
+        //Cursor.SetCursor(cursorTexture, cursorHotSpot, CursorMode.ForceSoftware);
+    }
+
     public void PlayClick()
     {
         // save selected settings to Constants

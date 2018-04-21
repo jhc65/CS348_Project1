@@ -26,6 +26,10 @@ public class Draggable : MonoBehaviour {
     // Mouse OVER
     private void OnMouseOver()
     {
+        // ignore hover if a menu is active
+        if (UnityEngine.EventSystems.EventSystem.current.IsPointerOverGameObject())
+            return;
+
         if (gc.ActiveCursor == Constants.CursorType.HAND)
         {
             highlight.SetActive(true);
