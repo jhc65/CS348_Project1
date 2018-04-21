@@ -15,7 +15,7 @@ public class Placeable : MonoBehaviour {
     [SerializeField] float spriteCenterOffset;
     [SerializeField] private int numerator;
     [SerializeField] private int denominator;
-    [SerializeField] private Constants.Global.PieceLength length;
+    [SerializeField] private Constants.PieceLength length;
     #endregion
 
     #region Piece Methods
@@ -27,11 +27,11 @@ public class Placeable : MonoBehaviour {
     private void ToggleIsPickedUp() {
         if (isPickedUp) {
             isPickedUp = false;
-            gc.ActiveCursor = Constants.Global.CursorType.HAND;
+            gc.ActiveCursor = Constants.CursorType.HAND;
         }
         else {
             isPickedUp = true;
-            gc.ActiveCursor = Constants.Global.CursorType.DRAG;
+            gc.ActiveCursor = Constants.CursorType.DRAG;
         }
     }
 
@@ -100,7 +100,7 @@ public class Placeable : MonoBehaviour {
                 if (bz != null && bz.TryPlacePiece(this))
                 {
                     placed = true;
-                    gc.ActiveCursor = Constants.Global.CursorType.HAND;
+                    gc.ActiveCursor = Constants.CursorType.HAND;
                 }
             }
         }
