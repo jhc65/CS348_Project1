@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class BuildZone : MonoBehaviour {
 
+    public enum PivotType {Left, Center, Right};
+    [SerializeField]
+    private PivotType SnapPivot;
 	/*
 	 * Need to have numerator and denominator vars since Inspector won't display Fraction struct by default
 	 *
@@ -55,18 +58,48 @@ public class BuildZone : MonoBehaviour {
 	private void SnapPiece(Placeable p)
 	{
 		Vector3 targetPos;
+        /* Scale the piece down to within the build area
+		 * 
+		 * pieceSize (1/2) / _gapSize (3/2) = Percent to fill 1/3
+		 */
+		float PercentToFill = (float)(p.Value / _gapSize);
+
+        /* Set the previousTransform to either SnapStart, or the previous piece */
 		if (_piecesInZone.Count == 0)
 		{
             /* Setting target to SnapPoint's local transform */
 			Transform t = this.transform.Find("SnapStart").transform;
 			targetPos = t.localPosition;
+            switch (SnapPivot)
+            {
+                case PivotType.Left:
+                    break;
+                case PivotType.Center:
+                    targetPos.x += PercentToFill / 2;
+                    break;
+                case PivotType.Right:
+                    targetPos.x += PercentToFill;
+                    break;
+            }
 		}
 		else
 		{
 			/* Setting target to previous piece + previous piece's length */
             Placeable previous = _piecesInZone[_piecesInZone.Count - 1];
             targetPos = previous.transform.localPosition;
-            targetPos.x += (float)(previous.Value / _gapSize);
+            switch (SnapPivot)
+            {
+                case PivotType.Left:
+                    targetPos.x += (float)(previous.Value / _gapSize);
+                    break;
+                case PivotType.Center:
+                    targetPos.x += (float)(previous.Value / _gapSize) / 2;
+                    targetPos.x += PercentToFill / 2;
+                    break;
+                case PivotType.Right:
+                    targetPos.x += PercentToFill;
+                    break;
+            }
 		}
 
 		/// TODO: Animate this
@@ -75,11 +108,7 @@ public class BuildZone : MonoBehaviour {
         p.transform.localRotation = Quaternion.identity; /* Set the local rotation to identity (0,0,0) */
         Debug.Log("<color=blue>" + p.transform.localPosition + ", " + targetPos);
         p.transform.localPosition = targetPos; /* Set the local position to target */
-		/* Scale the piece down to within the build area
-		 * 
-		 * pieceSize (1/2) / _gapSize (3/2) = Percent to fill 1/3
-		*/
-		float PercentToFill = (float)(p.Value / _gapSize);
+		
         Vector3 scale = p.transform.localScale;
         p.transform.localScale = new Vector3(PercentToFill, scale.y, scale.z);
 		
