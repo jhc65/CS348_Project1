@@ -1,29 +1,35 @@
 ﻿using System;
 using System.Collections.Generic;
-public static class FractionTools {
 
-    public class ZeroInDenominatorException: Exception
+public static class FractionTools
 {
-    public ZeroInDenominatorException()
-    {
-    }
 
-    public ZeroInDenominatorException(string message)
-        : base(message)
+    #region Helpful Exception Definitions
+    public class ZeroInDenominatorException: Exception
     {
-    }
+        public ZeroInDenominatorException()
+        {
+        }
 
-    public ZeroInDenominatorException(string message, Exception inner)
-        : base(message, inner)
-    {
-    }
-}
+        public ZeroInDenominatorException(string message)
+            : base(message)
+        {
+        }
 
+        public ZeroInDenominatorException(string message, Exception inner)
+            : base(message, inner)
+        {
+        }
+    }
+    #endregion // Helpful Exception Definitions
+
+    #region Improper Fractions
     public struct Fraction
     {
         public int numerator;
         public int denominator;
 
+        #region Constructors
         /// <summary>
         /// Copy constructor
         /// </summary>
@@ -43,12 +49,14 @@ public static class FractionTools {
             numerator = n;
             denominator = d;
         }
+        #endregion //#region Constructors
 
         public static Fraction Zero()
         {
             return new Fraction(0,1);
         }
 
+        #region Mathematical Operator Overloads
         public static Fraction operator+ (Fraction a, Fraction b)
         {
             Fraction result = new Fraction();
@@ -93,30 +101,9 @@ public static class FractionTools {
             result.Simplify();
             return result;
         }
+        #endregion //Mathematical Operator Overloads
 
-        public override bool Equals(object obj)
-        {
-            if (!(obj is Fraction))
-                return false;
-
-            return (this == (Fraction)obj);
-        }
-
-        /// <summary>
-        /// Blatently stolen from https://stackoverflow.com/a/7813738 as I don't understand how this should work
-        /// </summary>
-        /// <returns></returns>
-        public override int GetHashCode()
-        {
-            unchecked // Overflow is fine, just wrap
-            {
-                int hash = 17;
-                hash = hash * 23 + numerator.GetHashCode();
-                hash = hash * 23 + denominator.GetHashCode();
-                return hash;
-            }
-        }
-
+        #region Comparison Operator Overloads
         public static bool operator== (Fraction a, Fraction b)
         {
             Fraction aSimplified = new Fraction(a);
@@ -152,7 +139,9 @@ public static class FractionTools {
             /// TODO: Handle 0/0
             return (a.numerator * b.denominator > b.numerator * a.denominator);
         }
+        #endregion //Comparison Operator Overloads
 
+        #region Conversion Function Overloads
         public static explicit operator double (Fraction f)
         {
             return ((double)f.numerator / (double)f.denominator);
@@ -162,7 +151,9 @@ public static class FractionTools {
         {
             return ((float)f.numerator / (float)f.denominator);
         }
+        #endregion //Conversion Function Overloads
 
+        #region Helper Functions
         /// <summary>
         /// Simplify a fraction, leaving it in improper form
         /// </summary>
@@ -196,17 +187,46 @@ public static class FractionTools {
 
             return excess;
         }
+        #endregion // Helper Functions
 
+        #region Function Overloads
         public override string ToString(){
             return numerator + "/" + denominator;
         }
-    }
 
+        public override bool Equals(object obj)
+        {
+            if (!(obj is Fraction))
+                return false;
+
+            return (this == (Fraction)obj);
+        }
+
+        /// <summary>
+        /// Blatently stolen from https://stackoverflow.com/a/7813738 as I don't understand how this should work
+        /// </summary>
+        /// <returns></returns>
+        public override int GetHashCode()
+        {
+            unchecked // Overflow is fine, just wrap
+            {
+                int hash = 17;
+                hash = hash * 23 + numerator.GetHashCode();
+                hash = hash * 23 + denominator.GetHashCode();
+                return hash;
+            }
+        }
+        #endregion //Function Overloads
+    }
+    #endregion // Improper Fraction
+
+    #region Mixed Numbers
     public struct MixedNumber
     {
         int wholeNumber;
         Fraction fraction;
 
+        #region Constructors
         /// <summary>
         /// Copy constuctor
         /// </summary>
@@ -238,6 +258,7 @@ public static class FractionTools {
             wholeNumber = w;
             fraction = new Fraction(n, d);
         }
+        #endregion //Constructors
 
         /// <summary>
         /// Converts a mixed number to an improper fraction
@@ -248,9 +269,17 @@ public static class FractionTools {
             return new Fraction(wholeNumber * fraction.denominator + fraction.numerator, fraction.denominator);
         }
 
+        #region Mathematical Operator Overloads
         public static MixedNumber operator+ (MixedNumber a, Fraction b)
         {
             MixedNumber result = new MixedNumber(a.wholeNumber, a.fraction + b);
+            result.wholeNumber += result.fraction.Reduce();
+            return result;
+        }
+
+        public static MixedNumber operator +(Fraction a, MixedNumber b)
+        {
+            MixedNumber result = new MixedNumber(b.wholeNumber, b.fraction + a);
             result.wholeNumber += result.fraction.Reduce();
             return result;
         }
@@ -286,6 +315,34 @@ public static class FractionTools {
 
             return new MixedNumber(result);
         }
+        #endregion //Mathematical Operator Overloads
+
+        #region Comparison Operator Overloads
+        public static bool operator== (MixedNumber a, MixedNumber b)
+        {
+            return (a.ToImproperFraction() == b.ToImproperFraction());
+        }
+
+        public static bool operator!= (MixedNumber a, MixedNumber b)
+        {
+            return !(a == b);
+        }
+
+        public static bool operator <(MixedNumber a, MixedNumber b)
+        {
+            return (a.ToImproperFraction() < b.ToImproperFraction());
+        }
+
+        public static bool operator >(MixedNumber a, MixedNumber b)
+        {
+            return (a.ToImproperFraction() > b.ToImproperFraction());
+        }
+        #endregion //Comparison Operator Overloads
+
+        #region Function Overloads
+        public override string ToString(){
+            return wholeNumber + " & " + fraction;
+        }
 
         public override bool Equals(object obj)
         {
@@ -309,38 +366,17 @@ public static class FractionTools {
                 return hash;
             }
         }
-
-        public static bool operator== (MixedNumber a, MixedNumber b)
-        {
-            return (a.ToImproperFraction() == b.ToImproperFraction());
-        }
-
-        public static bool operator!= (MixedNumber a, MixedNumber b)
-        {
-            return !(a == b);
-        }
-
-        public static bool operator <(MixedNumber a, MixedNumber b)
-        {
-            return (a.ToImproperFraction() < b.ToImproperFraction());
-        }
-
-        public static bool operator >(MixedNumber a, MixedNumber b)
-        {
-            return (a.ToImproperFraction() > b.ToImproperFraction());
-        }
-
-        public override string ToString(){
-            return wholeNumber + " & " + fraction;
-        }
+        #endregion //Function Overloads
     }
+    #endregion //Mixed Numbers
 
+    #region Factorization Helpers
     /// <summary>
     /// Greatest Common Factor
     /// </summary>
     /// <param name="a"></param>
     /// <param name="b"></param>
-    /// <returns>The greatest common factor between a and b, or -1 if none is found</returns>
+    /// <returns>The greatest common factor between a and b, or 1 if none is found</returns>
     public static int GCF (int a, int b)
     {
         /* Get a list of all factors for both numbers */
@@ -365,8 +401,8 @@ public static class FractionTools {
             }
         }
 
-        /* If no common factor was found return -1 */
-        return -1;
+        /* If no common factor was found return 1, as it is the common factor between all numbers */
+        return 1;
     }
 
     /// <summary>
@@ -413,5 +449,5 @@ public static class FractionTools {
         factors.Sort();
         return factors.ToArray();
     }
-
+    #endregion //Factorization Helpers
 }
