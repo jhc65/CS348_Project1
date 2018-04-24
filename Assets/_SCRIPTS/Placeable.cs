@@ -12,10 +12,9 @@ public class Placeable : MonoBehaviour {
     private bool isPickedUp = true;
     private FractionTools.Fraction value;
 
-    [SerializeField] float spriteCenterOffset;
     [SerializeField] private int numerator;
     [SerializeField] private int denominator;
-    [SerializeField] private Constants.Global.PieceLength length;
+    [SerializeField] private Constants.PieceLength length;
     #endregion
 
     #region Piece Methods
@@ -27,11 +26,11 @@ public class Placeable : MonoBehaviour {
     private void ToggleIsPickedUp() {
         if (isPickedUp) {
             isPickedUp = false;
-            gc.ActiveCursor = Constants.Global.CursorType.HAND;
+            gc.ActiveCursor = Constants.CursorType.HAND;
         }
         else {
             isPickedUp = true;
-            gc.ActiveCursor = Constants.Global.CursorType.DRAG;
+            gc.ActiveCursor = Constants.CursorType.DRAG;
         }
     }
 
@@ -49,7 +48,6 @@ public class Placeable : MonoBehaviour {
 
     void Start () {
         startPos = transform.position;
-        startPos.x = startPos.x - spriteCenterOffset;
         gc = GameController.Instance;
         inv = Inventory.Instance;
         value = new FractionTools.Fraction(numerator, denominator);
@@ -61,7 +59,6 @@ public class Placeable : MonoBehaviour {
         //if (Input.GetMouseButton(0) && !placed)     // follow mouse
         //{
         //    cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //    cursorPos.x = cursorPos.x - spriteCenterOffset;
         //    transform.position = Vector2.Lerp(transform.position, cursorPos, 0.5f);
         //}
         //if (!Input.GetMouseButton(0) && !placed)         // return to start if mouse is released
@@ -79,7 +76,6 @@ public class Placeable : MonoBehaviour {
         if (isPickedUp && !placed)
         {
             cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            cursorPos.x = cursorPos.x - spriteCenterOffset;
             transform.position = Vector2.Lerp(transform.position, cursorPos, 0.5f);
         }
     }
@@ -87,6 +83,9 @@ public class Placeable : MonoBehaviour {
     // OnTriggerSTAY (2D)
     private void OnTriggerStay2D(Collider2D collision)
     {
+        if (placed)
+            return;
+
         if (collision.CompareTag("BuildZone"))
         {
             if (Input.GetMouseButtonUp(0))
@@ -96,7 +95,7 @@ public class Placeable : MonoBehaviour {
                 if (bz != null && bz.TryPlacePiece(this))
                 {
                     placed = true;
-                    gc.ActiveCursor = Constants.Global.CursorType.HAND;
+                    gc.ActiveCursor = Constants.CursorType.HAND;
                 }
             }
         }

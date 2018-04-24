@@ -16,6 +16,7 @@ public class Inventory : MonoBehaviour
     [SerializeField] private Text UIninths;
     [SerializeField] private Text UItenths;
     private int halves, thirds, fourths, fifths, sixths, sevenths, eighths, ninths, tenths;
+    [SerializeField] private SpriteRenderer s;
 
     public static Inventory Instance
     {
@@ -26,6 +27,7 @@ public class Inventory : MonoBehaviour
     {
         instance = this;
         RoundStart();
+        s.color = Constants.trackColor;
     }
 
     void RoundStart()
@@ -34,105 +36,105 @@ public class Inventory : MonoBehaviour
     }
 
 
-    public void Decrease(Constants.Global.PieceLength piece)
+    public void Decrease(Constants.PieceLength piece)
     {
         switch (piece)
         {
-            case Constants.Global.PieceLength.HALF:
+            case Constants.PieceLength.HALF:
                 halves--;
                 break;
-            case Constants.Global.PieceLength.THIRD:
+            case Constants.PieceLength.THIRD:
                 thirds--;
                 break;
-            case Constants.Global.PieceLength.FOURTH:
+            case Constants.PieceLength.FOURTH:
                 fourths--;
                 break;
-            case Constants.Global.PieceLength.FIFTH:
+            case Constants.PieceLength.FIFTH:
                 fifths--;
                 break;
-            case Constants.Global.PieceLength.SIXTH:
+            case Constants.PieceLength.SIXTH:
                 sixths--;
                 break;
-            case Constants.Global.PieceLength.SEVENTH:
+            case Constants.PieceLength.SEVENTH:
                 sevenths--;
                 break;
-            case Constants.Global.PieceLength.EIGHTH:
+            case Constants.PieceLength.EIGHTH:
                 eighths--;
                 break;
-            case Constants.Global.PieceLength.NINTH:
+            case Constants.PieceLength.NINTH:
                 ninths--;
                 break;
-            case Constants.Global.PieceLength.TENTH:
+            case Constants.PieceLength.TENTH:
                 tenths--;
                 break;
         }
         UpdateUI();
     }
 
-    public void Increase(Constants.Global.PieceLength piece, int num)
+    public void Increase(Constants.PieceLength piece, int num)
     {
         switch (piece)
         {
-            case Constants.Global.PieceLength.HALF:
+            case Constants.PieceLength.HALF:
                 halves += num;
                 break;
-            case Constants.Global.PieceLength.THIRD:
+            case Constants.PieceLength.THIRD:
                 thirds += num;
                 break;
-            case Constants.Global.PieceLength.FOURTH:
+            case Constants.PieceLength.FOURTH:
                 fourths += num;
                 break;
-            case Constants.Global.PieceLength.FIFTH:
+            case Constants.PieceLength.FIFTH:
                 fifths += num;
                 break;
-            case Constants.Global.PieceLength.SIXTH:
+            case Constants.PieceLength.SIXTH:
                 sixths += num;
                 break;
-            case Constants.Global.PieceLength.SEVENTH:
+            case Constants.PieceLength.SEVENTH:
                 sevenths += num;
                 break;
-            case Constants.Global.PieceLength.EIGHTH:
+            case Constants.PieceLength.EIGHTH:
                 eighths += num;
                 break;
-            case Constants.Global.PieceLength.NINTH:
+            case Constants.PieceLength.NINTH:
                 ninths += num;
                 break;
-            case Constants.Global.PieceLength.TENTH:
+            case Constants.PieceLength.TENTH:
                 tenths += num;
                 break;
         }
         UpdateUI();
     }
 
-    public void Set(Constants.Global.PieceLength piece, int num)
+    public void Set(Constants.PieceLength piece, int num)
     {
         switch (piece)
         {
-            case Constants.Global.PieceLength.HALF:
+            case Constants.PieceLength.HALF:
                 halves = num;
                 break;
-            case Constants.Global.PieceLength.THIRD:
+            case Constants.PieceLength.THIRD:
                 thirds = num;
                 break;
-            case Constants.Global.PieceLength.FOURTH:
+            case Constants.PieceLength.FOURTH:
                 fourths = num;
                 break;
-            case Constants.Global.PieceLength.FIFTH:
+            case Constants.PieceLength.FIFTH:
                 fifths = num;
                 break;
-            case Constants.Global.PieceLength.SIXTH:
+            case Constants.PieceLength.SIXTH:
                 sixths = num;
                 break;
-            case Constants.Global.PieceLength.SEVENTH:
+            case Constants.PieceLength.SEVENTH:
                 sevenths = num;
                 break;
-            case Constants.Global.PieceLength.EIGHTH:
+            case Constants.PieceLength.EIGHTH:
                 eighths = num;
                 break;
-            case Constants.Global.PieceLength.NINTH:
+            case Constants.PieceLength.NINTH:
                 ninths = num;
                 break;
-            case Constants.Global.PieceLength.TENTH:
+            case Constants.PieceLength.TENTH:
                 tenths = num;
                 break;
         }

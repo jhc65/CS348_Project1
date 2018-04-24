@@ -5,6 +5,9 @@ using UnityEngine.UI;
 
 public class BuildZone : MonoBehaviour {
 
+    public enum PivotType {Left, Center, Right};
+    [SerializeField]
+    private PivotType SnapPivot;
 	/*
 	 * Need to have numerator and denominator vars since Inspector won't display Fraction struct by default
 	 *
@@ -54,50 +57,60 @@ public class BuildZone : MonoBehaviour {
 
 	private void SnapPiece(Placeable p)
 	{
-		//Debug.Log("Attempting to snap piece...");
 		Vector3 targetPos;
-		Quaternion targetRot;
+        /* Scale the piece down to within the build area
+		 * 
+		 * pieceSize (1/2) / _gapSize (3/2) = Percent to fill 1/3
+		 */
+		float PercentToFill = (float)(p.Value / _gapSize);
+
+        /* Set the previousTransform to either SnapStart, or the previous piece */
 		if (_piecesInZone.Count == 0)
 		{
-			//Debug.Log("setting snap point to SnapStart");
+            /* Setting target to SnapPoint's local transform */
 			Transform t = this.transform.Find("SnapStart").transform;
-			targetPos = t.position;
-			targetPos.x += t.localScale.x;
-			targetRot = t.rotation;
+			targetPos = t.localPosition;
+            switch (SnapPivot)
+            {
+                case PivotType.Left:
+                    break;
+                case PivotType.Center:
+                    targetPos.x += PercentToFill / 2;
+                    break;
+                case PivotType.Right:
+                    targetPos.x += PercentToFill;
+                    break;
+            }
 		}
 		else
 		{
-			//Debug.Log("Setting snap point to previous piece");
-			Transform t = _piecesInZone[_piecesInZone.Count - 1].transform;
-			targetPos = t.position;
-			targetPos.x += t.localScale.x;
-			targetRot = t.rotation;
+			/* Setting target to previous piece + previous piece's length */
+            Placeable previous = _piecesInZone[_piecesInZone.Count - 1];
+            targetPos = previous.transform.localPosition;
+            switch (SnapPivot)
+            {
+                case PivotType.Left:
+                    targetPos.x += (float)(previous.Value / _gapSize);
+                    break;
+                case PivotType.Center:
+                    targetPos.x += (float)(previous.Value / _gapSize) / 2;
+                    targetPos.x += PercentToFill / 2;
+                    break;
+                case PivotType.Right:
+                    targetPos.x += PercentToFill;
+                    break;
+            }
 		}
-		//Debug.Log("Snapping to: " + targetPos + ", " + targetRot.eulerAngles);
 
 		/// TODO: Animate this
-		/* Move and rotate the piece */
-		p.transform.SetPositionAndRotation(targetPos, targetRot);
-		/* Scale the piece down to within the build area
-		 * 
-		 * pieceSize (1/2) / _gapSize (3/2) = Percent to fill 1/3
-		 * pieceScale * (PercentToFill * BuildZoneScale) = newScale
-		*/
-		/* Putting this in a try catch made it run...I have no idea why it did not run without this
-				Will look into later (Corwin) */
-		try
-		{
-			float PercentToFill = (float)(p.Value / _gapSize);
-			//Debug.Log("PercentToFill: " + PercentToFill);
-			p.transform.localScale = new Vector3(
-			(PercentToFill * this.transform.localScale.x),
-			p.transform.localScale.y,
-			p.transform.localScale.z);
-		}
-		catch (System.Exception ex)
-		{
-			Debug.LogError(ex.ToString());
-		}
+		/* Set the piece as a child of this build zone, then move and rotate the piece */
+        p.transform.SetParent(this.transform); /* Make the piece a child of the parent */
+        p.transform.localRotation = Quaternion.identity; /* Set the local rotation to identity (0,0,0) */
+        Debug.Log("<color=blue>" + p.transform.localPosition + ", " + targetPos);
+        p.transform.localPosition = targetPos; /* Set the local position to target */
+		
+        Vector3 scale = p.transform.localScale;
+        p.transform.localScale = new Vector3(PercentToFill, scale.y, scale.z);
 		
 		//yield return null; // For when this becomes a coroutine
 	}
