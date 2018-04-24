@@ -21,6 +21,23 @@ public static class FractionTools
         {
         }
     }
+
+    public class IncompatibleDenominatorsException : Exception
+    {
+        public IncompatibleDenominatorsException()
+        {
+        }
+
+        public IncompatibleDenominatorsException(string message)
+            : base(message)
+        {
+        }
+
+        public IncompatibleDenominatorsException(string message, Exception inner)
+            : base(message, inner)
+        {
+        }
+    }
     #endregion // Helpful Exception Definitions
 
     #region Improper Fractions
@@ -186,6 +203,16 @@ public static class FractionTools
             Simplify();
 
             return excess;
+        }
+
+        public void ToBase(int b)
+        {
+            /* Make sure the current fraction can cleanly convert to the new base */
+            if ((b * numerator) % denominator != 0)
+                throw new IncompatibleDenominatorsException();
+
+            numerator = numerator * b / denominator;
+            denominator = b;
         }
         #endregion // Helper Functions
 
@@ -448,6 +475,48 @@ public static class FractionTools
         /* Sort and return the list */
         factors.Sort();
         return factors.ToArray();
+    }
+
+    /// <summary>
+    /// Breaks a fraction into pieces, largest piece first
+    /// </summary>
+    /// <param name="fraction">The fraction to break</param>
+    /// <returns>Array of fractions, sorted largest first, that sum to the given fraction</returns>
+    public static Fraction[] AtomizeFraction(Fraction fraction)
+    {
+        List<Fraction> atomicFractions = new List<Fraction>();
+
+        /* Get the factors of the improper fraction's denominator */
+        int[] factors = GetFactors(fraction.denominator);
+
+        /* Iterate over the list of factors (ignoring 0 if present), pulling out factors */
+        foreach (int factor in factors)
+        {
+            if (factor > 0) /* This will ignore negative factors. I'm not sure if that's okay... */
+            {
+                /* Check if a chunk of this factor can be pulled out
+                 * 
+                 * Ex:
+                 *      Fraction: 16/12 Factors: 1, 2, 3
+                 *      
+                 *      Try pulling out factor of 1:
+                 *          1 -> 12/12 (numerator = denominator / factor)
+                 */
+                int factorNumerator = fraction.denominator / factor;
+                if (fraction.numerator / factorNumerator > 0)
+                {
+                    /* Create a new atomic fraction of the factor's base */
+                    Fraction newAtom = new Fraction(fraction.numerator / factorNumerator, factor);
+                    /* Pull the atomic fraction out */
+                    fraction.numerator = fraction.numerator % factorNumerator;
+
+                    /* Add the atomic fraction to the list */
+                    atomicFractions.Add(newAtom);
+                }
+            }
+        }
+
+        return atomicFractions.ToArray();
     }
     #endregion //Factorization Helpers
 }
