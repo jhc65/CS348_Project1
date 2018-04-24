@@ -481,8 +481,9 @@ public static class FractionTools
     /// Breaks a fraction into pieces, largest piece first
     /// </summary>
     /// <param name="fraction">The fraction to break</param>
+    /// <param name="includeOnes">True if chunks of n/1 should be pulled out (true by default)</param>
     /// <returns>Array of fractions, sorted largest first, that sum to the given fraction</returns>
-    public static Fraction[] AtomizeFraction(Fraction fraction)
+    public static Fraction[] AtomizeFraction(Fraction fraction, bool includeOnes = true)
     {
         List<Fraction> atomicFractions = new List<Fraction>();
 
@@ -492,7 +493,9 @@ public static class FractionTools
         /* Iterate over the list of factors (ignoring 0 if present), pulling out factors */
         foreach (int factor in factors)
         {
-            if (factor > 0) /* This will ignore negative factors. I'm not sure if that's okay... */
+            /* Ignore negative factors and 0 (though 0 shouldn't exist as a factor of a denominator)
+             *  and check if either the factor is not 1, or it is 1 and includeOne is true */
+            if (factor > 0 && (factor != 1 ||  includeOnes)) /* This will ignore negative factors. I'm not sure if that's okay... */
             {
                 /* Check if a chunk of this factor can be pulled out
                  * 
