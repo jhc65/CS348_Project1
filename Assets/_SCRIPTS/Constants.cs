@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class Constants {
     public enum CursorType { HAND, DRAG, CUT, PIECE };
-    public enum PieceLength { HALF, THIRD, FOURTH, FIFTH, SIXTH, SEVENTH, EIGHTH, NINTH, TENTH };
+    public enum PieceLength { HALF = 2, THIRD = 3, FOURTH = 4, FIFTH = 5, SIXTH = 6, SEVENTH = 7, EIGHTH = 8, NINTH = 9, TENTH = 10 };
 
     public static bool gapAlwaysOne = false;
     public static bool gapAllowImproperFractions = true;
@@ -13,4 +13,17 @@ public static class Constants {
     public static bool unlimitedInventory = false;
     public static bool showCutLengths = false;
     public static Color trackColor = Color.white;
+    public static Dictionary<PieceLength, float> difficultyProbabilityDistribution = new Dictionary<PieceLength, float>() 
+                                { 
+                                    {PieceLength.HALF,.3f},      //level: 1
+                                    {PieceLength.THIRD,.2f},     //level: 2
+                                    {PieceLength.FOURTH,.2f},     //level: 2
+                                    {PieceLength.FIFTH,.05f},    //level: 3
+                                    {PieceLength.SIXTH,.075f},    //level: 3
+                                    {PieceLength.SEVENTH,.025f},   //level: 4
+                                    {PieceLength.EIGHTH,.075f},    //level: 3
+                                    {PieceLength.NINTH,.025f},   //level: 4
+                                    {PieceLength.TENTH,.05f}    //level: 3
+                                };
+    public static float extraPiecesPerDifficultyLevel = 1.5f;
 }

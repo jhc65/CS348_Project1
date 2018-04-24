@@ -41,12 +41,21 @@ public static class FractionTools
     #endregion // Helpful Exception Definitions
 
     #region Improper Fractions
-    public struct Fraction
+    public class Fraction
     {
         public int numerator;
         public int denominator;
 
         #region Constructors
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public Fraction()
+        {
+            numerator = 1;
+            denominator = 1;
+        }
+
         /// <summary>
         /// Copy constructor
         /// </summary>
@@ -248,12 +257,21 @@ public static class FractionTools
     #endregion // Improper Fraction
 
     #region Mixed Numbers
-    public struct MixedNumber
+    public class MixedNumber
     {
         int wholeNumber;
         Fraction fraction;
 
         #region Constructors
+        /// <summary>
+        /// Default constructor
+        /// </summary>
+        public MixedNumber()
+        {
+            wholeNumber = 0;
+            fraction = new Fraction();
+        }
+
         /// <summary>
         /// Copy constuctor
         /// </summary>
@@ -485,10 +503,11 @@ public static class FractionTools
     /// <returns>Array of fractions, sorted largest first, that sum to the given fraction</returns>
     public static Fraction[] AtomizeFraction(Fraction fraction, bool includeOnes = true)
     {
+        Fraction toUseAndAbuse = new Fraction(fraction);
         List<Fraction> atomicFractions = new List<Fraction>();
 
         /* Get the factors of the improper fraction's denominator */
-        int[] factors = GetFactors(fraction.denominator);
+        int[] factors = GetFactors(toUseAndAbuse.denominator);
 
         /* Iterate over the list of factors (ignoring 0 if present), pulling out factors */
         foreach (int factor in factors)
@@ -505,13 +524,13 @@ public static class FractionTools
                  *      Try pulling out factor of 1:
                  *          1 -> 12/12 (numerator = denominator / factor)
                  */
-                int factorNumerator = fraction.denominator / factor;
-                if (fraction.numerator / factorNumerator > 0)
+                int factorNumerator = toUseAndAbuse.denominator / factor;
+                if (toUseAndAbuse.numerator / factorNumerator > 0)
                 {
                     /* Create a new atomic fraction of the factor's base */
-                    Fraction newAtom = new Fraction(fraction.numerator / factorNumerator, factor);
+                    Fraction newAtom = new Fraction(toUseAndAbuse.numerator / factorNumerator, factor);
                     /* Pull the atomic fraction out */
-                    fraction.numerator = fraction.numerator % factorNumerator;
+                    toUseAndAbuse.numerator = toUseAndAbuse.numerator % factorNumerator;
 
                     /* Add the atomic fraction to the list */
                     atomicFractions.Add(newAtom);
