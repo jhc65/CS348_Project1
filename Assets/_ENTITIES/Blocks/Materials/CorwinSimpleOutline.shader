@@ -14,12 +14,12 @@ Shader "Custom/Corwin Simple Outline"
     }
  
     SubShader {
-
+		Tags {"Queue" = "Transparent"}
         Pass
         {
             // Pass drawing outline
             Cull Off
-       
+			ZWrite On
             Blend SrcAlpha OneMinusSrcAlpha
            
             CGPROGRAM
@@ -93,7 +93,7 @@ Shader "Custom/Corwin Simple Outline"
 			}
 			Cull Off
 			Lighting Off
-			ZWrite Off
+			ZWrite On
 			Blend One OneMinusSrcAlpha
 
 		CGPROGRAM

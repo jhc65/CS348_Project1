@@ -15,6 +15,8 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject optionsMenu;
 
+    [SerializeField] private float delayOnWin; // How long to wait after clearing a gap before moving on
+
     public static GameController Instance
     {
         get { return instance; }
@@ -70,9 +72,15 @@ public class GameController : MonoBehaviour
         cam.transform.position = new Vector3(cam.transform.position.x + 0.001f, cam.transform.position.y, cam.transform.position.z);
     }
 
-    public void OnGapFilled()
+    public IEnumerator OnGapFilled()
     {
-        Debug.Log("Gap has been filled!");
+        //Debug.Log("Gap has been filled!");
+
+        /* Play a confetti effect and wait a few seconds for it to finish */
+        EffectsManager.Instance.PlayEffect(EffectsManager.Effects.Confetti);
+        EffectsManager.Instance.PlayEffect(EffectsManager.Effects.Yay);
+        yield return new WaitForSeconds(delayOnWin);
+
         /* For now, clear out the existing build zone, and choose a random new fraction
          *
          * TODO: Slide the screen to the next build zone
@@ -83,7 +91,7 @@ public class GameController : MonoBehaviour
          if (buildZoneGameObject == null)
          {
              Debug.LogError("No build zone found upon winning.");
-             return;
+             yield return null;
          }
 
          /* Clear out the gap */
@@ -91,7 +99,7 @@ public class GameController : MonoBehaviour
          if (buildZoneScript == null)
          {
              Debug.LogError(buildZoneGameObject.name + " is tagged as a BuildZone, but is missing the BuildZone script.");
-             return;
+             yield return null;
          }
          buildZoneScript.ClearBuildZone();
 
@@ -102,6 +110,7 @@ public class GameController : MonoBehaviour
          buildZoneScript.SetGapSize(newGapSize);
 
          /// TODO: Restock the player's inventory
+         yield return null;
     }
 
     public void MenuCursorSet()
