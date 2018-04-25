@@ -87,8 +87,8 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1439483564590980}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2, z: 0}
-  m_LocalScale: {x: 5, y: 2.5, z: 1}
+  m_LocalPosition: {x: 0, y: 0.70000005, z: 0}
+  m_LocalScale: {x: 4, y: 2, z: 1}
   m_Children:
   - {fileID: 4654276111627768}
   - {fileID: 224449252332384652}
@@ -147,6 +147,7 @@ MonoBehaviour:
   SnapPivot: 1
   _gapNumerator: 3
   _gapDenominator: 2
+  _equation: {fileID: 114647787004962066}
 --- !u!114 &114647787004962066
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -159,7 +160,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_RaycastTarget: 0
   m_OnCullStateChanged:
     m_PersistentCalls:
