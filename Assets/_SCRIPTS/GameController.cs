@@ -9,13 +9,18 @@ public class GameController : MonoBehaviour
     [SerializeField] private Texture2D[] cursorTextures;    // custom cursor sprites
     private Constants.CursorType activeCursor;
     [SerializeField] private Piece[] pieces;
-    [SerializeField] private GameObject background;
+    [SerializeField] private GameObject[] sections;
+    //[SerializeField] private GameObject background;
     [SerializeField] private GameObject cam;
 
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject optionsMenu;
 
     [SerializeField] private float delayOnWin; // How long to wait after clearing a gap before moving on
+
+    private int numBuildZones = 0;
+    private int clearedBuildZones = 0;
+    private Inventory inv;
 
     public static GameController Instance
     {
@@ -55,6 +60,29 @@ public class GameController : MonoBehaviour
         ActiveCursor = Constants.CursorType.HAND;
     }
 
+    void Start()
+    {
+        Constants.gameOver = false;
+        inv = Inventory.Instance;
+
+        // setup build zones and add pieces
+        for(int i=0; i<5; i++)
+        {
+            int ind = Random.Range(0, sections.Length);
+            Instantiate(sections[ind], new Vector3(19.2f * i, sections[ind].transform.position.y, 0), Quaternion.identity);
+            List<FractionTools.Fraction> gapSizes = sections[ind].GetComponent<Section>().SetupBuildZones();
+            foreach(FractionTools.Fraction gap in gapSizes)
+            {
+                numBuildZones++;
+                Constants.PieceLength[] pieces = FractionBuilder.BreakMyLifeIntoPieces(gap, 0);
+                foreach (Constants.PieceLength piece in pieces)
+                {
+                    inv.Increase(piece, 1);
+                }
+            }
+        }
+    }
+
     void Update()
     {
         if (Input.GetMouseButtonDown(1))
@@ -81,36 +109,56 @@ public class GameController : MonoBehaviour
         EffectsManager.Instance.PlayEffect(EffectsManager.Effects.Yay);
         yield return new WaitForSeconds(delayOnWin);
 
-        /* For now, clear out the existing build zone, and choose a random new fraction
-         *
-         * TODO: Slide the screen to the next build zone
-         */
 
-         /* Get the BuildZone */
-         GameObject buildZoneGameObject = GameObject.FindGameObjectWithTag("BuildZone");
-         if (buildZoneGameObject == null)
-         {
-             Debug.LogError("No build zone found upon winning.");
-             yield return null;
-         }
+        // after joe adds his code...TODO: increase numBuildZones as you're gathering them in Start
+        clearedBuildZones++;
+        if(clearedBuildZones == numBuildZones)
+        {
+            EndGame(true);
+        }
 
-         /* Clear out the gap */
-         BuildZone buildZoneScript = buildZoneGameObject.GetComponent<BuildZone>();
-         if (buildZoneScript == null)
-         {
-             Debug.LogError(buildZoneGameObject.name + " is tagged as a BuildZone, but is missing the BuildZone script.");
-             yield return null;
-         }
-         buildZoneScript.ClearBuildZone();
 
-         /* Choose a random new improper fraction */
-         /// TODO: Make this based on difficulty and some form of probability distribution
-         FractionTools.Fraction newGapSize = new FractionTools.Fraction(Random.Range(1, 5), Random.Range(2, 10));
-         Debug.Log("<color=blue>New gap size: " + newGapSize + "</color>");
-         buildZoneScript.SetGapSize(newGapSize);
+        ///* For now, clear out the existing build zone, and choose a random new fraction
+        // *
+        // * TODO: Slide the screen to the next build zone
+        // */
+
+        // /* Get the BuildZone */
+        // GameObject buildZoneGameObject = GameObject.FindGameObjectWithTag("BuildZone");
+        // if (buildZoneGameObject == null)
+        // {
+        //     Debug.LogError("No build zone found upon winning.");
+        //     yield return null;
+        // }
+
+        // /* Clear out the gap */
+        // BuildZone buildZoneScript = buildZoneGameObject.GetComponent<BuildZone>();
+        // if (buildZoneScript == null)
+        // {
+        //     Debug.LogError(buildZoneGameObject.name + " is tagged as a BuildZone, but is missing the BuildZone script.");
+        //     yield return null;
+        // }
+        // buildZoneScript.ClearBuildZone();
+
+        // /* Choose a random new improper fraction */
+        // /// TODO: Make this based on difficulty and some form of probability distribution
+        // FractionTools.Fraction newGapSize = new FractionTools.Fraction(Random.Range(1, 5), Random.Range(2, 10));
+        // Debug.Log("<color=blue>New gap size: " + newGapSize + "</color>");
+        // buildZoneScript.SetGapSize(newGapSize);
 
          /// TODO: Restock the player's inventory
          yield return null;
+    }
+
+    public void EndGame(bool won)
+    {
+        if (won)
+            Constants.endgameText = "Congratulations, you won!";
+        else
+            Constants.endgameText = "You crashed!  Better luck next time!";
+
+        Constants.gameOver = true;
+        SceneManager.LoadScene("Menu");
     }
 
     public void MenuCursorSet()

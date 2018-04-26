@@ -16,7 +16,6 @@ public class Inventory : MonoBehaviour
     [SerializeField] private Text UIninths;
     [SerializeField] private Text UItenths;
     private int halves, thirds, fourths, fifths, sixths, sevenths, eighths, ninths, tenths;
-    [SerializeField] private SpriteRenderer s;
 
     public static Inventory Instance
     {
@@ -27,12 +26,12 @@ public class Inventory : MonoBehaviour
     {
         instance = this;
         RoundStart();
-        s.color = Constants.trackColor;
     }
 
     void RoundStart()
     {
-        Set(10, 10, 10, 10, 10, 10, 10, 10, 10);
+        //Set(10, 10, 10, 10, 10, 10, 10, 10, 10);
+        Set(0, 0, 0, 0, 0, 0, 0, 0, 0);
     }
 
 

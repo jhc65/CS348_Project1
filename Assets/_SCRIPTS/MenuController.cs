@@ -10,6 +10,7 @@ public class MenuController : MonoBehaviour
     [SerializeField] private GameObject startMenu;
     [SerializeField] private GameObject optionsMenu;
     [SerializeField] private GameObject gameSettingsMenu;
+    [SerializeField] private GameObject endgameMenu;
 
     [SerializeField] private Toggle unlimitedInventoryToggle;
     [SerializeField] private Toggle showCutLengthsToggle;
@@ -27,6 +28,11 @@ public class MenuController : MonoBehaviour
         // TODO: set mouse cursor to generic arrow
         //Vector2 cursorHotSpot = new Vector2(cursorTextures[index].width * 0.5f, cursorTextures[index].height * 0.5f);
         //Cursor.SetCursor(cursorTexture, cursorHotSpot, CursorMode.ForceSoftware);
+        if(Constants.gameOver)
+        {
+            startMenu.SetActive(false);
+            endgameMenu.SetActive(false);
+        }
     }
 
     public void PlayClick()
@@ -52,6 +58,12 @@ public class MenuController : MonoBehaviour
         startMenu.SetActive(false);
     }
 
+    public void PlayAgainClick()
+    {
+        gameSettingsMenu.SetActive(true);
+        endgameMenu.SetActive(false);
+    }
+
     public void TutorialClick()
     { //SceneManager.LoadScene("controls");
     }
@@ -66,6 +78,7 @@ public class MenuController : MonoBehaviour
     {
         startMenu.SetActive(true);
         optionsMenu.SetActive(false);
+        endgameMenu.SetActive(false);
         gameSettingsMenu.SetActive(false);
     }
 

@@ -26,4 +26,6 @@ public static class Constants {
                                     {PieceLength.TENTH,.05f}    //level: 3
                                 };
     public static float extraPiecesPerDifficultyLevel = 1.5f;
+    public static string endgameText = "";
+    public static bool gameOver = false;
 }

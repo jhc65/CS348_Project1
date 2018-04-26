@@ -12,8 +12,8 @@ public class Placeable : MonoBehaviour {
     private bool isPickedUp = true;
     private FractionTools.Fraction value;
 
-    [SerializeField] private int numerator;
-    [SerializeField] private int denominator;
+    //[SerializeField] private int numerator;
+    //[SerializeField] private int denominator;
     [SerializeField] private Constants.PieceLength length;
     #endregion
 
@@ -50,7 +50,7 @@ public class Placeable : MonoBehaviour {
         startPos = transform.position;
         gc = GameController.Instance;
         inv = Inventory.Instance;
-        value = new FractionTools.Fraction(numerator, denominator);
+        value = new FractionTools.Fraction(1, (int)length);
     }
 	
 	// Update is called once per frame

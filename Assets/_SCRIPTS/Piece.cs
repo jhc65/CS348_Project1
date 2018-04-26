@@ -6,6 +6,7 @@ public class Piece : MonoBehaviour
 {
     [SerializeField] GameObject draggable;
     [SerializeField] GameObject cuttables;
+    [SerializeField] SpriteRenderer sprite;
 
     public void EnableDraggable()
     {
@@ -17,5 +18,10 @@ public class Piece : MonoBehaviour
     {
         cuttables.SetActive(true);
         draggable.SetActive(false);
+    }
+
+    private void Start()
+    {
+        sprite.color = Constants.trackColor;
     }
 }
