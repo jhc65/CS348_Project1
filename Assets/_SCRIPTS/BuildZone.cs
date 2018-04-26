@@ -16,6 +16,7 @@ public class BuildZone : MonoBehaviour {
 	[SerializeField] private int gapNumerator;
 	[SerializeField] private int gapDenominator;
     [SerializeField] private Text equation;
+    [SerializeField] private GameObject slowDownTrigger;
     public FractionTools.Fraction gapSize;
 	private FractionTools.Fraction gapFilled = FractionTools.Fraction.Zero();
     private List<Placeable> piecesInZone = new List<Placeable>();
@@ -35,8 +36,14 @@ public class BuildZone : MonoBehaviour {
 			UpdateEquationUI();
 			/* Check if the gap has been filled */
 			//Debug.Log("Gap filled: " + gapFilled + ", gap size: " + gapSize);
-			if (gapFilled == gapSize)
-				StartCoroutine(GameController.Instance.OnGapFilled());
+            if (gapFilled == gapSize)
+            {
+                /* Disable the slow zone in case the coaster didn't even hit it yet (player was really quick) */
+                if (slowDownTrigger != null)
+                    slowDownTrigger.SetActive(false);
+                /* Notify the GameController that a gap has been filled */
+                StartCoroutine(GameController.Instance.OnGapFilled());
+            }
 		}
 		else{
 			Debug.Log("Piece doesn't want to take a fit! Gap filled: " + gapFilled + ", piece size: " + p.Value + ", gap size: " + gapSize);
