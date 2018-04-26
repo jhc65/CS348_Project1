@@ -105,11 +105,14 @@ public class BuildZone : MonoBehaviour {
 		/* Set the piece as a child of this build zone, then move and rotate the piece */
         p.transform.SetParent(this.transform); /* Make the piece a child of the parent */
         p.transform.localRotation = Quaternion.identity; /* Set the local rotation to identity (0,0,0) */
-        Debug.Log("<color=blue>" + p.transform.localPosition + ", " + targetPos);
+        //Debug.Log("<color=blue>" + p.transform.localPosition + ", " + targetPos);
         p.transform.localPosition = targetPos; /* Set the local position to target */
 		
         Vector3 scale = p.transform.localScale;
-        p.transform.localScale = new Vector3(PercentToFill, scale.y, scale.z);
+        /* This black magic is what the local x scale of the piece needs to be to fill the entire build zone
+         *  When we get a build zone sprite, it won't have a 4x scale itself, and this will need to change*/
+        float scaleToGapWidth = (float)p.Value.denominator / 16f;
+        p.transform.localScale = new Vector3(scaleToGapWidth * PercentToFill, scale.y, scale.z);
 		
 		//yield return null; // For when this becomes a coroutine
 	}
