@@ -11,9 +11,6 @@ public class CoasterManager : MonoBehaviour {
         PlaySectionC,
     }
     private static string PlaySpeedMultipier = "PlaySpeedMultipier"; /* Float parameter name on Animator */
-    private float slowPlaySpeed = .25f;
-    private float fastPlaySpeed = 1.5f;
-
 
     private static CoasterManager instance;
     private Animator animator;
@@ -47,16 +44,14 @@ public class CoasterManager : MonoBehaviour {
         switch(collider.tag)
         {
             case "decrease":
-                animator.SetFloat(PlaySpeedMultipier, slowPlaySpeed);
+                animator.SetFloat(PlaySpeedMultipier, Constants.slowCoasterSpeed);
                 break;
             case "increase":
-                animator.SetFloat(PlaySpeedMultipier, fastPlaySpeed);
+                animator.SetFloat(PlaySpeedMultipier, Constants.fastCoasterSpeed);
                 break;
             case "BuildZone":
                 if (!collider.GetComponent<BuildZone>().IsGapFilled())
                     GameController.Instance.EndGame(false);
-                else
-                    animator.SetFloat(PlaySpeedMultipier, 1f);
                 break;
             case "Section":
                 GameController.Instance.TriggerNextSectionAnimation();
@@ -65,5 +60,10 @@ public class CoasterManager : MonoBehaviour {
 
                 break;
         }
+    }
+
+    public void SpeedUp()
+    {
+        animator.SetFloat(PlaySpeedMultipier, Constants.fastCoasterSpeed);
     }
 }
