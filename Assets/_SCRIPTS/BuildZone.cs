@@ -19,15 +19,6 @@ public class BuildZone : MonoBehaviour {
     public FractionTools.Fraction _gapSize;
 	private FractionTools.Fraction _gapFilled = FractionTools.Fraction.Zero();
     private List<Placeable> _piecesInZone = new List<Placeable>();
-
-	// Use this for initialization
-	void Start () {
-		//_piecesInZone = new List<Placeable>();
-		//_gapFilled = FractionTools.Fraction.Zero();
-		//_gapSize = new FractionTools.Fraction(_gapNumerator, _gapDenominator);
-		//_equation = this.GetComponentInChildren<Text>();
-		//UpdateEquationUI(); /* Set the initial equation */
-	}
 	
 	public bool TryPlacePiece(Placeable p)
 	{
@@ -181,4 +172,9 @@ public class BuildZone : MonoBehaviour {
 	{
 		_equation.text = GapEquation();
 	}
+
+    public bool IsGapFilled()
+    {
+        return _gapFilled == _gapSize;
+    }
 }

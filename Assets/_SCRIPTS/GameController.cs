@@ -16,6 +16,8 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject optionsMenu;
 
+    [SerializeField] private GameObject coaster;
+
     [SerializeField] private float delayOnWin; // How long to wait after clearing a gap before moving on
 
     private int numBuildZones = 0;
@@ -80,7 +82,10 @@ public class GameController : MonoBehaviour
                     inv.Increase(piece, 1);
                 }
             }
+            /* If this is the first section, tell the coaster to play its animation */
+            CoasterManager.GetInstance().PlaySection(go.GetComponent<Section>().GetAnimationTrigger());
         }
+
     }
 
     void Update()
