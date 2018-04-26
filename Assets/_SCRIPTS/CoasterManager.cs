@@ -59,7 +59,7 @@ public class CoasterManager : MonoBehaviour {
                     animator.SetFloat(PlaySpeedMultipier, 1f);
                 break;
             case "Section":
-                PlaySection(collider.GetComponent<Section>().GetAnimationTrigger());
+                GameController.Instance.TriggerNextSectionAnimation();
                 break;
             default:
 

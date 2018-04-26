@@ -2197,6 +2197,7 @@ GameObject:
   - component: {fileID: 513032648}
   - component: {fileID: 513032647}
   - component: {fileID: 513032646}
+  - component: {fileID: 513032650}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -2267,6 +2268,21 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &513032650
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 513032645}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 729e31d9c1709f8428fa3bb4712b9f99, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ToTrack: {fileID: 1686451804}
+  X: 1
+  Y: 0
+  Z: 0
 --- !u!1 &560155376
 GameObject:
   m_ObjectHideFlags: 0
@@ -7118,6 +7134,8 @@ MonoBehaviour:
   optionsMenu: {fileID: 1862075625}
   coaster: {fileID: 0}
   delayOnWin: 0
+  numBuildZones: 0
+  clearedBuildZones: 0
 --- !u!4 &1606450426
 Transform:
   m_ObjectHideFlags: 0
@@ -7453,6 +7471,11 @@ Prefab:
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 0b051d5c2b66afc4387488f8ffcb5d15, type: 2}
   m_IsPrefabParent: 0
+--- !u!1 &1686451804 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1040802265618782, guid: 0b051d5c2b66afc4387488f8ffcb5d15,
+    type: 2}
+  m_PrefabInternal: {fileID: 1686451803}
 --- !u!1 &1697725076
 GameObject:
   m_ObjectHideFlags: 0

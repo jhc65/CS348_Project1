@@ -20,6 +20,8 @@ public class GameController : MonoBehaviour
 
     [SerializeField] private float delayOnWin; // How long to wait after clearing a gap before moving on
 
+    private List<Section> spawnedSections; /* Holds the sections spawned for a play session */
+    private int activeSectionIndex; /* Index of active Section in spawnedSections */
     public int numBuildZones = 0;
     public int clearedBuildZones = 0;
     private Inventory inv;
@@ -68,11 +70,13 @@ public class GameController : MonoBehaviour
         inv = Inventory.Instance;
 
         // setup build zones and add pieces
+        spawnedSections = new List<Section>();
         for(int i=0; i<5; i++)
         {
             int ind = Random.Range(0, sections.Length);
             GameObject go = Instantiate(sections[ind], new Vector3(19.2f * i, sections[ind].transform.position.y, 0), Quaternion.identity);
-            List<FractionTools.Fraction> gapSizes = go.GetComponent<Section>().SetupBuildZones();
+            spawnedSections.Add(go.GetComponent<Section>());
+            List<FractionTools.Fraction> gapSizes = spawnedSections[spawnedSections.Count - 1].SetupBuildZones();
             foreach(FractionTools.Fraction gap in gapSizes)
             {
                 numBuildZones++;
@@ -82,11 +86,10 @@ public class GameController : MonoBehaviour
                     inv.Increase(piece, 1);
                 }
             }
-            /* If this is the first section, tell the coaster to play its animation */
-            if (i == 0)
-                CoasterManager.GetInstance().PlaySection(go.GetComponent<Section>().GetAnimationTrigger());
         }
-
+        /* If this is the first section, tell the coaster to play its animation */
+        CoasterManager.GetInstance().PlaySection(spawnedSections[0].GetAnimationTrigger());
+        activeSectionIndex = 0;
     }
 
     void Update()
@@ -103,7 +106,23 @@ public class GameController : MonoBehaviour
             }
         }
 
-        cam.transform.position = new Vector3(cam.transform.position.x + 0.001f, cam.transform.position.y, cam.transform.position.z);
+        /* cmb539: Commenting this out, to instead use a script on the camera that follows the coaster */
+        //cam.transform.position = new Vector3(cam.transform.position.x + 0.001f, cam.transform.position.y, cam.transform.position.z);
+    }
+
+    public void TriggerNextSectionAnimation()
+    {
+        /* Set the next section as Active */
+        activeSectionIndex++;
+
+        /* Check if out of sections */
+        if (spawnedSections.Count == activeSectionIndex)
+            EndGame(true);
+        else
+        {
+            /* Trigger the animation of the next section */
+            CoasterManager.GetInstance().PlaySection(spawnedSections[activeSectionIndex].GetAnimationTrigger());
+        }
     }
 
     public IEnumerator OnGapFilled()
