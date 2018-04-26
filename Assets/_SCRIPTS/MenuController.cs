@@ -20,6 +20,8 @@ public class MenuController : MonoBehaviour
     [SerializeField] private Toggle multipleGapsToggle;
     [SerializeField] private ToggleGroup colorToggles;
 
+    [SerializeField] private Text endgameText;
+
     [SerializeField] private Texture2D cursorTexture;
 
 
@@ -31,7 +33,8 @@ public class MenuController : MonoBehaviour
         if(Constants.gameOver)
         {
             startMenu.SetActive(false);
-            endgameMenu.SetActive(false);
+            endgameMenu.SetActive(true);
+            endgameText.text = Constants.endgameText;
         }
     }
 

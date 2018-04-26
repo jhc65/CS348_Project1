@@ -20,8 +20,8 @@ public class GameController : MonoBehaviour
 
     [SerializeField] private float delayOnWin; // How long to wait after clearing a gap before moving on
 
-    private int numBuildZones = 0;
-    private int clearedBuildZones = 0;
+    public int numBuildZones = 0;
+    public int clearedBuildZones = 0;
     private Inventory inv;
 
     public static GameController Instance
