@@ -15,6 +15,11 @@ public class Placeable : MonoBehaviour {
     //[SerializeField] private int numerator;
     //[SerializeField] private int denominator;
     [SerializeField] private Constants.PieceLength length;
+    #region Getters and Setters
+    public Constants.PieceLength Length {
+        get { return length; }
+    }
+    #endregion
     #endregion
 
     #region Piece Methods

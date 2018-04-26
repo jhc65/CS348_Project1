@@ -194,6 +194,7 @@ public class GameController : MonoBehaviour
             // 3) Update the equation and build zone image
             // 4) Animate it going back to the inventory?
             // 5) Increase the inventory number
+            lastInteractedBuildZone.PopStack();
         }
 
     }

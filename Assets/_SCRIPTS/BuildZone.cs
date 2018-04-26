@@ -4,7 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 
 public class BuildZone : MonoBehaviour {
-
+    #region Variables
     public enum PivotType {Left, Center, Right};
     [SerializeField]
     private PivotType SnapPivot;
@@ -19,17 +19,33 @@ public class BuildZone : MonoBehaviour {
     public FractionTools.Fraction _gapSize;
 	private FractionTools.Fraction _gapFilled = FractionTools.Fraction.Zero();
     private List<Placeable> _piecesInZone = new List<Placeable>();
+    private Inventory inv;
+    #endregion
 
-	// Use this for initialization
-	void Start () {
+    #region Unity Overrides
+    // Use this for initialization
+    void Start () {
+        inv = Inventory.Instance;
 		//_piecesInZone = new List<Placeable>();
 		//_gapFilled = FractionTools.Fraction.Zero();
 		//_gapSize = new FractionTools.Fraction(_gapNumerator, _gapDenominator);
 		//_equation = this.GetComponentInChildren<Text>();
 		//UpdateEquationUI(); /* Set the initial equation */
 	}
-	
-	public bool TryPlacePiece(Placeable p)
+    #endregion
+
+    #region BuildZone Custom Functions
+    public void PopStack() {
+        if (_piecesInZone.Count > 0) {
+            _gapFilled -= _piecesInZone[_piecesInZone.Count - 1].Value;
+            inv.Increase(_piecesInZone[_piecesInZone.Count - 1].Length, 1);
+            GameObject.Destroy(_piecesInZone[_piecesInZone.Count - 1].gameObject);
+            _piecesInZone.RemoveAt(_piecesInZone.Count - 1);
+            UpdateEquationUI();
+        }
+    }
+
+    public bool TryPlacePiece(Placeable p)
 	{
 		//Debug.Log("Trying to place the piece...");
 		//Debug.Log("Gap: " + _gapSize + ", piece:" + p.Value + ", filled: " + _gapFilled);
@@ -182,4 +198,5 @@ public class BuildZone : MonoBehaviour {
 	{
 		_equation.text = GapEquation();
 	}
+    #endregion
 }
