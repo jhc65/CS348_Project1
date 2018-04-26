@@ -456,7 +456,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -481,7 +481,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 8.25, y: 0}
@@ -495,7 +495,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 2, y: 2}
+  m_Size: {x: 2, y: 8}
   m_EdgeRadius: 0
 --- !u!61 &61488654934836850
 BoxCollider2D:
@@ -556,7 +556,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 0
+  m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -609,9 +609,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SnapPivot: 1
-  _gapNumerator: 1
-  _gapDenominator: 7
-  _equation: {fileID: 114718128306163930}
+  gapNumerator: 0
+  gapDenominator: 0
+  equation: {fileID: 114718128306163930}
 --- !u!114 &114155137444554554
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -656,9 +656,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SnapPivot: 1
-  _gapNumerator: 2
-  _gapDenominator: 4
-  _equation: {fileID: 114930354407376428}
+  gapNumerator: 0
+  gapDenominator: 0
+  equation: {fileID: 114930354407376428}
 --- !u!114 &114413158517155378
 MonoBehaviour:
   m_ObjectHideFlags: 1
