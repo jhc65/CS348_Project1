@@ -13,33 +13,33 @@ public class BuildZone : MonoBehaviour {
 	 *
 	 * I will write an editor script to resolve this workaround eventually... (Corwin)
 	 */
-	[SerializeField] private int _gapNumerator;
-	[SerializeField] private int _gapDenominator;
-    [SerializeField] private Text _equation;
-    public FractionTools.Fraction _gapSize;
-	private FractionTools.Fraction _gapFilled = FractionTools.Fraction.Zero();
-    private List<Placeable> _piecesInZone = new List<Placeable>();
+	[SerializeField] private int gapNumerator;
+	[SerializeField] private int gapDenominator;
+    [SerializeField] private Text equation;
+    public FractionTools.Fraction gapSize;
+	private FractionTools.Fraction gapFilled = FractionTools.Fraction.Zero();
+    private List<Placeable> piecesInZone = new List<Placeable>();
 	
 	public bool TryPlacePiece(Placeable p)
 	{
 		//Debug.Log("Trying to place the piece...");
-		//Debug.Log("Gap: " + _gapSize + ", piece:" + p.Value + ", filled: " + _gapFilled);
+		//Debug.Log("Gap: " + gapSize + ", piece:" + p.Value + ", filled: " + gapFilled);
 		bool successful = false;
 
-		if (p.Value + _gapFilled <= _gapSize)
+		if (p.Value + gapFilled <= gapSize)
 		{
 			successful = true;
 			SnapPiece(p);
-			_piecesInZone.Add(p);
-			_gapFilled += p.Value;
+			piecesInZone.Add(p);
+			gapFilled += p.Value;
 			UpdateEquationUI();
 			/* Check if the gap has been filled */
-			//Debug.Log("Gap filled: " + _gapFilled + ", gap size: " + _gapSize);
-			if (_gapFilled == _gapSize)
+			//Debug.Log("Gap filled: " + gapFilled + ", gap size: " + gapSize);
+			if (gapFilled == gapSize)
 				StartCoroutine(GameController.Instance.OnGapFilled());
 		}
 		else{
-			Debug.Log("Piece doesn't want to take a fit! Gap filled: " + _gapFilled + ", piece size: " + p.Value + ", gap size: " + _gapSize);
+			Debug.Log("Piece doesn't want to take a fit! Gap filled: " + gapFilled + ", piece size: " + p.Value + ", gap size: " + gapSize);
 		}
 
 		return successful;
@@ -50,12 +50,12 @@ public class BuildZone : MonoBehaviour {
 		Vector3 targetPos;
         /* Scale the piece down to within the build area
 		 * 
-		 * pieceSize (1/2) / _gapSize (3/2) = Percent to fill 1/3
+		 * pieceSize (1/2) / gapSize (3/2) = Percent to fill 1/3
 		 */
-		float PercentToFill = (float)(p.Value / _gapSize);
+		float PercentToFill = (float)(p.Value / gapSize);
 
         /* Set the previousTransform to either SnapStart, or the previous piece */
-		if (_piecesInZone.Count == 0)
+		if (piecesInZone.Count == 0)
 		{
             /* Setting target to SnapPoint's local transform */
 			Transform t = this.transform.Find("SnapStart").transform;
@@ -75,15 +75,15 @@ public class BuildZone : MonoBehaviour {
 		else
 		{
 			/* Setting target to previous piece + previous piece's length */
-            Placeable previous = _piecesInZone[_piecesInZone.Count - 1];
+            Placeable previous = piecesInZone[piecesInZone.Count - 1];
             targetPos = previous.transform.localPosition;
             switch (SnapPivot)
             {
                 case PivotType.Left:
-                    targetPos.x += (float)(previous.Value / _gapSize);
+                    targetPos.x += (float)(previous.Value / gapSize);
                     break;
                 case PivotType.Center:
-                    targetPos.x += (float)(previous.Value / _gapSize) / 2;
+                    targetPos.x += (float)(previous.Value / gapSize) / 2;
                     targetPos.x += PercentToFill / 2;
                     break;
                 case PivotType.Right:
@@ -110,26 +110,26 @@ public class BuildZone : MonoBehaviour {
 
 	public void SetGapSize(FractionTools.Fraction value)
 	{
-		_gapNumerator = value.numerator;
-		_gapDenominator = value.denominator;
-		_gapSize = new FractionTools.Fraction(value);
+		gapNumerator = value.numerator;
+		gapDenominator = value.denominator;
+		gapSize = new FractionTools.Fraction(value);
 
 		UpdateEquationUI();
 	}
 
 	public void ClearBuildZone()
 	{
-		/* Clear out _gapFilled */
-		_gapFilled = FractionTools.Fraction.Zero();
-		/* Clear out _gapSize */
-		_gapSize = FractionTools.Fraction.Zero();
-		/* Clear out _piecesInZone */
-		if (_piecesInZone.Count > 0)
+		/* Clear out gapFilled */
+		gapFilled = FractionTools.Fraction.Zero();
+		/* Clear out gapSize */
+		gapSize = FractionTools.Fraction.Zero();
+		/* Clear out piecesInZone */
+		if (piecesInZone.Count > 0)
 		{
-			for (int i = _piecesInZone.Count - 1; i >= 0; i--)
+			for (int i = piecesInZone.Count - 1; i >= 0; i--)
 			{
-				GameObject.Destroy(_piecesInZone[i].gameObject);
-				_piecesInZone.RemoveAt(i);
+				GameObject.Destroy(piecesInZone[i].gameObject);
+				piecesInZone.RemoveAt(i);
 			}
 		}
 		/* Clear out Equation UI */
@@ -140,10 +140,10 @@ public class BuildZone : MonoBehaviour {
 	{
 		string result = "";
 		
-		if (_piecesInZone.Count > 0)
+		if (piecesInZone.Count > 0)
 		{
 			/* Append each piece's fraction using addition */
-			foreach(Placeable p in _piecesInZone)
+			foreach(Placeable p in piecesInZone)
 				result += p.Value + " + ";
 
 			/* Remove the last + */
@@ -156,25 +156,25 @@ public class BuildZone : MonoBehaviour {
 			result += "? + ?";
 		}
 
-		if (_gapFilled != _gapSize)
+		if (gapFilled != gapSize)
 		{
 			/* Append the "you aren't done yet" part */
 			result += " + ...";
 		}
 
 		/* Append the total gap size */
-		result += " = " + _gapSize;
+		result += " = " + gapSize;
 
 		return result;
 	}
 
 	private void UpdateEquationUI()
 	{
-		_equation.text = GapEquation();
+		equation.text = GapEquation();
 	}
 
     public bool IsGapFilled()
     {
-        return _gapFilled == _gapSize;
+        return gapFilled == gapSize;
     }
 }
