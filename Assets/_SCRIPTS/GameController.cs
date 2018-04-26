@@ -83,7 +83,8 @@ public class GameController : MonoBehaviour
                 }
             }
             /* If this is the first section, tell the coaster to play its animation */
-            CoasterManager.GetInstance().PlaySection(go.GetComponent<Section>().GetAnimationTrigger());
+            if (i == 0)
+                CoasterManager.GetInstance().PlaySection(go.GetComponent<Section>().GetAnimationTrigger());
         }
 
     }
