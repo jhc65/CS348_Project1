@@ -69,8 +69,8 @@ public class GameController : MonoBehaviour
         for(int i=0; i<5; i++)
         {
             int ind = Random.Range(0, sections.Length);
-            Instantiate(sections[ind], new Vector3(19.2f * i, sections[ind].transform.position.y, 0), Quaternion.identity);
-            List<FractionTools.Fraction> gapSizes = sections[ind].GetComponent<Section>().SetupBuildZones();
+            GameObject go = Instantiate(sections[ind], new Vector3(19.2f * i, sections[ind].transform.position.y, 0), Quaternion.identity);
+            List<FractionTools.Fraction> gapSizes = go.GetComponent<Section>().SetupBuildZones();
             foreach(FractionTools.Fraction gap in gapSizes)
             {
                 numBuildZones++;

@@ -21,7 +21,7 @@ public class Section : MonoBehaviour
         {
             buildZones[coin].SetActive(true);
             newGapSize = ChooseGapSize();
-            buildZones[ind].GetComponent<BuildZone>().SetGapSize(newGapSize);
+            buildZones[coin].GetComponent<BuildZone>().SetGapSize(newGapSize);
             gapSizes.Add(newGapSize);
         }
 

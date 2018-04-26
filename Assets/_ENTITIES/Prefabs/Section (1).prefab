@@ -81,7 +81,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1665699465466600
 GameObject:
   m_ObjectHideFlags: 1
@@ -201,7 +201,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &4436757548036162
 Transform:
   m_ObjectHideFlags: 1
@@ -363,8 +363,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SnapPivot: 1
-  _gapNumerator: 4
-  _gapDenominator: 3
+  _gapNumerator: 1
+  _gapDenominator: 7
   _equation: {fileID: 114718128306163930}
 --- !u!114 &114155137444554554
 MonoBehaviour:
@@ -410,8 +410,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SnapPivot: 1
-  _gapNumerator: 3
-  _gapDenominator: 5
+  _gapNumerator: 2
+  _gapDenominator: 4
   _equation: {fileID: 114930354407376428}
 --- !u!114 &114413158517155378
 MonoBehaviour:
@@ -494,7 +494,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: '? + ? + ... = 4/3'
+  m_Text: '? + ? + ... = 1/7'
 --- !u!114 &114779480936537134
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -576,7 +576,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: '? + ? + ... = 3/5'
+  m_Text: '? + ? + ... = 2/4'
 --- !u!114 &114951403292203802
 MonoBehaviour:
   m_ObjectHideFlags: 1

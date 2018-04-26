@@ -16,7 +16,7 @@ public class BuildZone : MonoBehaviour {
 	[SerializeField] private int _gapNumerator;
 	[SerializeField] private int _gapDenominator;
     [SerializeField] private Text _equation;
-    private FractionTools.Fraction _gapSize;
+    public FractionTools.Fraction _gapSize;
 	private FractionTools.Fraction _gapFilled = FractionTools.Fraction.Zero();
     private List<Placeable> _piecesInZone = new List<Placeable>();
 
