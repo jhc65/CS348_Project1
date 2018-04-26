@@ -56,7 +56,8 @@ public class BuildZone : MonoBehaviour {
 
 	private void SnapPiece(Placeable p)
 	{
-		Vector3 targetPos;
+        GameController.Instance.LastInteractedBuildZone = this;
+        Vector3 targetPos;
         /* Scale the piece down to within the build area
 		 * 
 		 * pieceSize (1/2) / _gapSize (3/2) = Percent to fill 1/3

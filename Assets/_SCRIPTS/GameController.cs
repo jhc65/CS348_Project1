@@ -20,6 +20,7 @@ public class GameController : MonoBehaviour
 
     private int numBuildZones = 0;
     private int clearedBuildZones = 0;
+    private BuildZone lastInteractedBuildZone;
     private Inventory inv;
 
     public static GameController Instance
@@ -52,6 +53,11 @@ public class GameController : MonoBehaviour
             Vector2 cursorHotSpot = new Vector2(0, 0);
             Cursor.SetCursor(cursorTextures[index], cursorHotSpot, CursorMode.ForceSoftware);
         }
+    }
+
+    public BuildZone LastInteractedBuildZone
+    {
+        set { lastInteractedBuildZone = value; }
     }
 
     void Awake()
@@ -111,6 +117,7 @@ public class GameController : MonoBehaviour
 
 
         // after joe adds his code...TODO: increase numBuildZones as you're gathering them in Start
+        lastInteractedBuildZone = null;
         clearedBuildZones++;
         if(clearedBuildZones == numBuildZones)
         {
@@ -181,21 +188,28 @@ public class GameController : MonoBehaviour
     {
         // TODO:
         // 1) Get active Build Zone
-        // 2) Remove the top piece from the queue
-        // 3) Update the equation and build zone image
-        // 4) Animate it going back to the inventory?
-        // 5) Increase the inventory number
+        if(lastInteractedBuildZone)
+        {
+            // 2) Remove the top piece from the queue
+            // 3) Update the equation and build zone image
+            // 4) Animate it going back to the inventory?
+            // 5) Increase the inventory number
+        }
+
     }
 
     public void RestartClick()
     {
         // TODO:
         // 1) Get active Build Zone
-        // 2) Loop until Build Zone is empty:
+        if (lastInteractedBuildZone)
+        {
+            // 2) Loop until Build Zone is empty:
             // a) Remove the top piece from the queue
             // b) Update the equation and build zone image
             // c) Animate it going back to the inventory?
             // d) Increase the inventory number
+        }
     }
 
     public void PauseClick()
