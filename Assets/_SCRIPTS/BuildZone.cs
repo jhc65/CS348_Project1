@@ -20,6 +20,11 @@ public class BuildZone : MonoBehaviour {
 	private FractionTools.Fraction _gapFilled = FractionTools.Fraction.Zero();
     private List<Placeable> _piecesInZone = new List<Placeable>();
     private Inventory inv;
+    #region Getters and Setters
+    public int PieceCount {
+        get { return _piecesInZone.Count; }
+    }
+    #endregion
     #endregion
 
     #region Unity Overrides

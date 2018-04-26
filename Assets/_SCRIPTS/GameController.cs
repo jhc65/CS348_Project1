@@ -2,9 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
+    #region Variables and Declarations
     static private GameController instance;      // instance of the GameController
     [SerializeField] private Texture2D[] cursorTextures;    // custom cursor sprites
     private Constants.CursorType activeCursor;
@@ -23,10 +25,17 @@ public class GameController : MonoBehaviour
     private BuildZone lastInteractedBuildZone;
     private Inventory inv;
 
+    // UI Shit
+    [SerializeField]
+    private Button undoButton;
+
+    #region Getters and Setters
     public static GameController Instance
     {
         get { return instance; }
     }
+    #endregion
+    #endregion
 
     public Constants.CursorType ActiveCursor
     {
@@ -68,6 +77,7 @@ public class GameController : MonoBehaviour
 
     void Start()
     {
+        undoButton.interactable = false;
         Constants.gameOver = false;
         inv = Inventory.Instance;
 
@@ -101,6 +111,13 @@ public class GameController : MonoBehaviour
             {
                 ActiveCursor = Constants.CursorType.CUT;
             }
+        }
+
+        if (lastInteractedBuildZone && lastInteractedBuildZone.PieceCount > 0) {
+            undoButton.interactable = true;
+        }
+        else {
+            undoButton.interactable = false;
         }
 
         cam.transform.position = new Vector3(cam.transform.position.x + 0.001f, cam.transform.position.y, cam.transform.position.z);
