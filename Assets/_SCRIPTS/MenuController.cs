@@ -26,8 +26,8 @@ public class MenuController : MonoBehaviour
     private void Start()
     {
         // TODO: set mouse cursor to generic arrow
-        //Vector2 cursorHotSpot = new Vector2(cursorTextures[index].width * 0.5f, cursorTextures[index].height * 0.5f);
-        //Cursor.SetCursor(cursorTexture, cursorHotSpot, CursorMode.ForceSoftware);
+        Vector2 cursorHotSpot = new Vector2(0, 0);//cursorTexture.width * 0.5f, cursorTexture.height * 0.5f);
+        Cursor.SetCursor(cursorTexture, cursorHotSpot, CursorMode.ForceSoftware);
         if(Constants.gameOver)
         {
             startMenu.SetActive(false);

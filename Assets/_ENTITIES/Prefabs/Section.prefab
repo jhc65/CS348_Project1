@@ -399,7 +399,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SnapPivot: 1
   _gapNumerator: 3
-  _gapDenominator: 2
+  _gapDenominator: 4
   _equation: {fileID: 114576773696240588}
 --- !u!114 &114103870936616644
 MonoBehaviour:
@@ -455,8 +455,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   SnapPivot: 1
-  _gapNumerator: 1
-  _gapDenominator: 8
+  _gapNumerator: 2
+  _gapDenominator: 9
   _equation: {fileID: 114756492791540240}
 --- !u!114 &114486064585897544
 MonoBehaviour:
@@ -527,7 +527,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: '? + ? + ... = ?'
+  m_Text: '? + ? + ... = 3/4'
 --- !u!114 &114714332013547022
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -576,7 +576,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 1
     m_LineSpacing: 1
-  m_Text: '? + ? + ... = ?'
+  m_Text: '? + ? + ... = 2/9'
 --- !u!114 &114768160803721120
 MonoBehaviour:
   m_ObjectHideFlags: 1

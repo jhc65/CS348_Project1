@@ -49,7 +49,7 @@ public class GameController : MonoBehaviour
                         piece.EnableCuttables();
                     break;
             }
-            Vector2 cursorHotSpot = new Vector2(cursorTextures[index].width * 0.5f, cursorTextures[index].height * 0.5f);
+            Vector2 cursorHotSpot = new Vector2(0, 0);
             Cursor.SetCursor(cursorTextures[index], cursorHotSpot, CursorMode.ForceSoftware);
         }
     }
@@ -163,7 +163,7 @@ public class GameController : MonoBehaviour
 
     public void MenuCursorSet()
     {
-        Vector2 cursorHotSpot = new Vector2(cursorTextures[3].width * 0.5f, cursorTextures[3].height * 0.5f);
+        Vector2 cursorHotSpot = new Vector2(0, 0);
         Cursor.SetCursor(cursorTextures[3], cursorHotSpot, CursorMode.ForceSoftware);
     }
 

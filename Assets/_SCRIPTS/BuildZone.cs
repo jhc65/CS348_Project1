@@ -17,13 +17,13 @@ public class BuildZone : MonoBehaviour {
 	[SerializeField] private int _gapDenominator;
     [SerializeField] private Text _equation;
     private FractionTools.Fraction _gapSize;
-	private FractionTools.Fraction _gapFilled;
-	private List<Placeable> _piecesInZone;
+	private FractionTools.Fraction _gapFilled = FractionTools.Fraction.Zero();
+    private List<Placeable> _piecesInZone = new List<Placeable>();
 
 	// Use this for initialization
 	void Start () {
-		_piecesInZone = new List<Placeable>();
-		_gapFilled = FractionTools.Fraction.Zero();
+		//_piecesInZone = new List<Placeable>();
+		//_gapFilled = FractionTools.Fraction.Zero();
 		//_gapSize = new FractionTools.Fraction(_gapNumerator, _gapDenominator);
 		//_equation = this.GetComponentInChildren<Text>();
 		//UpdateEquationUI(); /* Set the initial equation */

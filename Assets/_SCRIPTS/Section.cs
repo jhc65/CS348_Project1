@@ -5,7 +5,7 @@ using UnityEngine;
 public class Section : MonoBehaviour
 {
     [SerializeField] private GameObject[] buildZones;
-    List<FractionTools.Fraction> gapSizes;
+    List<FractionTools.Fraction> gapSizes = new List<FractionTools.Fraction>();
 
     public List<FractionTools.Fraction> SetupBuildZones()
     {
