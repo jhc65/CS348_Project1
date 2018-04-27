@@ -5514,6 +5514,7 @@ MonoBehaviour:
   gapWidthMixedNumbersToggle: {fileID: 905128274}
   multipleGapsToggle: {fileID: 1334708611}
   colorToggles: {fileID: 1568371689}
+  endgameText: {fileID: 62494255}
   cursorTexture: {fileID: 2800000, guid: 43daf847d6fdec341858176723de69d4, type: 3}
 --- !u!4 &1663955563
 Transform:
@@ -5895,7 +5896,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 1663955562}
-        m_MethodName: PlayClick
+        m_MethodName: PlayAgainClick
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

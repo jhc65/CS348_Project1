@@ -15,6 +15,7 @@ public class Placeable : MonoBehaviour {
     //[SerializeField] private int numerator;
     //[SerializeField] private int denominator;
     [SerializeField] private Constants.PieceLength length;
+    [SerializeField] SpriteRenderer sprite;
     #endregion
 
     #region Piece Methods
@@ -51,6 +52,7 @@ public class Placeable : MonoBehaviour {
         gc = GameController.Instance;
         inv = Inventory.Instance;
         value = new FractionTools.Fraction(1, (int)length);
+        sprite.color = Constants.trackColor;
     }
 	
 	// Update is called once per frame

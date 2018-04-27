@@ -28,4 +28,6 @@ public static class Constants {
     public static float extraPiecesPerDifficultyLevel = 1.5f;
     public static string endgameText = "";
     public static bool gameOver = false;
+    public static float fastCoasterSpeed = 1.25f;
+    public static float slowCoasterSpeed = .25f;
 }

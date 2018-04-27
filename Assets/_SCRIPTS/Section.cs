@@ -5,6 +5,7 @@ using UnityEngine;
 public class Section : MonoBehaviour
 {
     [SerializeField] private GameObject[] buildZones;
+    [SerializeField] private CoasterManager.SectionTriggers coasterAnimation;
     List<FractionTools.Fraction> gapSizes = new List<FractionTools.Fraction>();
 
     public List<FractionTools.Fraction> SetupBuildZones()
@@ -44,5 +45,10 @@ public class Section : MonoBehaviour
         }
 
         return newGapSize;
+    }
+
+    public CoasterManager.SectionTriggers GetAnimationTrigger()
+    {
+        return coasterAnimation;
     }
 }
