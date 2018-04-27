@@ -20,6 +20,8 @@ public class BuildZone : MonoBehaviour {
 	private FractionTools.Fraction _gapFilled = FractionTools.Fraction.Zero();
     private List<Placeable> _piecesInZone = new List<Placeable>();
 
+    [SerializeField] private SpriteMask gapMask;
+
 	// Use this for initialization
 	void Start () {
 		//_piecesInZone = new List<Placeable>();
@@ -41,7 +43,8 @@ public class BuildZone : MonoBehaviour {
 			SnapPiece(p);
 			_piecesInZone.Add(p);
 			_gapFilled += p.Value;
-			UpdateEquationUI();
+            gapMask.transform.localScale = new Vector3(1f - (float)(_gapFilled / _gapSize), 1, 1);
+            UpdateEquationUI();
 			/* Check if the gap has been filled */
 			//Debug.Log("Gap filled: " + _gapFilled + ", gap size: " + _gapSize);
 			if (_gapFilled == _gapSize)
@@ -114,7 +117,7 @@ public class BuildZone : MonoBehaviour {
          *  When we get a build zone sprite, it won't have a 4x scale itself, and this will need to change*/
         float scaleToGapWidth = (float)p.Value.denominator / 16f;
         p.transform.localScale = new Vector3(scaleToGapWidth * PercentToFill, scale.y, scale.z);
-		
+
 		//yield return null; // For when this becomes a coroutine
 	}
 
