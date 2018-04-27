@@ -124,17 +124,4 @@ public static class FractionBuilder
 
             return finalSelection.ToArray();
     }
-
-    /// <summary>
-    /// This should go into the test suite, but this class
-    /// uses a Unity library, which prevents building the test suite as a standalone
-    /// </summary>
-    public static void BreakFractionTest()
-    {
-        Fraction original = new Fraction(16, 12);
-        PieceLength[] results = FractionBuilder.BreakMyLifeIntoPieces(original, 1);
-        Debug.Log("Printing pieces:");
-        foreach (PieceLength pl in results)
-            Debug.Log(pl.ToString() + (int)pl);
-    }
 }

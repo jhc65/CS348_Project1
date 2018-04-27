@@ -37,7 +37,7 @@ public class EffectsManager : MonoBehaviour {
 		switch (effect)
 		{
 			case Effects.Confetti:
-				Instantiate(Confetti); /* The Confetti particle system has autoDestroy */
+				Instantiate(Confetti, this.transform, false); /* The Confetti particle system has autoDestroy */
 			break;
 			case Effects.Yay:
 				audioSource.PlayOneShot(Yay);
