@@ -75,8 +75,9 @@ public class GameController : MonoBehaviour
         {
             int ind = Random.Range(0, sections.Length);
             GameObject go = Instantiate(sections[ind], new Vector3(19.2f * i, sections[ind].transform.position.y, 0), Quaternion.identity);
-            spawnedSections.Add(go.GetComponent<Section>());
-            List<FractionTools.Fraction> gapSizes = spawnedSections[spawnedSections.Count - 1].SetupBuildZones();
+            Section section = go.GetComponent<Section>();
+            spawnedSections.Add(section);
+            List<FractionTools.Fraction> gapSizes = section.SetupBuildZones();
             foreach(FractionTools.Fraction gap in gapSizes)
             {
                 numBuildZones++;
@@ -115,14 +116,9 @@ public class GameController : MonoBehaviour
         /* Set the next section as Active */
         activeSectionIndex++;
 
-        /* Check if out of sections */
-        if (spawnedSections.Count == activeSectionIndex)
-            EndGame(true);
-        else
-        {
-            /* Trigger the animation of the next section */
+        /* If there is a next section trigger its animation */
+        if (activeSectionIndex < spawnedSections.Count)
             CoasterManager.GetInstance().PlaySection(spawnedSections[activeSectionIndex].GetAnimationTrigger());
-        }
     }
 
     public IEnumerator OnGapFilled()

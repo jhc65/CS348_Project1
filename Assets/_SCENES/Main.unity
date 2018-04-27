@@ -2286,9 +2286,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ToTrack: {fileID: 1686451804}
-  X: 1
-  Y: 0
-  Z: 0
+  trackX: 1
+  trackY: 0
+  trackZ: 0
 --- !u!1 &560155376
 GameObject:
   m_ObjectHideFlags: 0
