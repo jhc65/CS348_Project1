@@ -15,15 +15,13 @@ public class CoasterManager : MonoBehaviour {
     private static CoasterManager instance;
     private Animator animator;
 
-
-    public static CoasterManager GetInstance()
-    {
-        return instance;
-    }
+    public static CoasterManager Instance {
+		get {return instance;}
+	}
 
     public void Awake()
     {
-        if (instance == null)
+        if (Instance == null)
         {
             instance = this;
             animator = GetComponent<Animator>();

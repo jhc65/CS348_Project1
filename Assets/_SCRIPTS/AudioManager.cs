@@ -15,14 +15,13 @@ public class AudioManager : MonoBehaviour {
 	private const string backgroundPitch = "BackgroundPitch"; /* TODO: Change this based on the coaster's speed(?) */
 	#endregion /* Audio Mixer Exposed Parameters */
 
-	public static AudioManager GetInstance()
-	{
-		return instance;
+	public static AudioManager Instance {
+		get {return instance;}
 	}
 
 	void Awake()
 	{
-		if (instance != null)
+		if (Instance != null)
 		{
 			/* TODO: This code executes when a new scene is loaded. Is there anything the AudioManager needs to do OnSceneLoad?*/
 

@@ -26,6 +26,6 @@ public class OptionsMenuController : MonoBehaviour {
         Constants.effectsVolume = effectsVolumeSlider.value;
 
         /* Tell the Audio Manager to update */
-        AudioManager.GetInstance().UpdateAudioMixer();
+        AudioManager.Instance.UpdateAudioMixer();
     }
 }

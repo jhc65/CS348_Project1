@@ -5,7 +5,7 @@ using UnityEngine;
 [RequireComponent(typeof(AudioSource))]
 public class EffectsManager : MonoBehaviour {
 
-	public static EffectsManager Instance;
+	private static EffectsManager instance;
 	public enum Effects {
 		// Visual
 		Confetti,
@@ -18,6 +18,11 @@ public class EffectsManager : MonoBehaviour {
 
 	private AudioSource audioSource;
 
+	public static EffectsManager Instance
+	{
+		get {return instance;}
+	}
+
 	void Awake()
 	{
 		if (Instance != null)
@@ -27,7 +32,7 @@ public class EffectsManager : MonoBehaviour {
 		}
 		else
 		{
-			Instance = this;
+			instance = this;
 			Instance.audioSource = GetComponent<AudioSource>();
 		}
 	}

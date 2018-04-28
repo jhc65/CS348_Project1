@@ -4,25 +4,25 @@ using UnityEngine;
 
 public class GameObjectSingleton : MonoBehaviour {
 
-	public static Dictionary<string,GameObject> Instances;
+	private static Dictionary<string,GameObject> instances;
 
-	public string UniqueIdentifier;
+	[SerializeField] private string UniqueIdentifier;
 
 	public GameObjectSingleton()
 	{
 		/* Initialize the Dictionary if it doesn't yet exist */
-		if (Instances == null)
+		if (instances == null)
 		{
-			Instances = new Dictionary<string,GameObject>();
+			instances = new Dictionary<string,GameObject>();
 		}
 	}
 
 	private void Awake()
 	{
-		if (Instances == null)
+		if (instances == null)
 			Debug.Log("Constructor failed(?)");
 		/* If a gameObject already exists with this identifier, destroy this duplicate */
-		if (Instances.ContainsKey(UniqueIdentifier))
+		if (instances.ContainsKey(UniqueIdentifier))
 		{
 			Debug.Log("Destroying duplicate " + this.name);
 			DestroyImmediate(this.gameObject);
@@ -31,7 +31,7 @@ public class GameObjectSingleton : MonoBehaviour {
 		else
 		{
 			Debug.Log("First instance of " + this.name);
-			Instances.Add(UniqueIdentifier, this.gameObject);
+			instances.Add(UniqueIdentifier, this.gameObject);
 			DontDestroyOnLoad(this.gameObject);
 		}
 	}
@@ -39,7 +39,7 @@ public class GameObjectSingleton : MonoBehaviour {
 	public GameObject GetInstance()
 	{
 		GameObject obj = null;
-		if (Instances.TryGetValue(UniqueIdentifier, out obj))
+		if (instances.TryGetValue(UniqueIdentifier, out obj))
 			return obj;
 		else
 			{
@@ -50,16 +50,16 @@ public class GameObjectSingleton : MonoBehaviour {
 	
 	public void RemoveGameObject()
 	{
-		if (Instances.ContainsKey(UniqueIdentifier))
-			Instances.Remove(UniqueIdentifier);
+		if (instances.ContainsKey(UniqueIdentifier))
+			instances.Remove(UniqueIdentifier);
 		Destroy(this.gameObject);
 	}
 
 	void OnDestroy()
 	{
 		GameObject original;
-		Instances.TryGetValue(UniqueIdentifier, out original);
+		instances.TryGetValue(UniqueIdentifier, out original);
 		if (original == this.gameObject)
-			Instances.Remove(UniqueIdentifier);
+			instances.Remove(UniqueIdentifier);
 	}
 }

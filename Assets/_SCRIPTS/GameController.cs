@@ -96,7 +96,7 @@ public class GameController : MonoBehaviour
             }
         }
         /* If this is the first section, tell the coaster to play its animation */
-        CoasterManager.GetInstance().PlaySection(spawnedSections[0].GetAnimationTrigger());
+        CoasterManager.Instance.PlaySection(spawnedSections[0].GetAnimationTrigger());
         activeSectionIndex = 0;
     }
 
@@ -125,7 +125,7 @@ public class GameController : MonoBehaviour
 
         /* If there is a next section trigger its animation */
         if (activeSectionIndex < spawnedSections.Count)
-            CoasterManager.GetInstance().PlaySection(spawnedSections[activeSectionIndex].GetAnimationTrigger());
+            CoasterManager.Instance.PlaySection(spawnedSections[activeSectionIndex].GetAnimationTrigger());
     }
 
     public IEnumerator OnGapFilled()
@@ -137,7 +137,7 @@ public class GameController : MonoBehaviour
         EffectsManager.Instance.PlayEffect(EffectsManager.Effects.Yay);
 
         /* Speed up the coaster */
-        CoasterManager.GetInstance().SpeedUp();
+        CoasterManager.Instance.SpeedUp();
 
         yield return new WaitForSeconds(delayOnWin);
 
