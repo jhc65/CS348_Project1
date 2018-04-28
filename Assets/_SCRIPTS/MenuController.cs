@@ -19,6 +19,9 @@ public class MenuController : MonoBehaviour
     [SerializeField] private Toggle gapWidthMixedNumbersToggle;
     [SerializeField] private Toggle multipleGapsToggle;
     [SerializeField] private ToggleGroup colorToggles;
+    [SerializeField] private Slider masterVolumeSlider;
+    [SerializeField] private Slider backgroundVolumeSlider;
+    [SerializeField] private Slider effectsVolumeSlider;
 
     [SerializeField] private Text endgameText;
 
@@ -36,6 +39,11 @@ public class MenuController : MonoBehaviour
             endgameMenu.SetActive(true);
             endgameText.text = Constants.endgameText;
         }
+
+        /* Set the volume sliders to the initial values from Constants */
+        masterVolumeSlider.value = Constants.masterVolume;
+        backgroundVolumeSlider.value = Constants.backgroundVolume;
+        effectsVolumeSlider.value = Constants.effectsVolume;
     }
 
     public void PlayClick()
@@ -103,5 +111,17 @@ public class MenuController : MonoBehaviour
             gapWidthMixedNumbersToggle.isOn = true;
         }
         
+    }
+
+    public void AudioSliderChanged()
+    {
+        Debug.Log("Updating volume from sliders");
+        /* Update the values for all sliders */
+        Constants.masterVolume = masterVolumeSlider.value;
+        Constants.backgroundVolume = backgroundVolumeSlider.value;
+        Constants.effectsVolume = effectsVolumeSlider.value;
+
+        /* Tell the Audio Manager to update */
+        AudioManager.GetInstance().UpdateAudioMixer();
     }
 }

@@ -241,6 +241,7 @@ public class GameController : MonoBehaviour
     public void PauseClick()
     {
         // TODO: pause de game
+        Time.timeScale = 0; /* Manipulate timeScale to pause the game */
         pauseMenu.SetActive(true);
         MenuCursorSet();
     }
@@ -248,6 +249,7 @@ public class GameController : MonoBehaviour
     public void PlayClick()
     {
         // TODO: unpause de game
+        Time.timeScale = 1f; /* Change timeScale back from 0 */
         pauseMenu.SetActive(false);
         MenuCursorUnSet();
     }
