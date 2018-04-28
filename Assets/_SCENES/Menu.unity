@@ -193,6 +193,72 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_IsOn: 0
+--- !u!1001 &23928011
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 1193756779}
+    m_Modifications:
+    - target: {fileID: 4132008806445876, guid: 00aff19c5eb84404c8393bdc4bf11633, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132008806445876, guid: 00aff19c5eb84404c8393bdc4bf11633, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132008806445876, guid: 00aff19c5eb84404c8393bdc4bf11633, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132008806445876, guid: 00aff19c5eb84404c8393bdc4bf11633, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132008806445876, guid: 00aff19c5eb84404c8393bdc4bf11633, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132008806445876, guid: 00aff19c5eb84404c8393bdc4bf11633, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132008806445876, guid: 00aff19c5eb84404c8393bdc4bf11633, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4132008806445876, guid: 00aff19c5eb84404c8393bdc4bf11633, type: 2}
+      propertyPath: m_RootOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 1738637928965192, guid: 00aff19c5eb84404c8393bdc4bf11633, type: 2}
+      propertyPath: m_Name
+      value: Options Menu
+      objectReference: {fileID: 0}
+    - target: {fileID: 114305396108312370, guid: 00aff19c5eb84404c8393bdc4bf11633,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1663955562}
+    - target: {fileID: 114305396108312370, guid: 00aff19c5eb84404c8393bdc4bf11633,
+        type: 2}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: BackClick
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: 00aff19c5eb84404c8393bdc4bf11633, type: 2}
+  m_IsPrefabParent: 0
+--- !u!4 &23928012 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4132008806445876, guid: 00aff19c5eb84404c8393bdc4bf11633,
+    type: 2}
+  m_PrefabInternal: {fileID: 23928011}
+--- !u!1 &23928013 stripped
+GameObject:
+  m_PrefabParentObject: {fileID: 1738637928965192, guid: 00aff19c5eb84404c8393bdc4bf11633,
+    type: 2}
+  m_PrefabInternal: {fileID: 23928011}
 --- !u!1 &25203822
 GameObject:
   m_ObjectHideFlags: 0
@@ -415,12 +481,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 85347991}
---- !u!114 &117596841 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114581521273721538, guid: 00aff19c5eb84404c8393bdc4bf11633,
-    type: 2}
-  m_PrefabInternal: {fileID: 670930747}
-  m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1 &127491463
 GameObject:
   m_ObjectHideFlags: 0
@@ -1556,12 +1616,6 @@ MonoBehaviour:
     m_TypeName: UnityEngine.UI.Toggle+ToggleEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
   m_IsOn: 0
---- !u!114 &492285707 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114094195838536332, guid: 00aff19c5eb84404c8393bdc4bf11633,
-    type: 2}
-  m_PrefabInternal: {fileID: 670930747}
-  m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
 --- !u!1001 &501864475
 Prefab:
   m_ObjectHideFlags: 0
@@ -2106,68 +2160,6 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 655068989}
---- !u!1001 &670930747
-Prefab:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    m_TransformParent: {fileID: 1193756779}
-    m_Modifications:
-    - target: {fileID: 4132008806445876, guid: 00aff19c5eb84404c8393bdc4bf11633, type: 2}
-      propertyPath: m_LocalPosition.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4132008806445876, guid: 00aff19c5eb84404c8393bdc4bf11633, type: 2}
-      propertyPath: m_LocalPosition.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4132008806445876, guid: 00aff19c5eb84404c8393bdc4bf11633, type: 2}
-      propertyPath: m_LocalPosition.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4132008806445876, guid: 00aff19c5eb84404c8393bdc4bf11633, type: 2}
-      propertyPath: m_LocalRotation.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4132008806445876, guid: 00aff19c5eb84404c8393bdc4bf11633, type: 2}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4132008806445876, guid: 00aff19c5eb84404c8393bdc4bf11633, type: 2}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4132008806445876, guid: 00aff19c5eb84404c8393bdc4bf11633, type: 2}
-      propertyPath: m_LocalRotation.w
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4132008806445876, guid: 00aff19c5eb84404c8393bdc4bf11633, type: 2}
-      propertyPath: m_RootOrder
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: 114581521273721538, guid: 00aff19c5eb84404c8393bdc4bf11633,
-        type: 2}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1663955562}
-    - target: {fileID: 114094195838536332, guid: 00aff19c5eb84404c8393bdc4bf11633,
-        type: 2}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1663955562}
-    - target: {fileID: 114746302288642640, guid: 00aff19c5eb84404c8393bdc4bf11633,
-        type: 2}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1663955562}
-    - target: {fileID: 114305396108312370, guid: 00aff19c5eb84404c8393bdc4bf11633,
-        type: 2}
-      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 1663955562}
-    m_RemovedComponents: []
-  m_ParentPrefab: {fileID: 100100000, guid: 00aff19c5eb84404c8393bdc4bf11633, type: 2}
-  m_IsPrefabParent: 0
 --- !u!1 &684640338
 GameObject:
   m_ObjectHideFlags: 0
@@ -4034,7 +4026,7 @@ RectTransform:
   - {fileID: 1652300399}
   - {fileID: 250400961}
   - {fileID: 1934811109}
-  - {fileID: 1490840315}
+  - {fileID: 23928012}
   m_Father: {fileID: 0}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -4920,22 +4912,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1480809484 stripped
-MonoBehaviour:
-  m_PrefabParentObject: {fileID: 114746302288642640, guid: 00aff19c5eb84404c8393bdc4bf11633,
-    type: 2}
-  m_PrefabInternal: {fileID: 670930747}
-  m_Script: {fileID: -113659843, guid: f70555f144d8491a825f0804e09c671c, type: 3}
---- !u!1 &1490840314 stripped
-GameObject:
-  m_PrefabParentObject: {fileID: 1738637928965192, guid: 00aff19c5eb84404c8393bdc4bf11633,
-    type: 2}
-  m_PrefabInternal: {fileID: 670930747}
---- !u!4 &1490840315 stripped
-Transform:
-  m_PrefabParentObject: {fileID: 4132008806445876, guid: 00aff19c5eb84404c8393bdc4bf11633,
-    type: 2}
-  m_PrefabInternal: {fileID: 670930747}
 --- !u!1 &1511413712
 GameObject:
   m_ObjectHideFlags: 0
@@ -5452,7 +5428,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startMenu: {fileID: 1652300398}
-  optionsMenu: {fileID: 1490840314}
+  optionsMenu: {fileID: 23928013}
   gameSettingsMenu: {fileID: 250400960}
   endgameMenu: {fileID: 1934811108}
   unlimitedInventoryToggle: {fileID: 1322609478}
@@ -5462,9 +5438,6 @@ MonoBehaviour:
   gapWidthMixedNumbersToggle: {fileID: 905128274}
   multipleGapsToggle: {fileID: 1334708611}
   colorToggles: {fileID: 1568371689}
-  masterVolumeSlider: {fileID: 1480809484}
-  backgroundVolumeSlider: {fileID: 492285707}
-  effectsVolumeSlider: {fileID: 117596841}
   endgameText: {fileID: 62494255}
   cursorTexture: {fileID: 2800000, guid: 43daf847d6fdec341858176723de69d4, type: 3}
 --- !u!4 &1663955563

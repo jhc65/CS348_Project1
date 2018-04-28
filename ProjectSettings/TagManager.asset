@@ -57,6 +57,9 @@ TagManager:
   - name: Pieces
     uniqueID: 3534597045
     locked: 0
+  - name: Coaster
+    uniqueID: 1091072793
+    locked: 0
   - name: HoverPreview
     uniqueID: 3363938005
     locked: 0
