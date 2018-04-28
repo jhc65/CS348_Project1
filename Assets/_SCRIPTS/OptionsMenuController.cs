@@ -16,15 +16,24 @@ public class OptionsMenuController : MonoBehaviour {
         backgroundVolumeSlider.value = Constants.backgroundVolume;
         effectsVolumeSlider.value = Constants.effectsVolume;
 	}
-	
-	public void AudioSliderChanged()
-    {
-        Debug.Log("Updating volume from sliders");
-        /* Update the values for all sliders */
-        Constants.masterVolume = masterVolumeSlider.value;
-        Constants.backgroundVolume = backgroundVolumeSlider.value;
-        Constants.effectsVolume = effectsVolumeSlider.value;
 
+    public void MasterVolumeSliderChanged()
+    {
+        Constants.masterVolume = masterVolumeSlider.value;
+        /* Tell the Audio Manager to update */
+        AudioManager.Instance.UpdateAudioMixer();
+    }
+
+    public void BackgroundVolumeSliderChanged()
+    {
+        Constants.backgroundVolume = backgroundVolumeSlider.value;
+        /* Tell the Audio Manager to update */
+        AudioManager.Instance.UpdateAudioMixer();
+    }
+
+    public void EffectsVolumeSliderChanged()
+    {
+        Constants.effectsVolume = effectsVolumeSlider.value;
         /* Tell the Audio Manager to update */
         AudioManager.Instance.UpdateAudioMixer();
     }
