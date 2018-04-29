@@ -6,16 +6,9 @@ using UnityEngine.UI;
 public class Inventory : MonoBehaviour
 {
     static private Inventory instance;      // instance of the GameController
-    [SerializeField] private Text UIhalves;     // fine, Unity, I'll define them all on a 
-    [SerializeField] private Text UIthirds;         // separate line if it'll stop your
-    [SerializeField] private Text UIfourths;        // complaining
-    [SerializeField] private Text UIfifths;
-    [SerializeField] private Text UIsixths;
-    [SerializeField] private Text UIsevenths;
-    [SerializeField] private Text UIeighths;
-    [SerializeField] private Text UIninths;
-    [SerializeField] private Text UItenths;
-    private int halves, thirds, fourths, fifths, sixths, sevenths, eighths, ninths, tenths;
+    [SerializeField] private Text[] countTexts;
+    [SerializeField] private Piece[] pieces;
+    private int[] counts = new int[9];
 
     public static Inventory Instance
     {
@@ -25,145 +18,60 @@ public class Inventory : MonoBehaviour
     void Awake()
     {
         instance = this;
-        RoundStart();
     }
-
-    void RoundStart()
-    {
-        //Set(10, 10, 10, 10, 10, 10, 10, 10, 10);
-        Set(0, 0, 0, 0, 0, 0, 0, 0, 0);
-    }
-
 
     public void Decrease(Constants.PieceLength piece)
     {
-        switch (piece)
-        {
-            case Constants.PieceLength.HALF:
-                halves--;
-                break;
-            case Constants.PieceLength.THIRD:
-                thirds--;
-                break;
-            case Constants.PieceLength.FOURTH:
-                fourths--;
-                break;
-            case Constants.PieceLength.FIFTH:
-                fifths--;
-                break;
-            case Constants.PieceLength.SIXTH:
-                sixths--;
-                break;
-            case Constants.PieceLength.SEVENTH:
-                sevenths--;
-                break;
-            case Constants.PieceLength.EIGHTH:
-                eighths--;
-                break;
-            case Constants.PieceLength.NINTH:
-                ninths--;
-                break;
-            case Constants.PieceLength.TENTH:
-                tenths--;
-                break;
-        }
+        if (Constants.unlimitedInventory)
+            return;
+
+        int index = (int)piece;
+        index -= 2; // array offset to 0
+        counts[index]--;
+
         UpdateUI();
     }
 
     public void Increase(Constants.PieceLength piece, int num)
     {
-        switch (piece)
-        {
-            case Constants.PieceLength.HALF:
-                halves += num;
-                break;
-            case Constants.PieceLength.THIRD:
-                thirds += num;
-                break;
-            case Constants.PieceLength.FOURTH:
-                fourths += num;
-                break;
-            case Constants.PieceLength.FIFTH:
-                fifths += num;
-                break;
-            case Constants.PieceLength.SIXTH:
-                sixths += num;
-                break;
-            case Constants.PieceLength.SEVENTH:
-                sevenths += num;
-                break;
-            case Constants.PieceLength.EIGHTH:
-                eighths += num;
-                break;
-            case Constants.PieceLength.NINTH:
-                ninths += num;
-                break;
-            case Constants.PieceLength.TENTH:
-                tenths += num;
-                break;
-        }
+        if (Constants.unlimitedInventory)
+            return;
+
+        int index = (int)piece;
+        index -= 2; // array offset to 0
+        counts[index] += num;
+
         UpdateUI();
     }
 
     public void Set(Constants.PieceLength piece, int num)
     {
-        switch (piece)
-        {
-            case Constants.PieceLength.HALF:
-                halves = num;
-                break;
-            case Constants.PieceLength.THIRD:
-                thirds = num;
-                break;
-            case Constants.PieceLength.FOURTH:
-                fourths = num;
-                break;
-            case Constants.PieceLength.FIFTH:
-                fifths = num;
-                break;
-            case Constants.PieceLength.SIXTH:
-                sixths = num;
-                break;
-            case Constants.PieceLength.SEVENTH:
-                sevenths = num;
-                break;
-            case Constants.PieceLength.EIGHTH:
-                eighths = num;
-                break;
-            case Constants.PieceLength.NINTH:
-                ninths = num;
-                break;
-            case Constants.PieceLength.TENTH:
-                tenths = num;
-                break;
-        }
+        int index = (int)piece;
+        index -= 2; // array offset to 0
+        counts[index] = num;
+
         UpdateUI();
     }
 
-    public void Set(int numHalves, int numThirds, int numFourths, int numFifths, int numSixths, int numSevenths, int numEighths, int numNinths, int numTenths)
+    public void SetUnlimited()
     {
-        halves = numHalves;
-        thirds = numThirds;
-        fourths = numFourths;
-        fifths = numFifths;
-        sixths = numSixths;
-        sevenths = numSevenths;
-        eighths = numEighths;
-        ninths = numNinths;
-        tenths = numTenths;
-        UpdateUI();
+        for (int i = 0; i < counts.Length; i++)
+        {
+            counts[i] = -1;
+            countTexts[i].text = "\u221E";   // infinity symbol
+            countTexts[i].fontSize = 95;
+        }
     }
 
     void UpdateUI()
     {
-        UIhalves.text = halves.ToString();
-        UIthirds.text = thirds.ToString();
-        UIfourths.text = fourths.ToString();
-        UIfifths.text = fifths.ToString();
-        UIsixths.text = sixths.ToString();
-        UIsevenths.text = sevenths.ToString();
-        UIeighths.text = eighths.ToString();
-        UIninths.text = ninths.ToString();
-        UItenths.text = tenths.ToString();
+        for (int i = 0; i < counts.Length; i++)
+        {
+            countTexts[i].text = counts[i].ToString();
+            if (counts[i] == 0)
+                pieces[i].SetInteractable(false);
+            else
+                pieces[i].SetInteractable(true);
+        }
     }
 }

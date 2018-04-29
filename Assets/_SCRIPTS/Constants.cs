@@ -7,9 +7,9 @@ public static class Constants {
     public enum PieceLength { HALF = 2, THIRD = 3, FOURTH = 4, FIFTH = 5, SIXTH = 6, SEVENTH = 7, EIGHTH = 8, NINTH = 9, TENTH = 10 };
 
     public static bool gapAlwaysOne = false;
+    public static bool gapAlwaysAtomic = false;
     public static bool gapAllowImproperFractions = true;
     public static bool gapAllowMixedNumbers = false;
-    public static bool gapAllowMultiple = false;
     public static bool unlimitedInventory = false;
     public static bool showCutLengths = false;
     public static Color trackColor = Color.white;

@@ -15,9 +15,9 @@ public class MenuController : MonoBehaviour
     [SerializeField] private Toggle unlimitedInventoryToggle;
     [SerializeField] private Toggle showCutLengthsToggle;
     [SerializeField] private Toggle gapWidthAlwaysOneToggle;
+    [SerializeField] private Toggle gapWidthAlwaysAtomicToggle;
     [SerializeField] private Toggle gapWidthImproperFractionsToggle;
     [SerializeField] private Toggle gapWidthMixedNumbersToggle;
-    [SerializeField] private Toggle multipleGapsToggle;
     [SerializeField] private ToggleGroup colorToggles;
 
     [SerializeField] private Text endgameText;
@@ -27,8 +27,7 @@ public class MenuController : MonoBehaviour
 
     private void Start()
     {
-        // TODO: set mouse cursor to generic arrow
-        Vector2 cursorHotSpot = new Vector2(0, 0);//cursorTexture.width * 0.5f, cursorTexture.height * 0.5f);
+        Vector2 cursorHotSpot = new Vector2(cursorTexture.width * 0.1f, cursorTexture.height * 0.1f);
         Cursor.SetCursor(cursorTexture, cursorHotSpot, CursorMode.ForceSoftware);
         if(Constants.gameOver)
         {
@@ -43,12 +42,13 @@ public class MenuController : MonoBehaviour
         // save selected settings to Constants
         // TODO: read them out of Constants where relevant
         Constants.gapAlwaysOne = gapWidthAlwaysOneToggle.isOn;
+        Constants.gapAlwaysAtomic = gapWidthAlwaysAtomicToggle.isOn;
         Constants.gapAllowImproperFractions = gapWidthImproperFractionsToggle.isOn;
         Constants.gapAllowMixedNumbers = gapWidthMixedNumbersToggle.isOn;
-        Constants.gapAllowMultiple = multipleGapsToggle.isOn;
         Constants.unlimitedInventory = unlimitedInventoryToggle.isOn;
         Constants.showCutLengths = showCutLengthsToggle.isOn;
 
+        // track color
         Toggle activeToggle = colorToggles.ActiveToggles().FirstOrDefault();
         Constants.trackColor = activeToggle.colors.normalColor;
 
@@ -92,6 +92,8 @@ public class MenuController : MonoBehaviour
     {
         if(gapWidthAlwaysOneToggle.isOn)
         {
+            gapWidthAlwaysAtomicToggle.isOn = false;
+            gapWidthAlwaysAtomicToggle.interactable = false;
             gapWidthImproperFractionsToggle.isOn = false;
             gapWidthImproperFractionsToggle.interactable = false;
             gapWidthMixedNumbersToggle.interactable = false;
@@ -99,9 +101,29 @@ public class MenuController : MonoBehaviour
         }
         else
         {
-            gapWidthImproperFractionsToggle.isOn = true;
-            gapWidthMixedNumbersToggle.isOn = true;
+            gapWidthAlwaysAtomicToggle.interactable = true;
+            gapWidthImproperFractionsToggle.interactable = true;
+            gapWidthMixedNumbersToggle.interactable = true;
         }
         
+    }
+
+    public void AlwaysAtomicCheck()
+    {
+        if (gapWidthAlwaysAtomicToggle.isOn)
+        {
+            gapWidthAlwaysOneToggle.isOn = false;
+            gapWidthAlwaysOneToggle.interactable = false;
+            gapWidthImproperFractionsToggle.isOn = false;
+            gapWidthImproperFractionsToggle.interactable = false;
+            gapWidthMixedNumbersToggle.interactable = false;
+            gapWidthMixedNumbersToggle.isOn = false;
+        }
+        else
+        {
+            gapWidthAlwaysOneToggle.interactable = true;
+            gapWidthImproperFractionsToggle.interactable = true;
+            gapWidthMixedNumbersToggle.interactable = true;
+        }
     }
 }

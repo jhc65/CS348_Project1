@@ -44,7 +44,7 @@ public class GameController : MonoBehaviour
                 case Constants.CursorType.HAND:
                     index = 0;
                     foreach(Piece piece in pieces)
-                        piece.EnableDraggable();
+                        if(piece.Interactable) piece.EnableDraggable(); // only set if interactable
                     break;
                 case Constants.CursorType.DRAG:
                     index = 1;
@@ -52,10 +52,10 @@ public class GameController : MonoBehaviour
                 case Constants.CursorType.CUT:
                     index = 2;
                     foreach (Piece piece in pieces)
-                        piece.EnableCuttables();
+                        if (piece.Interactable) piece.EnableCuttables(); // only set if interactable
                     break;
             }
-            Vector2 cursorHotSpot = new Vector2(0, 0);
+            Vector2 cursorHotSpot = new Vector2(cursorTextures[index].width * 0.1f, cursorTextures[index].height * 0.1f);
             Cursor.SetCursor(cursorTextures[index], cursorHotSpot, CursorMode.ForceSoftware);
         }
     }
@@ -85,15 +85,23 @@ public class GameController : MonoBehaviour
             Section section = go.GetComponent<Section>();
             spawnedSections.Add(section);
             List<FractionTools.Fraction> gapSizes = section.SetupBuildZones();
-            foreach(FractionTools.Fraction gap in gapSizes)
+            if(Constants.unlimitedInventory)    // set inventory unlimited
             {
-                numBuildZones++;
-                Constants.PieceLength[] pieces = FractionBuilder.BreakMyLifeIntoPieces(gap, 0);
-                foreach (Constants.PieceLength piece in pieces)
+                inv.SetUnlimited();
+            }
+            else    // distribute inventory
+            {
+                foreach (FractionTools.Fraction gap in gapSizes)
                 {
-                    inv.Increase(piece, 1);
+                    numBuildZones++;
+                    Constants.PieceLength[] pieces = FractionBuilder.BreakMyLifeIntoPieces(gap, 0);
+                    foreach (Constants.PieceLength piece in pieces)
+                    {
+                        inv.Increase(piece, 1);
+                    }
                 }
             }
+            
         }
         /* If this is the first section, tell the coaster to play its animation */
         CoasterManager.Instance.PlaySection(spawnedSections[0].GetAnimationTrigger());
@@ -196,7 +204,7 @@ public class GameController : MonoBehaviour
 
     public void MenuCursorSet()
     {
-        Vector2 cursorHotSpot = new Vector2(0, 0);
+        Vector2 cursorHotSpot = new Vector2(cursorTextures[3].width * 0.1f, cursorTextures[3].height * 0.1f);
         Cursor.SetCursor(cursorTextures[3], cursorHotSpot, CursorMode.ForceSoftware);
     }
 

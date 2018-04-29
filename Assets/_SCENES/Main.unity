@@ -199,7 +199,7 @@ GameObject:
   - component: {fileID: 36804533}
   - component: {fileID: 36804534}
   m_Layer: 0
-  m_Name: 12 text
+  m_Name: label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -275,7 +275,7 @@ GameObject:
   - component: {fileID: 44331423}
   - component: {fileID: 44331422}
   m_Layer: 5
-  m_Name: 1/8 Text
+  m_Name: text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -525,7 +525,7 @@ GameObject:
   - component: {fileID: 96567923}
   - component: {fileID: 96567924}
   m_Layer: 0
-  m_Name: counterBG
+  m_Name: countBacking
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -675,7 +675,7 @@ GameObject:
   - component: {fileID: 155862797}
   - component: {fileID: 155862796}
   m_Layer: 5
-  m_Name: 1/10 Text
+  m_Name: text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -956,7 +956,7 @@ GameObject:
   - component: {fileID: 227214988}
   - component: {fileID: 227214989}
   m_Layer: 0
-  m_Name: counterBG
+  m_Name: countBacking
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1176,7 +1176,7 @@ GameObject:
   - component: {fileID: 358502493}
   - component: {fileID: 358502494}
   m_Layer: 0
-  m_Name: 13 text
+  m_Name: label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1507,6 +1507,9 @@ MonoBehaviour:
   draggable: {fileID: 1036628832}
   cuttables: {fileID: 0}
   sprite: {fileID: 1714148562}
+  label: {fileID: 1161608372}
+  countBacking: {fileID: 893935272}
+  text: {fileID: 672653627}
 --- !u!1 &403786523
 GameObject:
   m_ObjectHideFlags: 0
@@ -2248,15 +2251,26 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e7a81aa182ee6cb4aae9ccb37dc566e7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  UIhalves: {fileID: 1152048934}
-  UIthirds: {fileID: 833857625}
-  UIfourths: {fileID: 1409435920}
-  UIfifths: {fileID: 1963712154}
-  UIsixths: {fileID: 1644363217}
-  UIsevenths: {fileID: 967544823}
-  UIeighths: {fileID: 44331421}
-  UIninths: {fileID: 672653627}
-  UItenths: {fileID: 155862793}
+  countTexts:
+  - {fileID: 1152048934}
+  - {fileID: 833857625}
+  - {fileID: 1409435920}
+  - {fileID: 1963712154}
+  - {fileID: 1644363217}
+  - {fileID: 967544823}
+  - {fileID: 44331421}
+  - {fileID: 672653627}
+  - {fileID: 155862793}
+  pieces:
+  - {fileID: 1397850432}
+  - {fileID: 1178885584}
+  - {fileID: 844615539}
+  - {fileID: 1764706489}
+  - {fileID: 1697725078}
+  - {fileID: 747398923}
+  - {fileID: 846305068}
+  - {fileID: 401490087}
+  - {fileID: 695351446}
 --- !u!4 &560155378
 Transform:
   m_ObjectHideFlags: 0
@@ -2501,7 +2515,7 @@ GameObject:
   - component: {fileID: 624457557}
   - component: {fileID: 624457558}
   m_Layer: 0
-  m_Name: 17 text
+  m_Name: label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2574,7 +2588,7 @@ GameObject:
   - component: {fileID: 641923828}
   - component: {fileID: 641923829}
   m_Layer: 0
-  m_Name: counterBG
+  m_Name: countBacking
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2866,7 +2880,7 @@ GameObject:
   - component: {fileID: 672653629}
   - component: {fileID: 672653628}
   m_Layer: 5
-  m_Name: 1/9 Text
+  m_Name: text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3002,6 +3016,9 @@ MonoBehaviour:
   draggable: {fileID: 1980304215}
   cuttables: {fileID: 0}
   sprite: {fileID: 1981798091}
+  label: {fileID: 851113884}
+  countBacking: {fileID: 227214989}
+  text: {fileID: 155862793}
 --- !u!1 &747398921
 GameObject:
   m_ObjectHideFlags: 0
@@ -3047,6 +3064,9 @@ MonoBehaviour:
   draggable: {fileID: 769352277}
   cuttables: {fileID: 0}
   sprite: {fileID: 1653831783}
+  label: {fileID: 624457558}
+  countBacking: {fileID: 1391632445}
+  text: {fileID: 967544823}
 --- !u!1 &769078389
 GameObject:
   m_ObjectHideFlags: 0
@@ -3381,7 +3401,7 @@ GameObject:
   - component: {fileID: 833857627}
   - component: {fileID: 833857626}
   m_Layer: 5
-  m_Name: 1/3 Text
+  m_Name: text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3588,6 +3608,9 @@ MonoBehaviour:
   draggable: {fileID: 1247729876}
   cuttables: {fileID: 1151233310}
   sprite: {fileID: 1181185293}
+  label: {fileID: 1367523754}
+  countBacking: {fileID: 641923829}
+  text: {fileID: 1409435920}
 --- !u!1 &846305066
 GameObject:
   m_ObjectHideFlags: 0
@@ -3633,6 +3656,9 @@ MonoBehaviour:
   draggable: {fileID: 1874144282}
   cuttables: {fileID: 0}
   sprite: {fileID: 769078391}
+  label: {fileID: 1353415092}
+  countBacking: {fileID: 96567924}
+  text: {fileID: 44331421}
 --- !u!1 &850707300
 GameObject:
   m_ObjectHideFlags: 0
@@ -3740,7 +3766,7 @@ GameObject:
   - component: {fileID: 851113883}
   - component: {fileID: 851113884}
   m_Layer: 0
-  m_Name: 110 text
+  m_Name: label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3813,7 +3839,7 @@ GameObject:
   - component: {fileID: 865431652}
   - component: {fileID: 865431653}
   m_Layer: 0
-  m_Name: counterBG
+  m_Name: countBacking
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3918,7 +3944,7 @@ GameObject:
   - component: {fileID: 893935271}
   - component: {fileID: 893935272}
   m_Layer: 0
-  m_Name: counterBG
+  m_Name: countBacking
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4065,7 +4091,7 @@ GameObject:
   - component: {fileID: 916500967}
   - component: {fileID: 916500968}
   m_Layer: 0
-  m_Name: 15 text
+  m_Name: label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4336,7 +4362,7 @@ GameObject:
   - component: {fileID: 967544825}
   - component: {fileID: 967544824}
   m_Layer: 5
-  m_Name: 1/7 Text
+  m_Name: text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5185,7 +5211,7 @@ GameObject:
   - component: {fileID: 1152048936}
   - component: {fileID: 1152048935}
   m_Layer: 5
-  m_Name: 1/2 Text
+  m_Name: text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5286,7 +5312,7 @@ GameObject:
   - component: {fileID: 1161608371}
   - component: {fileID: 1161608372}
   m_Layer: 0
-  m_Name: 19 text
+  m_Name: label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5359,7 +5385,7 @@ GameObject:
   - component: {fileID: 1165594931}
   - component: {fileID: 1165594932}
   m_Layer: 0
-  m_Name: counterBG
+  m_Name: countBacking
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5469,6 +5495,9 @@ MonoBehaviour:
   draggable: {fileID: 1131439710}
   cuttables: {fileID: 1332691297}
   sprite: {fileID: 1062108660}
+  label: {fileID: 358502494}
+  countBacking: {fileID: 1165594932}
+  text: {fileID: 833857625}
 --- !u!1 &1181185291
 GameObject:
   m_ObjectHideFlags: 0
@@ -5971,7 +6000,7 @@ GameObject:
   - component: {fileID: 1353415091}
   - component: {fileID: 1353415092}
   m_Layer: 0
-  m_Name: 18 text
+  m_Name: label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6044,7 +6073,7 @@ GameObject:
   - component: {fileID: 1355087486}
   - component: {fileID: 1355087487}
   m_Layer: 0
-  m_Name: counterBG
+  m_Name: countBacking
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6194,7 +6223,7 @@ GameObject:
   - component: {fileID: 1367523753}
   - component: {fileID: 1367523754}
   m_Layer: 0
-  m_Name: 14 text
+  m_Name: label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6342,7 +6371,7 @@ GameObject:
   - component: {fileID: 1391632444}
   - component: {fileID: 1391632445}
   m_Layer: 0
-  m_Name: counterBG
+  m_Name: countBacking
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6574,6 +6603,9 @@ MonoBehaviour:
   draggable: {fileID: 1857095493}
   cuttables: {fileID: 2124613735}
   sprite: {fileID: 1989993349}
+  label: {fileID: 36804534}
+  countBacking: {fileID: 865431653}
+  text: {fileID: 1152048934}
 --- !u!1 &1409435917
 GameObject:
   m_ObjectHideFlags: 0
@@ -6587,7 +6619,7 @@ GameObject:
   - component: {fileID: 1409435922}
   - component: {fileID: 1409435921}
   m_Layer: 5
-  m_Name: 1/4 Text
+  m_Name: text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6718,7 +6750,7 @@ GameObject:
   - component: {fileID: 1495213375}
   - component: {fileID: 1495213376}
   m_Layer: 0
-  m_Name: 16 text
+  m_Name: label
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7106,6 +7138,11 @@ MonoBehaviour:
   - {fileID: 1178885584}
   - {fileID: 844615539}
   - {fileID: 1764706489}
+  - {fileID: 1764706489}
+  - {fileID: 1697725078}
+  - {fileID: 747398923}
+  - {fileID: 846305068}
+  - {fileID: 401490087}
   sections:
   - {fileID: 1021876809896240, guid: e72c94e0e45cfe44b8f9bf0da756485e, type: 2}
   - {fileID: 1818689810762882, guid: 942f14f9b3b3a384aa2fcdce8baad77a, type: 2}
@@ -7239,7 +7276,7 @@ GameObject:
   - component: {fileID: 1644363219}
   - component: {fileID: 1644363218}
   m_Layer: 5
-  m_Name: 1/6 Text
+  m_Name: text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -7497,6 +7534,9 @@ MonoBehaviour:
   draggable: {fileID: 2091997687}
   cuttables: {fileID: 0}
   sprite: {fileID: 1781683042}
+  label: {fileID: 1495213376}
+  countBacking: {fileID: 1355087487}
+  text: {fileID: 1644363217}
 --- !u!1001 &1707177863
 Prefab:
   m_ObjectHideFlags: 0
@@ -7731,6 +7771,9 @@ MonoBehaviour:
   draggable: {fileID: 840361034}
   cuttables: {fileID: 1830334088}
   sprite: {fileID: 1376229284}
+  label: {fileID: 916500968}
+  countBacking: {fileID: 1905540211}
+  text: {fileID: 1963712154}
 --- !u!1 &1781683040
 GameObject:
   m_ObjectHideFlags: 0
@@ -8264,7 +8307,7 @@ GameObject:
   - component: {fileID: 1905540210}
   - component: {fileID: 1905540211}
   m_Layer: 0
-  m_Name: counterBG
+  m_Name: countBacking
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -8581,7 +8624,7 @@ GameObject:
   - component: {fileID: 1963712156}
   - component: {fileID: 1963712155}
   m_Layer: 5
-  m_Name: 1/5 Text
+  m_Name: text
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
