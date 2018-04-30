@@ -32,7 +32,7 @@ public class Section : MonoBehaviour
     private FractionTools.Fraction ChooseGapSize()
     {
         if (Constants.gapAlwaysOne)
-            return new FractionTools.Fraction(1, 1);
+            return FractionTools.Fraction.One;
 
         FractionTools.Fraction newGapSize = new FractionTools.Fraction(Random.Range(1, 5), Random.Range(2, 10));
 

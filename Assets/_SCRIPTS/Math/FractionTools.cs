@@ -48,6 +48,16 @@ public static class FractionTools
 
         #region Constructors
         /// <summary>
+        /// Static Constructor
+        /// </summary>
+        static Fraction()
+        {
+            Zero = new Fraction(0, 1);
+            One = new Fraction(1, 1);
+        }
+
+
+        /// <summary>
         /// Default constructor
         /// </summary>
         public Fraction()
@@ -77,10 +87,10 @@ public static class FractionTools
         }
         #endregion //#region Constructors
 
-        public static Fraction Zero()
-        {
-            return new Fraction(0,1);
-        }
+        public static Fraction Zero { get; private set; }
+
+
+        public static Fraction One { get; private set; }
 
         #region Mathematical Operator Overloads
         public static Fraction operator+ (Fraction a, Fraction b)
@@ -536,6 +546,13 @@ public static class FractionTools
                     atomicFractions.Add(newAtom);
                 }
             }
+        }
+
+        /* If there is anything left, add it (1/1 will end up here) */
+        while (toUseAndAbuse.numerator > 0)
+        {
+            atomicFractions.Add(new Fraction(1, toUseAndAbuse.denominator));
+            toUseAndAbuse.numerator--;
         }
 
         return atomicFractions.ToArray();

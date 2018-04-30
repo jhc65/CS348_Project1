@@ -19,7 +19,7 @@ public class BuildZone : MonoBehaviour {
     [SerializeField] private GameObject slowDownTrigger;
     [SerializeField] private SpriteMask gapMask;
     public FractionTools.Fraction gapSize;
-	private FractionTools.Fraction gapFilled = FractionTools.Fraction.Zero();
+	private FractionTools.Fraction gapFilled = FractionTools.Fraction.Zero;
     private List<Placeable> piecesInZone = new List<Placeable>();
 	
 	public bool TryPlacePiece(Placeable p)
@@ -131,9 +131,9 @@ public class BuildZone : MonoBehaviour {
 	public void ClearBuildZone()
 	{
 		/* Clear out gapFilled */
-		gapFilled = FractionTools.Fraction.Zero();
+		gapFilled = FractionTools.Fraction.Zero;
 		/* Clear out gapSize */
-		gapSize = FractionTools.Fraction.Zero();
+		gapSize = FractionTools.Fraction.Zero;
 		/* Clear out piecesInZone */
 		if (piecesInZone.Count > 0)
 		{
