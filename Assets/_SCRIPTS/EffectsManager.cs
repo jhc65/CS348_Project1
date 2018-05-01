@@ -9,12 +9,14 @@ public class EffectsManager : MonoBehaviour {
 	public enum Effects {
 		// Visual
 		Confetti,
+        Sparkle,
 		
 		//Auditory
 		Yay};
 
 	[SerializeField] private GameObject Confetti;
-	[SerializeField] private AudioClip Yay;
+    [SerializeField] private GameObject Sparkle;
+    [SerializeField] private AudioClip Yay;
 
 	private AudioSource audioSource;
 
@@ -44,7 +46,10 @@ public class EffectsManager : MonoBehaviour {
 			case Effects.Confetti:
 				Instantiate(Confetti, this.transform, false); /* The Confetti particle system has autoDestroy */
 			break;
-			case Effects.Yay:
+            case Effects.Sparkle:
+                Instantiate(Sparkle, this.transform, false); /* The Confetti particle system has autoDestroy */
+                break;
+            case Effects.Yay:
 				audioSource.PlayOneShot(Yay);
 			break;
 			default:
