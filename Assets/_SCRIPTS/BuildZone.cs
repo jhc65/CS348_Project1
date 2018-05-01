@@ -19,7 +19,7 @@ public class BuildZone : MonoBehaviour {
     [SerializeField] private GameObject slowDownTrigger;
     [SerializeField] private SpriteMask gapMask;
     public FractionTools.Fraction gapSize;
-	private FractionTools.Fraction gapFilled = FractionTools.Fraction.Zero();
+	private FractionTools.Fraction gapFilled = FractionTools.Fraction.Zero;
     private List<Placeable> piecesInZone = new List<Placeable>();
 	
 	public bool TryPlacePiece(Placeable p)
@@ -131,9 +131,9 @@ public class BuildZone : MonoBehaviour {
 	public void ClearBuildZone()
 	{
 		/* Clear out gapFilled */
-		gapFilled = FractionTools.Fraction.Zero();
+		gapFilled = FractionTools.Fraction.Zero;
 		/* Clear out gapSize */
-		gapSize = FractionTools.Fraction.Zero();
+		gapSize = FractionTools.Fraction.Zero;
 		/* Clear out piecesInZone */
 		if (piecesInZone.Count > 0)
 		{
@@ -150,34 +150,36 @@ public class BuildZone : MonoBehaviour {
 	private string GapEquation()
 	{
 		string result = "";
-		
-		if (piecesInZone.Count > 0)
-		{
-			/* Append each piece's fraction using addition */
-			foreach(Placeable p in piecesInZone)
-				result += p.Value + " + ";
 
-			/* Remove the last + */
-			result = result.Remove(result.Length - 3);
+        if (piecesInZone.Count == 0)
+        {
+            /* Put a question mark */
+            result += "?";
+        }
+        else
+        {
+            /* Append each piece's fraction using addition */
+            foreach (Placeable p in piecesInZone)
+                result += p.Value + " + ";
 
-		}
-		else
-		{
-			/* Put some question marks? */
-			result += "? + ?";
-		}
+            /* Remove the last + */
+            result = result.Remove(result.Length - 3);
 
-		if (gapFilled != gapSize)
-		{
-			/* Append the "you aren't done yet" part */
-			result += " + ...";
-		}
+            if (gapFilled != gapSize)
+            {
+                /* Append the "you aren't done yet" part */
+                result += " + ...";
+            }
+        }
 
-		/* Append the total gap size */
-		result += " = " + gapSize;
+        /* Append the total gap size */
+        if (gapSize == new FractionTools.Fraction())
+            result += " = 1";
+        else
+            result += " = " + gapSize;
 
-		return result;
-	}
+        return result;
+    }
 
 	private void UpdateEquationUI()
 	{

@@ -58,9 +58,42 @@ public static class FractionBuilder
     {
         List<PieceLength> finalSelection = new List<PieceLength>();
 
-        /* Get the list of atomic pieces, ignoring base 1 */
-        List<Fraction> atoms = FractionTools.AtomizeFraction(fraction, false).ToList<Fraction>();
-        //Debug.Log("Initial: " + fraction.ToString());
+        List<Fraction> atoms = new List<Fraction>(); ;
+        if(Constants.gapAlwaysAtomic)
+        {
+            // if "always atomic", fraction will already be 1/x, and we don't want to break it down further
+            finalSelection.Add((PieceLength)fraction.denominator);
+            return finalSelection.ToArray();
+        }
+
+
+        if (fraction == Fraction.One)
+        {
+            if (Constants.gapAlwaysOne)
+            {
+                // if "always one" is specified, give all pieces an equal chance
+                int den = Random.Range(2, 10);
+                for (int i = 0; i < den; i++)
+                    atoms.Add(new Fraction(1, den));
+                //finalSelection.Add((PieceLength)den);
+                //return finalSelection.ToArray();
+            }
+            else
+            {
+                /* Either break into halves or thirds */
+                if (Random.Range(0f, 1f) <= .5f)
+                    //atoms = new List<Fraction>() { new Fraction(2, 2) };
+                    atoms = FractionTools.AtomizeFraction(new Fraction(2, 2), false).ToList<Fraction>();
+                else
+                    //atoms = new List<Fraction>() { new Fraction(3, 3) };
+                    atoms = FractionTools.AtomizeFraction(new Fraction(3, 3), false).ToList<Fraction>();
+            }
+        }
+        else
+        {
+            /* Get the list of atomic pieces, ignoring base 1 */
+            atoms = FractionTools.AtomizeFraction(fraction, false).ToList<Fraction>();
+        }
 
         /* for each atom, decide whether to break it down or not based on difficulty */
         for (int i = 0; i < atoms.Count; )
@@ -71,7 +104,7 @@ public static class FractionBuilder
             /* If forbidCutting is true and the atom is bigger than the original denominator, break it */
             if (forbidCutting && atoms[i].denominator < fraction.denominator)
             {
-                atoms[i].numerator = 2;
+                atoms[i].numerator *= 2; /* CMB: Changed this to *2 instead of overriding it to 2 Ex. 1/2 -> 2/4 -> 2/8 */
                 atoms[i].denominator *= 2;
 
                 /* Don't increment i, so that we check this atom again in case it needs further breaking */

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Cuttable : MonoBehaviour
 {
     [SerializeField] private GameObject resultOfCut;
+    [SerializeField] private GameObject resultOfCutLengths;
     [SerializeField] private Constants.PieceLength parentLength;
     [SerializeField] private Constants.PieceLength cutLength;
     [SerializeField] private int numCuts;
@@ -27,6 +28,7 @@ public class Cuttable : MonoBehaviour
         if (gc.ActiveCursor == Constants.CursorType.CUT)
         {
             resultOfCut.SetActive(true);
+            if (Constants.showCutLengths) resultOfCutLengths.SetActive(true);
 
             if (Input.GetMouseButtonDown(0))
             {
@@ -37,6 +39,7 @@ public class Cuttable : MonoBehaviour
             if (Input.GetMouseButtonDown(1))
             {
                 resultOfCut.SetActive(false);
+                resultOfCutLengths.SetActive(false);
             }
         }
     }
@@ -46,11 +49,13 @@ public class Cuttable : MonoBehaviour
         if (gc.ActiveCursor == Constants.CursorType.CUT)
         {
             resultOfCut.SetActive(false);
+            resultOfCutLengths.SetActive(false);
         }
     }
 
     private void OnDisable()
     {
         resultOfCut.SetActive(false);
+        resultOfCutLengths.SetActive(false);
     }
 }

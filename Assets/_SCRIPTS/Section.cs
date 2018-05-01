@@ -4,9 +4,15 @@ using UnityEngine;
 
 public class Section : MonoBehaviour
 {
+    [SerializeField] private SpriteRenderer track;
     [SerializeField] private GameObject[] buildZones;
     [SerializeField] private CoasterManager.SectionTriggers coasterAnimation;
     List<FractionTools.Fraction> gapSizes = new List<FractionTools.Fraction>();
+
+    void Start()
+    {
+        track.color = Constants.trackColor;
+    }
 
     public List<FractionTools.Fraction> SetupBuildZones()
     {
@@ -32,7 +38,9 @@ public class Section : MonoBehaviour
     private FractionTools.Fraction ChooseGapSize()
     {
         if (Constants.gapAlwaysOne)
-            return new FractionTools.Fraction(2, 2);
+            return FractionTools.Fraction.One;
+        if (Constants.gapAlwaysAtomic)
+            return new FractionTools.Fraction(1, Random.Range(2, 10));
 
         FractionTools.Fraction newGapSize = new FractionTools.Fraction(Random.Range(1, 5), Random.Range(2, 10));
 
