@@ -27,7 +27,7 @@ public class MenuController : MonoBehaviour
 
     private void Start()
     {
-        Vector2 cursorHotSpot = new Vector2(cursorTexture.width * 0.1f, cursorTexture.height * 0.1f);
+        Vector2 cursorHotSpot = new Vector2(cursorTexture.width * 0.25f, cursorTexture.height * 0.25f);
         Cursor.SetCursor(cursorTexture, cursorHotSpot, CursorMode.ForceSoftware);
         if(Constants.gameOver)
         {

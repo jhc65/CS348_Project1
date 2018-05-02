@@ -39,6 +39,7 @@ public class GameController : MonoBehaviour
         set {
             activeCursor = value;
             int index = 0;
+            float offset = 0.5f;
             switch (activeCursor)
             {
                 case Constants.CursorType.HAND:
@@ -51,11 +52,12 @@ public class GameController : MonoBehaviour
                     break;
                 case Constants.CursorType.CUT:
                     index = 2;
+                    offset = 0.2f;
                     foreach (Piece piece in pieces)
                         if (piece.Interactable) piece.EnableCuttables(); // only set if interactable
                     break;
             }
-            Vector2 cursorHotSpot = new Vector2(cursorTextures[index].width * 0.1f, cursorTextures[index].height * 0.1f);
+            Vector2 cursorHotSpot = new Vector2(cursorTextures[index].width * offset, cursorTextures[index].height * offset);
             Cursor.SetCursor(cursorTextures[index], cursorHotSpot, CursorMode.ForceSoftware);
         }
     }
@@ -204,7 +206,7 @@ public class GameController : MonoBehaviour
 
     public void MenuCursorSet()
     {
-        Vector2 cursorHotSpot = new Vector2(cursorTextures[3].width * 0.1f, cursorTextures[3].height * 0.1f);
+        Vector2 cursorHotSpot = new Vector2(cursorTextures[3].width * 0.25f, cursorTextures[3].height * 0.25f);
         Cursor.SetCursor(cursorTextures[3], cursorHotSpot, CursorMode.ForceSoftware);
     }
 

@@ -5450,7 +5450,7 @@ MonoBehaviour:
   gapWidthMixedNumbersToggle: {fileID: 905128274}
   colorToggles: {fileID: 1568371689}
   endgameText: {fileID: 62494255}
-  cursorTexture: {fileID: 2800000, guid: 43daf847d6fdec341858176723de69d4, type: 3}
+  cursorTexture: {fileID: 2800000, guid: 58189f8edb689cd44bfa6ce7d4e60679, type: 3}
 --- !u!4 &1663955563
 Transform:
   m_ObjectHideFlags: 0
