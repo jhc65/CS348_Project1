@@ -203,4 +203,14 @@ public class BuildZone : MonoBehaviour {
     {
         return gapFilled == gapSize;
     }
+
+    public void OnUndoButtonClicked()
+    {
+
+    }
+
+    public void OnClearButtonClicked()
+    {
+
+    }
 }
