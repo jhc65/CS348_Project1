@@ -181,7 +181,7 @@ public class GameController : MonoBehaviour
         clearedBuildZones++;
         if(clearedBuildZones == numBuildZones)
         {
-            EndGame(true);
+            //EndGame(true); /* CMB: EndGame is now triggered by a game object in the scene */
         }
         else
         {
