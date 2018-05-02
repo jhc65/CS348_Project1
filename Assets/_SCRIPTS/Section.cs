@@ -12,7 +12,7 @@ public class Section : MonoBehaviour
     {
         int ind = Random.Range(0, buildZones.Length);
         buildZones[ind].SetActive(true);
-        FractionTools.Fraction newGapSize = ChooseGapSize();
+        FractionTools.Fraction newGapSize = FractionBuilder.ChooseGapSize();
         buildZones[ind].GetComponent<BuildZone>().SetGapSize(newGapSize);
         gapSizes.Add(newGapSize);
 
@@ -21,30 +21,12 @@ public class Section : MonoBehaviour
         if (coin != ind)
         {
             buildZones[coin].SetActive(true);
-            newGapSize = ChooseGapSize();
+            newGapSize = FractionBuilder.ChooseGapSize();
             buildZones[coin].GetComponent<BuildZone>().SetGapSize(newGapSize);
             gapSizes.Add(newGapSize);
         }
 
         return gapSizes;
-    }
-
-    private FractionTools.Fraction ChooseGapSize()
-    {
-        if (Constants.gapAlwaysOne)
-            return FractionTools.Fraction.One;
-
-        FractionTools.Fraction newGapSize = new FractionTools.Fraction(Random.Range(1, 5), Random.Range(2, 10));
-
-        if (!Constants.gapAllowImproperFractions)
-        {
-            while (newGapSize.numerator > newGapSize.denominator)
-            {
-                newGapSize = new FractionTools.Fraction(Random.Range(1, 5), Random.Range(2, 10));
-            }
-        }
-
-        return newGapSize;
     }
 
     public CoasterManager.SectionTriggers GetAnimationTrigger()

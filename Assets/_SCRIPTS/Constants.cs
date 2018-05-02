@@ -5,7 +5,10 @@ using UnityEngine;
 public static class Constants {
     public enum CursorType { HAND, DRAG, CUT, PIECE };
     public enum PieceLength { WHOLE = 1, HALF = 2, THIRD = 3, FOURTH = 4, FIFTH = 5, SIXTH = 6, SEVENTH = 7, EIGHTH = 8, NINTH = 9, TENTH = 10 };
+    public enum Difficulty { EASY, MEDIUM, HARD, DEIFENBACH };
 
+    public static Difficulty difficulty = Difficulty.DEIFENBACH;
+    public static bool gapAlwaysAtomic = false;
     public static bool gapAlwaysOne = false;
     public static bool gapAllowImproperFractions = true;
     public static bool gapAllowMixedNumbers = false;
@@ -13,20 +16,23 @@ public static class Constants {
     public static bool unlimitedInventory = false;
     public static bool showCutLengths = false;
     public static Color trackColor = Color.white;
-    public static Dictionary<PieceLength, float> difficultyProbabilityDistribution = new Dictionary<PieceLength, float>() 
+    public static float chanceToBreakPiece = .25f;
+    public static float chanceToGiveExtraPiece = .33f;
+    
+    /* Chance to choose the given piece */
+    public static Dictionary<PieceLength, float> pieceDistribution = new Dictionary<PieceLength, float>() 
                                 {
-                                    {PieceLength.WHOLE, 1f }, //Always break down 1's
-                                    {PieceLength.HALF,.3f},      //level: 1
-                                    {PieceLength.THIRD,.2f},     //level: 2
-                                    {PieceLength.FOURTH,.2f},     //level: 2
-                                    {PieceLength.FIFTH,.05f},    //level: 3
-                                    {PieceLength.SIXTH,.075f},    //level: 3
-                                    {PieceLength.SEVENTH,.025f},   //level: 4
-                                    {PieceLength.EIGHTH,.075f},    //level: 3
-                                    {PieceLength.NINTH,.025f},   //level: 4
-                                    {PieceLength.TENTH,.05f}    //level: 3
+                                    {PieceLength.WHOLE, 0f }, //Always break down 1's
+                                    {PieceLength.HALF,.75f},
+                                    {PieceLength.THIRD,.75f},
+                                    {PieceLength.FOURTH,.50f},
+                                    {PieceLength.FIFTH,.50f},
+                                    {PieceLength.SIXTH,.50f},
+                                    {PieceLength.SEVENTH,.30f},
+                                    {PieceLength.EIGHTH,.30f},
+                                    {PieceLength.NINTH,.30f},
+                                    {PieceLength.TENTH,.30f}
                                 };
-    public static float extraPiecesPerDifficultyLevel = 1.5f;
     public static string endgameText = "";
     public static bool gameOver = false;
     public static float fastCoasterSpeed = 1.25f;

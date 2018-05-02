@@ -10,7 +10,7 @@ public class FractionBuilderTests
     public void BreakMyLifeIntoPiecesSingleRun()
     {
         Fraction original = new Fraction(Random.Range(1, 5), Random.Range(2, 10));
-        PieceLength[] results = FractionBuilder.BreakMyLifeIntoPieces(original, 1);
+        PieceLength[] results = FractionBuilder.BreakMyLifeIntoPieces(original);
         Fraction sum = Fraction.Zero;
         foreach (PieceLength pl in results)
         {
@@ -23,7 +23,7 @@ public class FractionBuilderTests
     public void BreakMyLifeIntoPiecesOne()
     {
         Fraction original = new Fraction(1,1);
-        PieceLength[] results = FractionBuilder.BreakMyLifeIntoPieces(original, 0);
+        PieceLength[] results = FractionBuilder.BreakMyLifeIntoPieces(original);
         Fraction sum = Fraction.Zero;
         foreach (PieceLength pl in results)
         {
@@ -36,7 +36,7 @@ public class FractionBuilderTests
     public void BreakMyLifeIntoPiecesOneForbidCutting()
     {
         Fraction original = new Fraction(1, 1);
-        PieceLength[] results = FractionBuilder.BreakMyLifeIntoPieces(original, 1);
+        PieceLength[] results = FractionBuilder.BreakMyLifeIntoPieces(original);
         Fraction sum = Fraction.Zero;
         foreach (PieceLength pl in results)
         {
@@ -57,7 +57,7 @@ public class FractionBuilderTests
         {
             originals[i] = new Fraction(Random.Range(1, 5), Random.Range(2, 10));
             masterTotal += originals[i];
-            PieceLength[] results = FractionBuilder.BreakMyLifeIntoPieces(originals[i], 1);
+            PieceLength[] results = FractionBuilder.BreakMyLifeIntoPieces(originals[i]);
             Fraction sum = Fraction.Zero;
             foreach (PieceLength pl in results)
             {
