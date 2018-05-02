@@ -80,6 +80,7 @@ public class GameController : MonoBehaviour
         // setup build zones and add pieces
         spawnedSections = new List<Section>();
         activeBuildZones = new List<BuildZone>();
+        FractionTools.Fraction sum = FractionTools.Fraction.Zero; /* Used for hardmode */
         for(int i=0; i<5; i++)
         {
             int ind = Random.Range(0, sections.Length);
@@ -98,12 +99,30 @@ public class GameController : MonoBehaviour
                 foreach (FractionTools.Fraction gap in gapSizes)
                 {
                     numBuildZones++;
-                    Constants.PieceLength[] pieces = FractionBuilder.BreakMyLifeIntoPieces(gap, 0);
-                    foreach (Constants.PieceLength piece in pieces)
+                    /* If not on the hardest difficulty, break each gap into pieces */
+                    if (Constants.difficulty != Constants.Difficulty.DEIFENBACH)
                     {
-                        inv.Increase(piece, 1);
+                        Constants.PieceLength[] pieces = FractionBuilder.BreakMyLifeIntoPieces(gap);
+                        foreach (Constants.PieceLength piece in pieces)
+                        {
+                            inv.Increase(piece, 1);
+                        }
+                    }
+                    /* If playing on the hardest difficulty, sum the pieces before breaking */
+                    else
+                    {
+                        sum += gap;
                     }
                 }
+            }
+        }
+        /* Break the master sum into pieces */
+        if (Constants.difficulty == Constants.Difficulty.DEIFENBACH)
+        {
+            Constants.PieceLength[] pieces = FractionBuilder.BreakMyLifeIntoPieces(sum);
+            foreach (Constants.PieceLength piece in pieces)
+            {
+                inv.Increase(piece, 1);
             }
         }
         /* If this is the first section, tell the coaster to play its animation */
