@@ -11,6 +11,8 @@ public class MenuController : MonoBehaviour
     [SerializeField] private GameObject optionsMenu;
     [SerializeField] private GameObject gameSettingsMenu;
     [SerializeField] private GameObject endgameMenu;
+    [SerializeField] private GameObject wonMenu;
+    [SerializeField] private GameObject lostMenu;
 
     [SerializeField] private Toggle unlimitedInventoryToggle;
     [SerializeField] private Toggle showCutLengthsToggle;
@@ -20,21 +22,35 @@ public class MenuController : MonoBehaviour
     [SerializeField] private Toggle gapWidthMixedNumbersToggle;
     [SerializeField] private ToggleGroup colorToggles;
 
-    [SerializeField] private Text endgameText;
-
     [SerializeField] private Texture2D cursorTexture;
+    [SerializeField] private SpriteRenderer track;
 
 
     private void Start()
     {
         Time.timeScale = 1;
+
+        track.color = Constants.trackColor;
+        //coaster.color = Constants.trackColor;
+        colorToggles.SetAllTogglesOff();
+        Toggle[] toggles = colorToggles.GetComponentsInChildren<Toggle>();
+        foreach (Toggle t in toggles)
+        {
+            if (t.colors.normalColor == Constants.trackColor)
+                t.isOn = true;
+        }
+
+
         Vector2 cursorHotSpot = new Vector2(cursorTexture.width * 0.25f, cursorTexture.height * 0.25f);
         Cursor.SetCursor(cursorTexture, cursorHotSpot, CursorMode.ForceSoftware);
         if(Constants.gameOver)
         {
             startMenu.SetActive(false);
             endgameMenu.SetActive(true);
-            endgameText.text = Constants.endgameText;
+            if (Constants.gameWon)
+                wonMenu.SetActive(true);
+            else
+                lostMenu.SetActive(true);
         }
     }
 
@@ -94,19 +110,9 @@ public class MenuController : MonoBehaviour
         if(gapWidthAlwaysOneToggle.isOn)
         {
             gapWidthAlwaysAtomicToggle.isOn = false;
-            gapWidthAlwaysAtomicToggle.interactable = false;
             gapWidthImproperFractionsToggle.isOn = false;
-            gapWidthImproperFractionsToggle.interactable = false;
-            gapWidthMixedNumbersToggle.interactable = false;
             gapWidthMixedNumbersToggle.isOn = false;
-        }
-        else
-        {
-            gapWidthAlwaysAtomicToggle.interactable = true;
-            gapWidthImproperFractionsToggle.interactable = true;
-            gapWidthMixedNumbersToggle.interactable = true;
-        }
-        
+        }        
     }
 
     public void AlwaysAtomicCheck()
@@ -114,17 +120,18 @@ public class MenuController : MonoBehaviour
         if (gapWidthAlwaysAtomicToggle.isOn)
         {
             gapWidthAlwaysOneToggle.isOn = false;
-            gapWidthAlwaysOneToggle.interactable = false;
             gapWidthImproperFractionsToggle.isOn = false;
-            gapWidthImproperFractionsToggle.interactable = false;
-            gapWidthMixedNumbersToggle.interactable = false;
             gapWidthMixedNumbersToggle.isOn = false;
         }
-        else
+    }
+
+    public void ChangeCoasterColor(bool b)
+    {
+        if (b)
         {
-            gapWidthAlwaysOneToggle.interactable = true;
-            gapWidthImproperFractionsToggle.interactable = true;
-            gapWidthMixedNumbersToggle.interactable = true;
+            Toggle activeToggle = colorToggles.ActiveToggles().FirstOrDefault();
+            track.color = activeToggle.colors.normalColor;
+            //coaster.color = activeToggle.colors.normalColor;
         }
     }
 }

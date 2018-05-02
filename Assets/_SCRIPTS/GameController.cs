@@ -194,11 +194,7 @@ public class GameController : MonoBehaviour
 
     public void EndGame(bool won)
     {
-        if (won)
-            Constants.endgameText = "Congratulations, you won!";
-        else
-            Constants.endgameText = "You crashed!  Better luck next time!";
-
+        Constants.gameWon = won;
         Constants.gameOver = true;
         SceneManager.LoadScene("Menu");
     }

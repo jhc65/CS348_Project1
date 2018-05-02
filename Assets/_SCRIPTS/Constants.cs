@@ -14,7 +14,7 @@ public static class Constants {
     public static bool gapAllowMixedNumbers = false;
     public static bool unlimitedInventory = false;
     public static bool showCutLengths = false;
-    public static Color trackColor = Color.white;
+    public static Color trackColor = new Color32(164, 29, 49, 255);
     public static float chanceToBreakPiece = .25f;
     public static float chanceToGiveExtraPiece = .33f;
     
@@ -32,8 +32,9 @@ public static class Constants {
                                     {PieceLength.NINTH,.30f},
                                     {PieceLength.TENTH,.30f}
                                 };
-    public static string endgameText = "";
+
     public static bool gameOver = false;
+    public static bool gameWon = false;
     public static float fastCoasterSpeed = 1.25f;
     public static float slowCoasterSpeed = .25f;
     public static float masterVolume = -40f;
