@@ -1,9 +1,10 @@
-﻿using System.Collections.Generic;
+﻿using Enum = System.Enum;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using UnityEngine;
 using Fraction = FractionTools.Fraction; // Add shorthand way to use Fraction
-using PieceLength = Constants.PieceLength; // Add shorthand way to use PieceLength
+using PieceLength = Constants.PieceLength;
 
 public static class FractionBuilder
 {
@@ -22,6 +23,7 @@ public static class FractionBuilder
 
         /* Otherwise convert the fraction into atomic pieces */
         List<Fraction> atoms = ConvertFractionToAtoms(fraction);
+        List<Fraction> extraPieces = new List<Fraction>(); /* Used for Hard mode */
 
         List<PieceLength> finalSelection = new List<PieceLength>();
 
@@ -75,8 +77,10 @@ public static class FractionBuilder
                                 }
                             }
                         }
-                        /* Create the new atom in the chosen base */
-                        atoms.Add(new Fraction(1, chosenDenominator));
+                        /* Create the new atom in the chosen base
+                         * Add it to the list of extra pieces so that it doesn't loop on this piece 
+                         */
+                        extraPieces.Add(new Fraction(1, chosenDenominator));
                     }
                     else
                     {
@@ -101,6 +105,21 @@ public static class FractionBuilder
             }
         }
 
+        /* Also iterate the list of extra pieces, it is has any */
+        for (int i = 0; i < extraPieces.Count; )
+        {
+            /* If this atom has been exhausted, move to the next atom */
+            if (extraPieces[i].numerator == 0)
+                i++;
+            else
+            {
+                /* Add a new PieceLength, decrementing the numerator of the atom */
+                finalSelection.Add((PieceLength)extraPieces[i].denominator);
+                extraPieces[i].numerator--;
+                /* Don't increment i, as this atom may still have a numerator greater than 0 */
+            }
+        }
+
         return finalSelection.ToArray();
     }
 
@@ -117,7 +136,18 @@ public static class FractionBuilder
                 atoms = new List<Fraction>();
 
                 /* Randomly choose a denominator */
-                int denominator = Random.Range(2, 10);
+                int denominator = -1;
+                while (denominator == -1)
+                {
+                    foreach (PieceLength piece in Enum.GetValues(typeof(Constants.PieceLength)))
+                    {
+                        if (Random.Range(0f, 1f) <= Constants.pieceDistribution[(PieceLength)piece])
+                        {
+                            denominator = (int)piece;
+                            break;
+                        }
+                    }
+                }
                 for (int i = 0; i < denominator; i++)
                     atoms.Add(new Fraction(1, denominator));
             }
