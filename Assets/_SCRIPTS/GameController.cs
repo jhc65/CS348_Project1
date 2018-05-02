@@ -9,8 +9,8 @@ public class GameController : MonoBehaviour
     [SerializeField] private Texture2D[] cursorTextures;    // custom cursor sprites
     private Constants.CursorType activeCursor;
     [SerializeField] private Piece[] pieces;
-    [SerializeField] private GameObject[] sections;
-    //[SerializeField] private GameObject background;
+    //[SerializeField] private GameObject[] sections;
+    [SerializeField] private Section section;
     [SerializeField] private GameObject cam;
 
     [SerializeField] private GameObject pauseMenu;
@@ -77,18 +77,19 @@ public class GameController : MonoBehaviour
     void Start()
     {
         Constants.gameOver = false;
+        Time.timeScale = 1;
         inv = Inventory.Instance;
 
         // setup build zones and add pieces
         spawnedSections = new List<Section>();
         activeBuildZones = new List<BuildZone>();
         FractionTools.Fraction sum = FractionTools.Fraction.Zero; /* Used for hardmode */
-        for(int i=0; i<5; i++)
-        {
-            int ind = Random.Range(0, sections.Length);
-            GameObject go = Instantiate(sections[ind], new Vector3(19.2f * i, sections[ind].transform.position.y, 0), Quaternion.identity);
-            Section section = go.GetComponent<Section>();
-            spawnedSections.Add(section);
+        //for(int i=0; i<5; i++)
+        //{
+            //int ind = Random.Range(0, sections.Length);
+            //GameObject go = Instantiate(sections[ind], new Vector3(19.2f * i, sections[ind].transform.position.y, 0), Quaternion.identity);
+            //Section section = go.GetComponent<Section>();
+            //spawnedSections.Add(section);
             activeBuildZones.AddRange(section.SetupBuildZones());
 
             List<FractionTools.Fraction> gapSizes = section.GapSizes;
@@ -100,7 +101,6 @@ public class GameController : MonoBehaviour
             {
                 foreach (FractionTools.Fraction gap in gapSizes)
                 {
-                    numBuildZones++;
                     /* If not on the hardest difficulty, break each gap into pieces */
                     if (Constants.difficulty != Constants.Difficulty.DEIFENBACH)
                     {
@@ -117,7 +117,7 @@ public class GameController : MonoBehaviour
                     }
                 }
             }
-        }
+        //}
         /* Break the master sum into pieces */
         if (Constants.difficulty == Constants.Difficulty.DEIFENBACH)
         {
@@ -130,6 +130,7 @@ public class GameController : MonoBehaviour
         /* If this is the first section, tell the coaster to play its animation */
         CoasterManager.Instance.PlaySection(spawnedSections[0].GetAnimationTrigger());
         activeSectionIndex = 0;
+        numBuildZones = activeBuildZones.Count;
         lastInteractedBuildZone = activeBuildZones[0];
         lastInteractedBuildZone.Activate();
     }

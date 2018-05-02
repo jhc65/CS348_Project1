@@ -22,6 +22,21 @@ public class Section : MonoBehaviour
 
     public List<BuildZone> SetupBuildZones()
     {
+        if(Constants.difficulty == Constants.Difficulty.EASY)
+        {
+            // loop with appropriate step
+        }
+        else if (Constants.difficulty == Constants.Difficulty.MEDIUM)
+        {
+            // loop with appropriate step
+        }
+        else if (Constants.difficulty == Constants.Difficulty.HARD || Constants.difficulty == Constants.Difficulty.DEIFENBACH)
+        {
+            // loop with appropriate step
+        }
+
+
+
         while (activeBuildZones.Count == 0) // guarantee at least one build zone is active per section
         {
             for (int i = 0; i < buildZones.Length; i++)
