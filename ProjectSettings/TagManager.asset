@@ -48,11 +48,17 @@ TagManager:
   - name: Background
     uniqueID: 3062364205
     locked: 0
-  - name: Track
-    uniqueID: 1266543385
+  - name: Supports
+    uniqueID: 595455833
     locked: 0
   - name: Inventory
     uniqueID: 2516435137
+    locked: 0
+  - name: Track
+    uniqueID: 1266543385
+    locked: 0
+  - name: BuildZone
+    uniqueID: 2698408331
     locked: 0
   - name: Pieces
     uniqueID: 3534597045

@@ -9,8 +9,8 @@ public class GameController : MonoBehaviour
     [SerializeField] private Texture2D[] cursorTextures;    // custom cursor sprites
     private Constants.CursorType activeCursor;
     [SerializeField] private Piece[] pieces;
-    [SerializeField] private GameObject[] sections;
-    //[SerializeField] private GameObject background;
+    //[SerializeField] private GameObject[] sections;
+    [SerializeField] private Section section;
     [SerializeField] private GameObject cam;
 
     [SerializeField] private GameObject pauseMenu;
@@ -40,6 +40,7 @@ public class GameController : MonoBehaviour
         set {
             activeCursor = value;
             int index = 0;
+            float offset = 0.5f;
             switch (activeCursor)
             {
                 case Constants.CursorType.HAND:
@@ -52,11 +53,12 @@ public class GameController : MonoBehaviour
                     break;
                 case Constants.CursorType.CUT:
                     index = 2;
+                    offset = 0.2f;
                     foreach (Piece piece in pieces)
                         if (piece.Interactable) piece.EnableCuttables(); // only set if interactable
                     break;
             }
-            Vector2 cursorHotSpot = new Vector2(cursorTextures[index].width * 0.1f, cursorTextures[index].height * 0.1f);
+            Vector2 cursorHotSpot = new Vector2(cursorTextures[index].width * offset, cursorTextures[index].height * offset);
             Cursor.SetCursor(cursorTextures[index], cursorHotSpot, CursorMode.ForceSoftware);
         }
     }
@@ -75,17 +77,18 @@ public class GameController : MonoBehaviour
     void Start()
     {
         Constants.gameOver = false;
+        Time.timeScale = 1;
         inv = Inventory.Instance;
 
         // setup build zones and add pieces
         spawnedSections = new List<Section>();
         activeBuildZones = new List<BuildZone>();
         FractionTools.Fraction sum = FractionTools.Fraction.Zero; /* Used for hardmode */
-        for(int i=0; i<5; i++)
-        {
-            int ind = Random.Range(0, sections.Length);
-            GameObject go = Instantiate(sections[ind], new Vector3(19.2f * i, sections[ind].transform.position.y, 0), Quaternion.identity);
-            Section section = go.GetComponent<Section>();
+        //for(int i=0; i<5; i++)
+        //{
+            //int ind = Random.Range(0, sections.Length);
+            //GameObject go = Instantiate(sections[ind], new Vector3(19.2f * i, sections[ind].transform.position.y, 0), Quaternion.identity);
+            //Section section = go.GetComponent<Section>();
             spawnedSections.Add(section);
             activeBuildZones.AddRange(section.SetupBuildZones());
 
@@ -98,7 +101,6 @@ public class GameController : MonoBehaviour
             {
                 foreach (FractionTools.Fraction gap in gapSizes)
                 {
-                    numBuildZones++;
                     /* If not on the hardest difficulty, break each gap into pieces */
                     if (Constants.difficulty != Constants.Difficulty.DEIFENBACH)
                     {
@@ -115,7 +117,7 @@ public class GameController : MonoBehaviour
                     }
                 }
             }
-        }
+        //}
         /* Break the master sum into pieces */
         if (Constants.difficulty == Constants.Difficulty.DEIFENBACH)
         {
@@ -128,6 +130,7 @@ public class GameController : MonoBehaviour
         /* If this is the first section, tell the coaster to play its animation */
         CoasterManager.Instance.PlaySection(spawnedSections[0].GetAnimationTrigger());
         activeSectionIndex = 0;
+        numBuildZones = activeBuildZones.Count;
         lastInteractedBuildZone = activeBuildZones[0];
         lastInteractedBuildZone.Activate();
     }
@@ -178,7 +181,7 @@ public class GameController : MonoBehaviour
         clearedBuildZones++;
         if(clearedBuildZones == numBuildZones)
         {
-            EndGame(true);
+            //EndGame(true); /* CMB: EndGame is now triggered by a game object in the scene */
         }
         else
         {
@@ -202,7 +205,7 @@ public class GameController : MonoBehaviour
 
     public void MenuCursorSet()
     {
-        Vector2 cursorHotSpot = new Vector2(cursorTextures[3].width * 0.1f, cursorTextures[3].height * 0.1f);
+        Vector2 cursorHotSpot = new Vector2(cursorTextures[3].width * 0.25f, cursorTextures[3].height * 0.25f);
         Cursor.SetCursor(cursorTextures[3], cursorHotSpot, CursorMode.ForceSoftware);
     }
 

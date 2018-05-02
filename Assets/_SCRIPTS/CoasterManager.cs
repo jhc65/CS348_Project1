@@ -9,6 +9,7 @@ public class CoasterManager : MonoBehaviour {
         PlaySectionA,
         PlaySectionB,
         PlaySectionC,
+        PlayFullSection
     }
     private static string PlaySpeedMultipier = "PlaySpeedMultipier"; /* Float parameter name on Animator */
 
