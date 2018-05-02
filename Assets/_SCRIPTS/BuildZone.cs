@@ -72,7 +72,6 @@ public class BuildZone : MonoBehaviour {
 		if (piecesInZone.Count == 0)
 		{
             /* Setting target to SnapPoint's local transform */
-			//Transform t = this.transform.Find("SnapStart").transform;
 			targetPos = snapStart.localPosition;
             switch (SnapPivot)
             {

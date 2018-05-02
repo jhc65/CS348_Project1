@@ -37,28 +37,6 @@ public class Section : MonoBehaviour
                 }
             }
         }
-        // guarantee one build zone is active per section
-
-
-        //int ind = Random.Range(0, buildZones.Length);
-        //buildZones[ind].SetActive(true);
-        //FractionTools.Fraction newGapSize = ChooseGapSize();
-        //buildZones[ind].GetComponent<BuildZone>().SetGapSize(newGapSize);
-        //activeBuildZones.Add(buildZones[ind].GetComponent<BuildZone>());
-        //gapSizes.Add(newGapSize);
-
-        ////TODO: factor difficulty into this
-        //int coin = Random.Range(0, buildZones.Length);
-        //if (coin != ind)
-        //{
-        //    buildZones[coin].SetActive(true);
-        //    newGapSize = ChooseGapSize();
-        //    buildZones[coin].GetComponent<BuildZone>().SetGapSize(newGapSize);
-        //    activeBuildZones.Add(buildZones[coin].GetComponent<BuildZone>());
-        //    gapSizes.Add(newGapSize);
-        //}
-
-        //return gapSizes;
         return activeBuildZones;
     }
 
