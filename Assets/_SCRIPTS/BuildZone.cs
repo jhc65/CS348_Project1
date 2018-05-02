@@ -8,16 +8,20 @@ public class BuildZone : MonoBehaviour {
     public enum PivotType {Left, Center, Right};
     [SerializeField]
     private PivotType SnapPivot;
-	/*
+    [SerializeField] Transform snapStart;
+    /*
 	 * Need to have numerator and denominator vars since Inspector won't display Fraction struct by default
 	 *
 	 * I will write an editor script to resolve this workaround eventually... (Corwin)
 	 */
-	[SerializeField] private int gapNumerator;
+
+    [SerializeField] private int gapNumerator;
 	[SerializeField] private int gapDenominator;
     [SerializeField] private Text equation;
     [SerializeField] private GameObject slowDownTrigger;
     [SerializeField] private SpriteMask gapMask;
+    [SerializeField] private GameObject interactable;
+    [SerializeField] private GameObject sparkle;
     public FractionTools.Fraction gapSize;
 	private FractionTools.Fraction gapFilled = FractionTools.Fraction.Zero;
     private List<Placeable> piecesInZone = new List<Placeable>();
@@ -68,8 +72,7 @@ public class BuildZone : MonoBehaviour {
 		if (piecesInZone.Count == 0)
 		{
             /* Setting target to SnapPoint's local transform */
-			Transform t = this.transform.Find("SnapStart").transform;
-			targetPos = t.localPosition;
+			targetPos = snapStart.localPosition;
             switch (SnapPivot)
             {
                 case PivotType.Left:
@@ -147,6 +150,16 @@ public class BuildZone : MonoBehaviour {
 		UpdateEquationUI();
 	}
 
+    public void Activate()
+    {
+        interactable.SetActive(true);
+    }
+
+    public void Sparkle()
+    {
+        sparkle.SetActive(true);
+    }
+
 	private string GapEquation()
 	{
 		string result = "";
@@ -175,7 +188,7 @@ public class BuildZone : MonoBehaviour {
         /* Append the total gap size */
         if (gapSize == new FractionTools.Fraction())
             result += " = 1";
-        else
+        else //TODO: decide whether to display as improper fraction or mixed number, if applicable
             result += " = " + gapSize;
 
         return result;

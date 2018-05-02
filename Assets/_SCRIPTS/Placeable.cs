@@ -93,7 +93,7 @@ public class Placeable : MonoBehaviour {
             if (Input.GetMouseButtonUp(0))
             {
                 Debug.Log("Piece dropped in zone!");
-                BuildZone bz = collision.GetComponent<BuildZone>();
+                BuildZone bz = collision.GetComponentInParent<BuildZone>();
                 if (bz != null && bz.TryPlacePiece(this))
                 {
                     placed = true;

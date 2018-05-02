@@ -48,7 +48,7 @@ public class CoasterManager : MonoBehaviour {
                 animator.SetFloat(PlaySpeedMultipier, Constants.fastCoasterSpeed);
                 break;
             case "BuildZone":
-                if (!collider.GetComponent<BuildZone>().IsGapFilled())
+                if (!collider.GetComponentInParent<BuildZone>().IsGapFilled())
                     GameController.Instance.EndGame(false);
                 break;
             case "Section":

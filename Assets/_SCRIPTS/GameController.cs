@@ -20,6 +20,7 @@ public class GameController : MonoBehaviour
 
     [SerializeField] private float delayOnWin; // How long to wait after clearing a gap before moving on
 
+    private List<BuildZone> activeBuildZones;
     private BuildZone lastInteractedBuildZone;
     private List<Section> spawnedSections; /* Holds the sections spawned for a play session */
     private int activeSectionIndex; /* Index of active Section in spawnedSections */
@@ -80,14 +81,17 @@ public class GameController : MonoBehaviour
 
         // setup build zones and add pieces
         spawnedSections = new List<Section>();
+        activeBuildZones = new List<BuildZone>();
         for(int i=0; i<5; i++)
         {
             int ind = Random.Range(0, sections.Length);
             GameObject go = Instantiate(sections[ind], new Vector3(19.2f * i, sections[ind].transform.position.y, 0), Quaternion.identity);
             Section section = go.GetComponent<Section>();
             spawnedSections.Add(section);
-            List<FractionTools.Fraction> gapSizes = section.SetupBuildZones();
-            if(Constants.unlimitedInventory)    // set inventory unlimited
+            activeBuildZones.AddRange(section.SetupBuildZones());
+
+            List<FractionTools.Fraction> gapSizes = section.GapSizes;
+            if (Constants.unlimitedInventory)    // set inventory unlimited
             {
                 inv.SetUnlimited();
             }
@@ -103,11 +107,12 @@ public class GameController : MonoBehaviour
                     }
                 }
             }
-            
         }
         /* If this is the first section, tell the coaster to play its animation */
         CoasterManager.Instance.PlaySection(spawnedSections[0].GetAnimationTrigger());
         activeSectionIndex = 0;
+        lastInteractedBuildZone = activeBuildZones[0];
+        lastInteractedBuildZone.Activate();
     }
 
     void Update()
@@ -140,11 +145,10 @@ public class GameController : MonoBehaviour
 
     public IEnumerator OnGapFilled()
     {
-        //Debug.Log("Gap has been filled!");
-
         /* Play a confetti effect and wait a few seconds for it to finish */
-        EffectsManager.Instance.PlayEffect(EffectsManager.Effects.Confetti);
+        //EffectsManager.Instance.PlayEffect(EffectsManager.Effects.Confetti);
         EffectsManager.Instance.PlayEffect(EffectsManager.Effects.Yay);
+        lastInteractedBuildZone.Sparkle();
 
         /* Speed up the coaster */
         CoasterManager.Instance.SpeedUp();
@@ -152,44 +156,19 @@ public class GameController : MonoBehaviour
         yield return new WaitForSeconds(delayOnWin);
 
 
-        // after joe adds his code...TODO: increase numBuildZones as you're gathering them in Start
+        // set the new build zone
         lastInteractedBuildZone = null;
         clearedBuildZones++;
         if(clearedBuildZones == numBuildZones)
         {
             EndGame(true);
         }
+        else
+        {
+            lastInteractedBuildZone = activeBuildZones[clearedBuildZones];
+            lastInteractedBuildZone.Activate();
+        }
 
-
-        ///* For now, clear out the existing build zone, and choose a random new fraction
-        // *
-        // * TODO: Slide the screen to the next build zone
-        // */
-
-        // /* Get the BuildZone */
-        // GameObject buildZoneGameObject = GameObject.FindGameObjectWithTag("BuildZone");
-        // if (buildZoneGameObject == null)
-        // {
-        //     Debug.LogError("No build zone found upon winning.");
-        //     yield return null;
-        // }
-
-        // /* Clear out the gap */
-        // BuildZone buildZoneScript = buildZoneGameObject.GetComponent<BuildZone>();
-        // if (buildZoneScript == null)
-        // {
-        //     Debug.LogError(buildZoneGameObject.name + " is tagged as a BuildZone, but is missing the BuildZone script.");
-        //     yield return null;
-        // }
-        // buildZoneScript.ClearBuildZone();
-
-        // /* Choose a random new improper fraction */
-        // /// TODO: Make this based on difficulty and some form of probability distribution
-        // FractionTools.Fraction newGapSize = new FractionTools.Fraction(Random.Range(1, 5), Random.Range(2, 10));
-        // Debug.Log("<color=blue>New gap size: " + newGapSize + "</color>");
-        // buildZoneScript.SetGapSize(newGapSize);
-
-         /// TODO: Restock the player's inventory
          yield return null;
     }
 

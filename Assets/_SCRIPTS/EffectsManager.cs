@@ -14,7 +14,7 @@ public class EffectsManager : MonoBehaviour {
 		Yay};
 
 	[SerializeField] private GameObject Confetti;
-	[SerializeField] private AudioClip Yay;
+    [SerializeField] private AudioClip Yay;
 
 	private AudioSource audioSource;
 
@@ -44,7 +44,7 @@ public class EffectsManager : MonoBehaviour {
 			case Effects.Confetti:
 				Instantiate(Confetti, this.transform, false); /* The Confetti particle system has autoDestroy */
 			break;
-			case Effects.Yay:
+            case Effects.Yay:
 				audioSource.PlayOneShot(Yay);
 			break;
 			default:
