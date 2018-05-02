@@ -187,6 +187,11 @@ public static class FractionTools
         {
             return ((float)f.numerator / (float)f.denominator);
         }
+
+        public MixedNumber ToMixedNumber()
+        {
+            return new MixedNumber(this);
+        }
         #endregion //Conversion Function Overloads
 
         #region Helper Functions

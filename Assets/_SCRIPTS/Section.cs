@@ -30,7 +30,7 @@ public class Section : MonoBehaviour
                 if (Random.Range(0f, 1f) <= .5f)
                 {
                     buildZones[i].SetActive(true);
-                    FractionTools.Fraction newGapSize = ChooseGapSize();
+                    FractionTools.Fraction newGapSize = FractionBuilder.ChooseGapSize();
                     buildZones[i].GetComponent<BuildZone>().SetGapSize(newGapSize);
                     activeBuildZones.Add(buildZones[i].GetComponent<BuildZone>());
                     gapSizes.Add(newGapSize);
@@ -38,26 +38,6 @@ public class Section : MonoBehaviour
             }
         }
         return activeBuildZones;
-    }
-
-    private FractionTools.Fraction ChooseGapSize()
-    {
-        if (Constants.gapAlwaysOne)
-            return FractionTools.Fraction.One;
-        if (Constants.gapAlwaysAtomic)
-            return new FractionTools.Fraction(1, Random.Range(2, 10));
-
-        FractionTools.Fraction newGapSize = new FractionTools.Fraction(Random.Range(1, 5), Random.Range(2, 10));
-
-        if (!Constants.gapAllowImproperFractions && !Constants.gapAllowMixedNumbers)
-        {
-            while (newGapSize.numerator > newGapSize.denominator)
-            {
-                newGapSize = new FractionTools.Fraction(Random.Range(1, 5), Random.Range(2, 10));
-            }
-        }
-
-        return newGapSize;
     }
 
     public CoasterManager.SectionTriggers GetAnimationTrigger()
