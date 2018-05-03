@@ -196,11 +196,31 @@ public class BuildZone : MonoBehaviour {
         }
 
         /* Append the total gap size */
-        if (gapSize == new FractionTools.Fraction())
+        if (gapSize == FractionTools.Fraction.One)
             result += " = 1";
-        else //TODO: decide whether to display as improper fraction or mixed number, if applicable
-            result += " = " + gapSize;
-
+        else
+        {
+            if(!Constants.gapAllowImproperFractions)
+            {
+                // if improper fractions not allowed, must display as mixed number
+                FractionTools.MixedNumber gapAsMixedNumber = gapSize.ToMixedNumber();
+                result += " = " + gapAsMixedNumber;
+            }
+            if (Constants.gapAllowImproperFractions && Constants.gapAllowMixedNumbers)
+            {
+                // if both improper fractions and mixed numbers are allowed, randomly choose how to display
+                if (Random.Range(0f, 1f) <= .5f)
+                {
+                    FractionTools.MixedNumber gapAsMixedNumber = gapSize.ToMixedNumber();
+                    result += " = " + gapAsMixedNumber;
+                }
+            }
+            else
+            {
+                // just display as improper fraction
+                result += " = " + gapSize;
+            }
+        }
         return result;
     }
 
