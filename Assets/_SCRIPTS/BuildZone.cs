@@ -22,6 +22,7 @@ public class BuildZone : MonoBehaviour {
     [SerializeField] private SpriteMask gapMask;
     [SerializeField] private GameObject interactable;
     [SerializeField] private GameObject sparkle;
+    [SerializeField] private GameObject dustCloud;
     public FractionTools.Fraction gapSize;
 	private FractionTools.Fraction gapFilled = FractionTools.Fraction.Zero;
     private List<Placeable> piecesInZone = new List<Placeable>();
@@ -226,6 +227,8 @@ public class BuildZone : MonoBehaviour {
 
     public void OnClearButtonClicked()
     {
+        /* Toggle on the dust cloud particle effect */
+        dustCloud.SetActive(true);
         while (piecesInZone.Count > 0 && gapFilled < gapSize) {
             OnUndoButtonClicked();
         }
