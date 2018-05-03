@@ -69,18 +69,29 @@ public class MenuController : MonoBehaviour
         Toggle activeToggle = colorToggles.ActiveToggles().FirstOrDefault();
         Constants.trackColor = activeToggle.colors.normalColor;
 
+        StartCoroutine(ExitTheStation());
+    }
+
+    public IEnumerator ExitTheStation()
+    {
+        /* Play the coaster leaving the station */
+        CoasterManager.Instance.PlaySection(CoasterManager.SectionTriggers.PlayEnterScreen);
+        yield return new WaitForSeconds(5f);
+
         SceneManager.LoadScene("Main");
     }
 
     public void GameSettingsClick()
     {
         gameSettingsMenu.SetActive(true);
+        CoasterManager.Instance.PlaySection(CoasterManager.SectionTriggers.PlayEnterScreen);
         startMenu.SetActive(false);
     }
 
     public void PlayAgainClick()
     {
         gameSettingsMenu.SetActive(true);
+        CoasterManager.Instance.PlaySection(CoasterManager.SectionTriggers.PlayEnterScreen);
         endgameMenu.SetActive(false);
     }
 

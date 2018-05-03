@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class CoasterManager : MonoBehaviour {
 
@@ -9,7 +10,8 @@ public class CoasterManager : MonoBehaviour {
         PlaySectionA,
         PlaySectionB,
         PlaySectionC,
-        PlayFullSection
+        PlayFullSection,
+        PlayEnterScreen
     }
     private static string PlaySpeedMultipier = "PlaySpeedMultipier"; /* Float parameter name on Animator */
 
@@ -22,15 +24,9 @@ public class CoasterManager : MonoBehaviour {
 
     public void Awake()
     {
-        if (Instance == null)
-        {
-            instance = this;
-            animator = GetComponent<Animator>();
-        }
-        else
-        {
-            Destroy(this.gameObject);
-        }
+        /* Since the coaster is destroyed onLoad, always update the instance */
+        instance = this;
+        animator = GetComponent<Animator>();
     }
 
     public void PlaySection(SectionTriggers st)
