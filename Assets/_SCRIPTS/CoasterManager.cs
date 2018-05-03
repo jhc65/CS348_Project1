@@ -18,6 +18,8 @@ public class CoasterManager : MonoBehaviour {
     private static CoasterManager instance;
     private Animator animator;
 
+    [SerializeField] private SpriteRenderer[] sprites;
+
     public static CoasterManager Instance {
 		get {return instance;}
 	}
@@ -27,6 +29,17 @@ public class CoasterManager : MonoBehaviour {
         /* Since the coaster is destroyed onLoad, always update the instance */
         instance = this;
         animator = GetComponent<Animator>();
+    }
+
+    public void ChangeColor(Color c)
+    {
+        foreach (SpriteRenderer sp in sprites)
+            sp.color = c;
+    }
+
+    private void Start()
+    {
+        ChangeColor(Constants.trackColor);
     }
 
     public void PlaySection(SectionTriggers st)
