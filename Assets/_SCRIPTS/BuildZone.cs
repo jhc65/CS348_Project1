@@ -38,7 +38,7 @@ public class BuildZone : MonoBehaviour {
 		if (p.Value + gapFilled <= gapSize)
 		{
 			successful = true;
-            EffectsManager.Instance.PlayEffect(EffectsManager.Effects.Snap);
+            EffectsManager.Instance.PlayEffect(EffectsManager.Effects.Correct);
 			SnapPiece(p);
 			piecesInZone.Add(p);
 			gapFilled += p.Value;
