@@ -8,7 +8,6 @@ public class BirdAnimationTrigger : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
-        Destroy(gameObject, 10f);
         birdAnimators = GetComponentsInChildren<Animator>();
 
         /* Randomize the animation offset for the birds, so that they don't all do the same thing */
@@ -25,6 +24,7 @@ public class BirdAnimationTrigger : MonoBehaviour {
         foreach (Animator animator in birdAnimators)
         {
             animator.SetTrigger("Fly");
+            Destroy(gameObject, 10f);
         }
     }
 }
