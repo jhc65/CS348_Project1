@@ -41,7 +41,7 @@ public class BuildZone : MonoBehaviour {
 			SnapPiece(p);
 			piecesInZone.Add(p);
 			gapFilled += p.Value;
-            gapMask.transform.localScale = new Vector3(1f - (float)(gapFilled / gapSize), 1, 1);
+            gapMask.transform.localScale = new Vector3(4 * (1f - (float)(gapFilled / gapSize)), 1, 1);
             UpdateEquationUI();
 			/* Check if the gap has been filled */
 			//Debug.Log("Gap filled: " + gapFilled + ", gap size: " + gapSize);
