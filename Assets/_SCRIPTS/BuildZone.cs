@@ -220,7 +220,7 @@ public class BuildZone : MonoBehaviour {
             inv.Increase(piecesInZone[piecesInZone.Count - 1].Length, 1);
             GameObject.Destroy(piecesInZone[piecesInZone.Count - 1].gameObject);
             piecesInZone.RemoveAt(piecesInZone.Count - 1);
-            gapMask.transform.localScale = new Vector3(1f - (float)(gapFilled / gapSize), 1, 1);
+            gapMask.transform.localScale = new Vector3(4 * (1f - (float)(gapFilled / gapSize)), 1, 1);
             UpdateEquationUI();
         }
     }
