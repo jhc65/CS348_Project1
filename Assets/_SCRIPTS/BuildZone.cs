@@ -206,7 +206,7 @@ public class BuildZone : MonoBehaviour {
                 FractionTools.MixedNumber gapAsMixedNumber = gapSize.ToMixedNumber();
                 result += " = " + gapAsMixedNumber;
             }
-            if (Constants.gapAllowImproperFractions && Constants.gapAllowMixedNumbers)
+            else if (Constants.gapAllowImproperFractions && Constants.gapAllowMixedNumbers)
             {
                 // if both improper fractions and mixed numbers are allowed, randomly choose how to display
                 if (Random.Range(0f, 1f) <= .5f)

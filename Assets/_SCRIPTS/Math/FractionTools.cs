@@ -401,6 +401,8 @@ public static class FractionTools
 
         #region Function Overloads
         public override string ToString(){
+            if (wholeNumber == 0)
+                return "" + fraction;
             return wholeNumber + "  " + fraction;
         }
 

@@ -24,7 +24,7 @@ public class BirdAnimationTrigger : MonoBehaviour {
         foreach (Animator animator in birdAnimators)
         {
             animator.SetTrigger("Fly");
-            Destroy(gameObject, 10f);
+            Destroy(gameObject, 6f);
         }
     }
 }

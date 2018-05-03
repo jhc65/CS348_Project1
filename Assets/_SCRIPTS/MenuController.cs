@@ -124,6 +124,7 @@ public class MenuController : MonoBehaviour
 
     public void AlwaysOneCheck()
     {
+        Debug.Log("here");
         if(gapWidthAlwaysOneToggle.isOn)
         {
             gapWidthAlwaysAtomicToggle.isOn = false;
@@ -139,6 +140,24 @@ public class MenuController : MonoBehaviour
             gapWidthAlwaysOneToggle.isOn = false;
             gapWidthImproperFractionsToggle.isOn = false;
             gapWidthMixedNumbersToggle.isOn = false;
+        }
+    }
+
+    public void ImproperFractionCheck()
+    {
+        if (gapWidthImproperFractionsToggle.isOn)
+        {
+            gapWidthAlwaysOneToggle.isOn = false;
+            gapWidthAlwaysAtomicToggle.isOn = false;
+        }
+    }
+
+    public void MixedNumbersCheck()
+    {
+        if (gapWidthMixedNumbersToggle.isOn)
+        {
+            gapWidthAlwaysOneToggle.isOn = false;
+            gapWidthAlwaysAtomicToggle.isOn = false;
         }
     }
 
