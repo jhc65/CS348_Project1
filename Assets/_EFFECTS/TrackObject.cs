@@ -9,14 +9,28 @@ public class TrackObject : MonoBehaviour {
     [SerializeField] private bool trackY;
     [SerializeField] private bool trackZ;
     [SerializeField] private float offsetX;
+    private bool paused = false;
 	
 	// Update is called once per frame
 	void Update () {
-        /* I like the ternary operator... a lot */
-        Vector3 target = new Vector3(
-            trackX ? ToTrack.transform.position.x + offsetX : this.transform.position.x,
-            trackY ? ToTrack.transform.position.y : this.transform.position.y,
-            trackZ ? ToTrack.transform.position.z : this.transform.position.z);
-        this.transform.position = target;
+        if (!paused)
+        {
+            /* I like the ternary operator... a lot */
+            Vector3 target = new Vector3(
+                trackX ? ToTrack.transform.position.x + offsetX : this.transform.position.x,
+                trackY ? ToTrack.transform.position.y : this.transform.position.y,
+                trackZ ? ToTrack.transform.position.z : this.transform.position.z);
+            this.transform.position = target;
+        }
 	}
+
+    public void PauseTracking()
+    {
+        paused = true;
+    }
+
+    public void ResumeTracking()
+    {
+        paused = true;
+    }
 }
