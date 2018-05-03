@@ -111,6 +111,8 @@ public class MenuController : MonoBehaviour
 
     public void BackClick()
     {
+        /* Move the coaster back off the screen */
+        CoasterManager.Instance.ResetToStartPosition();
         startMenu.SetActive(true);
         optionsMenu.SetActive(false);
         endgameMenu.SetActive(false);

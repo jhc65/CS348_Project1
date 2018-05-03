@@ -20,6 +20,7 @@ public class CoasterManager : MonoBehaviour {
 
     [SerializeField] private SpriteRenderer[] sprites;
     [SerializeField] private AudioSource trackAudio;
+    private Vector3 startPosition;
 
     public static CoasterManager Instance {
 		get {return instance;}
@@ -30,6 +31,7 @@ public class CoasterManager : MonoBehaviour {
         /* Since the coaster is destroyed onLoad, always update the instance */
         instance = this;
         animator = GetComponent<Animator>();
+        startPosition = this.transform.position;
     }
 
     public void ChangeColor(Color c)
@@ -84,5 +86,14 @@ public class CoasterManager : MonoBehaviour {
     public void PlayTrackAudio()
     {
         trackAudio.Play();
+    }
+
+    public void ResetToStartPosition()
+    {
+        /* Stop the animation and audio */
+        trackAudio.Stop();
+        animator.Rebind();
+
+        this.transform.position = startPosition;
     }
 }
