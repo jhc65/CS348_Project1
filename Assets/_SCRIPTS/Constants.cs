@@ -41,4 +41,5 @@ public static class Constants {
     public static float backgroundVolume = 1f;
     public static float effectsVolume = 1f;
     public static float backgroundPitch = 1f;
+    public static float endGameWaitDelay = 4f; /* Seconds to wait before going back to the menu (allowing animations and sounds to play) */
 }

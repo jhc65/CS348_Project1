@@ -11,10 +11,22 @@ public class EffectsManager : MonoBehaviour {
 		Confetti,
 		
 		//Auditory
-		Yay};
+		Yay,
+        Snap,
+        Incorrect,
+        CutTool,
+        Correct,
+        Construction
+    };
 
 	[SerializeField] private GameObject Confetti;
     [SerializeField] private AudioClip Yay;
+    [SerializeField] private AudioClip Snap;
+    [SerializeField] private AudioClip Correct;
+    [SerializeField] private AudioClip Incorrect;
+    [SerializeField] private AudioClip Construction;
+    [SerializeField] private AudioClip CutTool;
+
 
 	private AudioSource audioSource;
 
@@ -43,10 +55,25 @@ public class EffectsManager : MonoBehaviour {
 		{
 			case Effects.Confetti:
 				Instantiate(Confetti, this.transform, false); /* The Confetti particle system has autoDestroy */
-			break;
+                break;
             case Effects.Yay:
-				audioSource.PlayOneShot(Yay);
-			break;
+                audioSource.PlayOneShot(Yay);
+                break;
+            case Effects.Snap:
+                audioSource.PlayOneShot(Snap);
+                break;
+            case Effects.Correct:
+                audioSource.PlayOneShot(Correct);
+                break;
+            case Effects.Incorrect:
+                audioSource.PlayOneShot(Incorrect);
+                break;
+            case Effects.Construction:
+                audioSource.PlayOneShot(Construction);
+                break;
+            case Effects.CutTool:
+                audioSource.PlayOneShot(CutTool);
+                break;
 			default:
 
 			break;

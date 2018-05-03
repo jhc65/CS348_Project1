@@ -50,9 +50,11 @@ public class BuildZone : MonoBehaviour {
                 /* Notify the GameController that a gap has been filled */
                 StartCoroutine(GameController.Instance.OnGapFilled());
             }
+            EffectsManager.Instance.PlayEffect(EffectsManager.Effects.Snap);
 		}
 		else{
 			Debug.Log("Piece doesn't want to take a fit! Gap filled: " + gapFilled + ", piece size: " + p.Value + ", gap size: " + gapSize);
+            EffectsManager.Instance.PlayEffect(EffectsManager.Effects.Incorrect);
 		}
 
 		return successful;
