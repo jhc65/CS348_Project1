@@ -135,3 +135,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Confetti: {fileID: 1511489660214414, guid: 34269e7a7a737e242ab6cd16098c4408, type: 2}
   Yay: {fileID: 8300000, guid: 62db455e51986364cbb310233fed7fa6, type: 3}
+  Snap: {fileID: 8300000, guid: b865e7d83306928499c5bf8a07c50332, type: 3}
+  Correct: {fileID: 8300000, guid: 6a8e83aba1fc7e44bb3a69751b5d84c8, type: 3}
+  Incorrect: {fileID: 8300000, guid: 2f66fa1256a5c3045beca9d4be2dc92b, type: 3}
+  Construction: {fileID: 8300000, guid: d9bcd2138380d5b4291d68f1db31aaa1, type: 3}
+  CutTool: {fileID: 8300000, guid: 8569433909aa4634bbd53b6e505f4393, type: 3}

@@ -167,7 +167,7 @@ public class GameController : MonoBehaviour
     {
         /* Play a confetti effect and wait a few seconds for it to finish */
         //EffectsManager.Instance.PlayEffect(EffectsManager.Effects.Confetti);
-        EffectsManager.Instance.PlayEffect(EffectsManager.Effects.Yay);
+        EffectsManager.Instance.PlayEffect(EffectsManager.Effects.Construction);
         lastInteractedBuildZone.Sparkle();
 
         /* Speed up the coaster */
