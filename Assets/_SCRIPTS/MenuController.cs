@@ -10,6 +10,7 @@ public class MenuController : MonoBehaviour
     [SerializeField] private GameObject startMenu;
     [SerializeField] private GameObject optionsMenu;
     [SerializeField] private GameObject gameSettingsMenu;
+    [SerializeField] private GameObject instructionsMenu;
     [SerializeField] private GameObject endgameMenu;
     [SerializeField] private GameObject wonMenu;
     [SerializeField] private GameObject lostMenu;
@@ -24,6 +25,7 @@ public class MenuController : MonoBehaviour
 
     [SerializeField] private Texture2D cursorTexture;
     [SerializeField] private SpriteRenderer track;
+
 
 
     private void Start()
@@ -96,7 +98,9 @@ public class MenuController : MonoBehaviour
     }
 
     public void TutorialClick()
-    { //SceneManager.LoadScene("controls");
+    {
+        instructionsMenu.SetActive(true);
+        startMenu.SetActive(false);
     }
 
     public void OptionsClick()

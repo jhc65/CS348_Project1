@@ -38,8 +38,8 @@ public static class Constants {
     public static float fastCoasterSpeed = 1.25f;
     public static float slowCoasterSpeed = .15f;
     public static float masterVolume = -40f;
-    public static float backgroundVolume = 1f;
-    public static float effectsVolume = 1f;
+    public static float backgroundVolume = 10f;
+    public static float effectsVolume = 10f;
     public static float backgroundPitch = 1f;
     public static float endGameWaitDelay = 4f; /* Seconds to wait before going back to the menu (allowing animations and sounds to play) */
 }

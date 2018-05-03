@@ -401,7 +401,7 @@ public static class FractionTools
 
         #region Function Overloads
         public override string ToString(){
-            return wholeNumber + " & " + fraction;
+            return wholeNumber + "  " + fraction;
         }
 
         public override bool Equals(object obj)

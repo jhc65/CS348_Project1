@@ -19,6 +19,7 @@ public class CoasterManager : MonoBehaviour {
     private Animator animator;
 
     [SerializeField] private SpriteRenderer[] sprites;
+    [SerializeField] private AudioSource trackAudio;
 
     public static CoasterManager Instance {
 		get {return instance;}
@@ -73,5 +74,15 @@ public class CoasterManager : MonoBehaviour {
     public void SpeedUp()
     {
         animator.SetFloat(PlaySpeedMultipier, Constants.fastCoasterSpeed);
+    }
+
+    public void StopTrackAudio()
+    {
+        trackAudio.Stop();
+    }
+
+    public void PlayTrackAudio()
+    {
+        trackAudio.Play();
     }
 }

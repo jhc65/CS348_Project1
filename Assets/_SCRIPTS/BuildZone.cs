@@ -23,6 +23,7 @@ public class BuildZone : MonoBehaviour {
     [SerializeField] private GameObject interactable;
     [SerializeField] private GameObject sparkle;
     [SerializeField] private GameObject dustCloud;
+    [SerializeField] private AudioSource explosion;
     public FractionTools.Fraction gapSize;
 	private FractionTools.Fraction gapFilled = FractionTools.Fraction.Zero;
     private List<Placeable> piecesInZone = new List<Placeable>();
@@ -41,7 +42,7 @@ public class BuildZone : MonoBehaviour {
 			SnapPiece(p);
 			piecesInZone.Add(p);
 			gapFilled += p.Value;
-            gapMask.transform.localScale = new Vector3(4 * (1f - (float)(gapFilled / gapSize)), 1, 1);
+            gapMask.transform.localScale = new Vector3(4 * (1f - (float)(gapFilled / gapSize)), 2, 1);
             UpdateEquationUI();
 			/* Check if the gap has been filled */
 			//Debug.Log("Gap filled: " + gapFilled + ", gap size: " + gapSize);
@@ -161,7 +162,7 @@ public class BuildZone : MonoBehaviour {
 
     public void Sparkle()
     {
-        sparkle.SetActive(true);
+        Instantiate(sparkle,transform.position, Quaternion.identity);
     }
 
     public void HideBuildZone()
@@ -220,7 +221,7 @@ public class BuildZone : MonoBehaviour {
             inv.Increase(piecesInZone[piecesInZone.Count - 1].Length, 1);
             GameObject.Destroy(piecesInZone[piecesInZone.Count - 1].gameObject);
             piecesInZone.RemoveAt(piecesInZone.Count - 1);
-            gapMask.transform.localScale = new Vector3(4 * (1f - (float)(gapFilled / gapSize)), 1, 1);
+            gapMask.transform.localScale = new Vector3(4 * (1f - (float)(gapFilled / gapSize)), 2, 1);
             UpdateEquationUI();
         }
     }
@@ -229,6 +230,7 @@ public class BuildZone : MonoBehaviour {
     {
         /* Toggle on the dust cloud particle effect */
         dustCloud.SetActive(true);
+        explosion.Play();
         while (piecesInZone.Count > 0 && gapFilled < gapSize) {
             OnUndoButtonClicked();
         }
