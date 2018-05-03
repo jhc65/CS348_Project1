@@ -31,7 +31,7 @@ public class MenuController : MonoBehaviour
         Time.timeScale = 1;
 
         track.color = Constants.trackColor;
-        //coaster.color = Constants.trackColor;
+        CoasterManager.Instance.ChangeColor(Constants.trackColor);
         colorToggles.SetAllTogglesOff();
         Toggle[] toggles = colorToggles.GetComponentsInChildren<Toggle>();
         foreach (Toggle t in toggles)
@@ -142,7 +142,7 @@ public class MenuController : MonoBehaviour
         {
             Toggle activeToggle = colorToggles.ActiveToggles().FirstOrDefault();
             track.color = activeToggle.colors.normalColor;
-            //coaster.color = activeToggle.colors.normalColor;
+            CoasterManager.Instance.ChangeColor(activeToggle.colors.normalColor);
         }
     }
 }
