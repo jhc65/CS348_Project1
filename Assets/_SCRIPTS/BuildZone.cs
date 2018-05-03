@@ -25,6 +25,7 @@ public class BuildZone : MonoBehaviour {
     public FractionTools.Fraction gapSize;
 	private FractionTools.Fraction gapFilled = FractionTools.Fraction.Zero;
     private List<Placeable> piecesInZone = new List<Placeable>();
+    private Inventory inv;
 	
 	public bool TryPlacePiece(Placeable p)
 	{
@@ -206,11 +207,24 @@ public class BuildZone : MonoBehaviour {
 
     public void OnUndoButtonClicked()
     {
-
+        if (piecesInZone.Count > 0 && (gapFilled < gapSize)) {
+            gapFilled -= piecesInZone[piecesInZone.Count - 1].Value;
+            inv.Increase(piecesInZone[piecesInZone.Count - 1].Length, 1);
+            GameObject.Destroy(piecesInZone[piecesInZone.Count - 1].gameObject);
+            piecesInZone.RemoveAt(piecesInZone.Count - 1);
+            gapMask.transform.localScale = new Vector3(1f - (float)(gapFilled / gapSize), 1, 1);
+            UpdateEquationUI();
+        }
     }
 
     public void OnClearButtonClicked()
     {
+        while (piecesInZone.Count > 0 && gapFilled < gapSize) {
+            OnUndoButtonClicked();
+        }
+    }
 
+    private void Awake() {
+        inv = Inventory.Instance;
     }
 }
