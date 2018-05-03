@@ -175,6 +175,8 @@ public class GameController : MonoBehaviour
 
         yield return new WaitForSeconds(delayOnWin);
 
+        /* Hide the old build zone */
+        lastInteractedBuildZone.HideBuildZone();
 
         // set the new build zone
         lastInteractedBuildZone = null;

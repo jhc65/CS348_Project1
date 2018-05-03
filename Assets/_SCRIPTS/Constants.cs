@@ -36,7 +36,7 @@ public static class Constants {
     public static bool gameOver = false;
     public static bool gameWon = false;
     public static float fastCoasterSpeed = 1.25f;
-    public static float slowCoasterSpeed = .25f;
+    public static float slowCoasterSpeed = .15f;
     public static float masterVolume = -40f;
     public static float backgroundVolume = 1f;
     public static float effectsVolume = 1f;
