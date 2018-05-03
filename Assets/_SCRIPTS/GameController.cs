@@ -167,7 +167,7 @@ public class GameController : MonoBehaviour
     {
         /* Play a confetti effect and wait a few seconds for it to finish */
         //EffectsManager.Instance.PlayEffect(EffectsManager.Effects.Confetti);
-        EffectsManager.Instance.PlayEffect(EffectsManager.Effects.Yay);
+        EffectsManager.Instance.PlayEffect(EffectsManager.Effects.Construction);
         lastInteractedBuildZone.Sparkle();
 
         /* Speed up the coaster */
@@ -175,6 +175,8 @@ public class GameController : MonoBehaviour
 
         yield return new WaitForSeconds(delayOnWin);
 
+        /* Hide the old build zone */
+        lastInteractedBuildZone.HideBuildZone();
 
         // set the new build zone
         lastInteractedBuildZone = null;
@@ -194,11 +196,7 @@ public class GameController : MonoBehaviour
 
     public void EndGame(bool won)
     {
-        if (won)
-            Constants.endgameText = "Congratulations, you won!";
-        else
-            Constants.endgameText = "You crashed!  Better luck next time!";
-
+        Constants.gameWon = won;
         Constants.gameOver = true;
         SceneManager.LoadScene("Menu");
     }

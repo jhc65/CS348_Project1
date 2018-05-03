@@ -35,6 +35,8 @@ public class Cuttable : MonoBehaviour
                 // Zak's code to change inventory numbers
                 inv.Decrease(parentLength);
                 inv.Increase(cutLength, numCuts);
+                /* Play sound effect */
+                EffectsManager.Instance.PlayEffect(EffectsManager.Effects.CutTool);
             }
             if (Input.GetMouseButtonDown(1))
             {

@@ -36,6 +36,7 @@ public class BuildZone : MonoBehaviour {
 		if (p.Value + gapFilled <= gapSize)
 		{
 			successful = true;
+            EffectsManager.Instance.PlayEffect(EffectsManager.Effects.Snap);
 			SnapPiece(p);
 			piecesInZone.Add(p);
 			gapFilled += p.Value;
@@ -54,6 +55,7 @@ public class BuildZone : MonoBehaviour {
 		}
 		else{
 			Debug.Log("Piece doesn't want to take a fit! Gap filled: " + gapFilled + ", piece size: " + p.Value + ", gap size: " + gapSize);
+            EffectsManager.Instance.PlayEffect(EffectsManager.Effects.Incorrect);
 		}
 
 		return successful;
@@ -159,6 +161,11 @@ public class BuildZone : MonoBehaviour {
     public void Sparkle()
     {
         sparkle.SetActive(true);
+    }
+
+    public void HideBuildZone()
+    {
+        interactable.SetActive(false);
     }
 
 	private string GapEquation()

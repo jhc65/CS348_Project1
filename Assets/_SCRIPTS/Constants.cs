@@ -7,14 +7,14 @@ public static class Constants {
     public enum PieceLength { WHOLE = 1, HALF = 2, THIRD = 3, FOURTH = 4, FIFTH = 5, SIXTH = 6, SEVENTH = 7, EIGHTH = 8, NINTH = 9, TENTH = 10 };
     public enum Difficulty { EASY, MEDIUM, HARD, DEIFENBACH };
 
-    public static Difficulty difficulty = Difficulty.DEIFENBACH;
+    public static Difficulty difficulty = Difficulty.MEDIUM;
     public static bool gapAlwaysAtomic = false;
     public static bool gapAlwaysOne = false;
     public static bool gapAllowImproperFractions = true;
     public static bool gapAllowMixedNumbers = false;
     public static bool unlimitedInventory = false;
     public static bool showCutLengths = false;
-    public static Color trackColor = Color.white;
+    public static Color trackColor = new Color32(164, 29, 49, 255);
     public static float chanceToBreakPiece = .25f;
     public static float chanceToGiveExtraPiece = .33f;
     
@@ -32,12 +32,14 @@ public static class Constants {
                                     {PieceLength.NINTH,.30f},
                                     {PieceLength.TENTH,.30f}
                                 };
-    public static string endgameText = "";
+
     public static bool gameOver = false;
+    public static bool gameWon = false;
     public static float fastCoasterSpeed = 1.25f;
-    public static float slowCoasterSpeed = .25f;
+    public static float slowCoasterSpeed = .15f;
     public static float masterVolume = -40f;
     public static float backgroundVolume = 1f;
     public static float effectsVolume = 1f;
     public static float backgroundPitch = 1f;
+    public static float endGameWaitDelay = 4f; /* Seconds to wait before going back to the menu (allowing animations and sounds to play) */
 }
