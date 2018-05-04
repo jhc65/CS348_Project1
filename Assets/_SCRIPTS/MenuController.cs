@@ -124,7 +124,6 @@ public class MenuController : MonoBehaviour
 
     public void AlwaysOneCheck()
     {
-        Debug.Log("here");
         if(gapWidthAlwaysOneToggle.isOn)
         {
             gapWidthAlwaysAtomicToggle.isOn = false;
@@ -161,13 +160,12 @@ public class MenuController : MonoBehaviour
         }
     }
 
-    public void ChangeCoasterColor(bool b)
+    public void ChangeCoasterColor(Toggle t)
     {
-        if (b)
+        if (t.isOn)
         {
-            Toggle activeToggle = colorToggles.ActiveToggles().FirstOrDefault();
-            track.color = activeToggle.colors.normalColor;
-            CoasterManager.Instance.ChangeColor(activeToggle.colors.normalColor);
+            track.color = t.colors.normalColor;
+            CoasterManager.Instance.ChangeColor(t.colors.normalColor);
         }
     }
 }

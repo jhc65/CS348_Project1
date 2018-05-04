@@ -44,7 +44,7 @@ public class Placeable : MonoBehaviour {
     private bool IsWithin(Vector3 obj1, Vector3 obj2)
     {
         float tolerance = 0.05f;
-        if ((Mathf.Abs(obj1.x - obj2.x) < tolerance) && (Mathf.Abs(obj1.x - obj2.x) < tolerance))
+        if ((Mathf.Abs(obj1.x - obj2.x) < tolerance) && (Mathf.Abs(obj1.y - obj2.y) < tolerance))
             return true;
         else
             return false;

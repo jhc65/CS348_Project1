@@ -214,6 +214,10 @@ public class BuildZone : MonoBehaviour {
                     FractionTools.MixedNumber gapAsMixedNumber = gapSize.ToMixedNumber();
                     result += " = " + gapAsMixedNumber;
                 }
+                else
+                {
+                    result += " = " + gapSize;
+                }
             }
             else
             {

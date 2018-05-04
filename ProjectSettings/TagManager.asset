@@ -8,6 +8,7 @@ TagManager:
   - decrease
   - increase
   - Section
+  - lose
   layers:
   - Default
   - TransparentFX

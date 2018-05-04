@@ -186,7 +186,20 @@ public static class FractionBuilder
             return new FractionTools.Fraction(1, Random.Range(2, 10));
         else
         {
-            int x = Random.Range(1, 5);
+            int upperLimit = 4;
+            switch(Constants.difficulty)
+            {
+                case Constants.Difficulty.MEDIUM:
+                    upperLimit = 6;
+                    break;
+                case Constants.Difficulty.HARD:
+                    upperLimit = 8;
+                    break;
+                case Constants.Difficulty.DEIFENBACH:
+                    upperLimit = 10;
+                    break;
+            }
+            int x = Random.Range(2, upperLimit);
             int y = Random.Range(2, 10);
 
             /* If the fraction must not be improper or mixed, ensure the numerator is less than the denominator */

@@ -7,8 +7,9 @@ public class Cuttable : MonoBehaviour
     [SerializeField] private GameObject resultOfCut;
     [SerializeField] private GameObject resultOfCutLengths;
     [SerializeField] private Constants.PieceLength parentLength;
-    [SerializeField] private Constants.PieceLength cutLength;
+    //[SerializeField] private Constants.PieceLength cutLength;
     [SerializeField] private int numCuts;
+    [SerializeField] private GameObject[] animatedPieces;
     private GameController gc;
     private Inventory inv;
 
@@ -34,7 +35,15 @@ public class Cuttable : MonoBehaviour
             {
                 // Zak's code to change inventory numbers
                 inv.Decrease(parentLength);
-                inv.Increase(cutLength, numCuts);
+                //inv.Increase(cutLength, numCuts);
+
+                foreach(GameObject animatedPiece in animatedPieces)
+                {
+                    GameObject ap = Instantiate(animatedPiece, transform);
+                    ap.transform.parent = null;
+                    ap.SetActive(true);
+                }
+
                 /* Play sound effect */
                 EffectsManager.Instance.PlayEffect(EffectsManager.Effects.CutTool);
             }
