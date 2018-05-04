@@ -24,7 +24,7 @@ public class MenuController : MonoBehaviour
     [SerializeField] private ToggleGroup colorToggles;
 
     [SerializeField] private Texture2D cursorTexture;
-    [SerializeField] private SpriteRenderer track;
+    [SerializeField] private Image track;
 
 
 
