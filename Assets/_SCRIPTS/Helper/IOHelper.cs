@@ -41,6 +41,19 @@ public static class IOHelper<T> {
             throw new FileNotFoundException();
     }
 
+    public static T LoadFromResources(string filePathWithoutExtension)
+    {
+        TextAsset asset = Resources.Load<TextAsset>(filePathWithoutExtension);
+
+        BinaryFormatter formatter = new BinaryFormatter();
+        Stream inStream = new MemoryStream(asset.bytes);
+
+        T obj = (T)formatter.Deserialize(inStream);
+        inStream.Close();
+
+        return obj;
+    }
+
     public static void ToTextFile(T objectToSave, string filePath)
     {
         StreamWriter writer = new StreamWriter(filePath);

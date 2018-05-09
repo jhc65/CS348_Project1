@@ -37,7 +37,8 @@ public class GameController : MonoBehaviour
     public Constants.CursorType ActiveCursor
     {
         get { return activeCursor; }
-        set {
+        set
+        {
             activeCursor = value;
             int index = 0;
             float offset = 0.5f;
@@ -45,8 +46,8 @@ public class GameController : MonoBehaviour
             {
                 case Constants.CursorType.HAND:
                     index = 0;
-                    foreach(Piece piece in pieces)
-                        if(piece.Interactable) piece.EnableDraggable(); // only set if interactable
+                    foreach (Piece piece in pieces)
+                        if (piece.Interactable) piece.EnableDraggable(); // only set if interactable
                     break;
                 case Constants.CursorType.DRAG:
                     index = 1;
@@ -72,6 +73,9 @@ public class GameController : MonoBehaviour
     {
         instance = this;
         ActiveCursor = Constants.CursorType.HAND;
+
+        /* Load the FractionDatabase */
+        Constants.fractionDatabase = IOHelper<FractionDatabase>.LoadFromResources(Constants.dictionaryFileName);
     }
 
     void Start()
@@ -83,50 +87,23 @@ public class GameController : MonoBehaviour
         // setup build zones and add pieces
         spawnedSections = new List<Section>();
         activeBuildZones = new List<BuildZone>();
-        FractionTools.Fraction sum = FractionTools.Fraction.Zero; /* Used for hardmode */
-        //for(int i=0; i<5; i++)
-        //{
-            //int ind = Random.Range(0, sections.Length);
-            //GameObject go = Instantiate(sections[ind], new Vector3(19.2f * i, sections[ind].transform.position.y, 0), Quaternion.identity);
-            //Section section = go.GetComponent<Section>();
-            spawnedSections.Add(section);
-            activeBuildZones.AddRange(section.SetupBuildZones());
 
-            List<FractionTools.Fraction> gapSizes = section.GapSizes;
-            if (Constants.unlimitedInventory)    // set inventory unlimited
-            {
-                inv.SetUnlimited();
-            }
-            else    // distribute inventory
-            {
-                foreach (FractionTools.Fraction gap in gapSizes)
-                {
-                    /* If not on the hardest difficulty, break each gap into pieces */
-                    if (Constants.difficulty != Constants.Difficulty.DEIFENBACH)
-                    {
-                        Constants.PieceLength[] pieces = FractionBuilder.BreakMyLifeIntoPieces(gap);
-                        foreach (Constants.PieceLength piece in pieces)
-                        {
-                            inv.Increase(piece, 1);
-                        }
-                    }
-                    /* If playing on the hardest difficulty, sum the pieces before breaking */
-                    else
-                    {
-                        sum += gap;
-                    }
-                }
-            }
-        //}
-        /* Break the master sum into pieces */
-        if (Constants.difficulty == Constants.Difficulty.DEIFENBACH)
+        spawnedSections.Add(section);
+        activeBuildZones.AddRange(section.SetupBuildZones());
+
+        if (Constants.unlimitedInventory)    // set inventory unlimited
         {
-            Constants.PieceLength[] pieces = FractionBuilder.BreakMyLifeIntoPieces(sum);
-            foreach (Constants.PieceLength piece in pieces)
+            inv.SetUnlimited();
+        }
+        else    // distribute inventory
+        {
+            foreach(BuildZone bz in activeBuildZones)
             {
-                inv.Increase(piece, 1);
+                foreach (FractionTools.Fraction f in bz.GetGapComponents())
+                    inv.Increase((Constants.PieceLength)f.denominator, 1);
             }
         }
+
         /* If this is the first section, tell the coaster to play its animation */
         CoasterManager.Instance.PlaySection(spawnedSections[0].GetAnimationTrigger());
         activeSectionIndex = 0;
@@ -181,7 +158,7 @@ public class GameController : MonoBehaviour
         // set the new build zone
         lastInteractedBuildZone = null;
         clearedBuildZones++;
-        if(clearedBuildZones == numBuildZones)
+        if (clearedBuildZones == numBuildZones)
         {
             //EndGame(true); /* CMB: EndGame is now triggered by a game object in the scene */
         }
@@ -191,7 +168,7 @@ public class GameController : MonoBehaviour
             lastInteractedBuildZone.Activate();
         }
 
-         yield return null;
+        yield return null;
     }
 
     public void EndGame(bool won)
@@ -221,7 +198,7 @@ public class GameController : MonoBehaviour
     {
         // TODO:
         // 1) Get active Build Zone
-        if(lastInteractedBuildZone)
+        if (lastInteractedBuildZone)
         {
             // 2) Remove the top piece from the queue
             // 3) Update the equation and build zone image

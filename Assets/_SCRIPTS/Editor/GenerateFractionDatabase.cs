@@ -6,8 +6,6 @@ using System.Linq;
 
 public class GenerateFractionDatabase {
 
-    private const string FILE_NAME = "FractionData.bin";
-
     [MenuItem("Assets/Create/Fraction Database", priority = 21)]
     private static void CreateFractionDatabaseAsset()
     {
@@ -17,7 +15,7 @@ public class GenerateFractionDatabase {
             string directoryPath = AssetDatabase.GetAssetPath(selectedAsset);
             if (System.IO.Directory.Exists(directoryPath))
             {
-                string filePath = directoryPath + "/" + FILE_NAME;
+                string filePath = directoryPath + "/" + Constants.dictionaryFileName + Constants.dictionaryFileExtension;
 
                 /* Delete the old database file if one exists */
                 if (System.IO.File.Exists(filePath))
@@ -82,7 +80,7 @@ public class GenerateFractionDatabase {
 
                     /* Only add the new fraction if the base is within 2-10 */
                     Fraction sum = fractionFromPreviousLevel.Value + fraction;
-                    if (sum.denominator > 1 && sum.denominator <= 10)
+                    if (sum.denominator <= 10)
                     {
                         FractionData data = new FractionData(fractionFromPreviousLevel)
                         {

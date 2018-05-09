@@ -7,13 +7,7 @@ public class Section : MonoBehaviour
     [SerializeField] private SpriteRenderer track;
     [SerializeField] private GameObject[] buildZones;
     [SerializeField] private CoasterManager.SectionTriggers coasterAnimation;
-    List<FractionTools.Fraction> gapSizes = new List<FractionTools.Fraction>();
-    List<BuildZone> activeBuildZones = new List<BuildZone>();
-
-    public List<FractionTools.Fraction> GapSizes
-    {
-        get { return gapSizes; }
-    }
+    private List<BuildZone> activeBuildZones = new List<BuildZone>();
 
     void Start()
     {
@@ -22,15 +16,13 @@ public class Section : MonoBehaviour
 
     public List<BuildZone> SetupBuildZones()
     {
+        List<FractionData> data = new List<FractionData>();
         if(Constants.difficulty == Constants.Difficulty.EASY)
         {
             for (int i = 1; i < buildZones.Length; i+=2)
             {
                 buildZones[i].SetActive(true);
-                FractionTools.Fraction newGapSize = FractionBuilder.ChooseGapSize();
-                buildZones[i].GetComponent<BuildZone>().SetGapSize(newGapSize);
                 activeBuildZones.Add(buildZones[i].GetComponent<BuildZone>());
-                gapSizes.Add(newGapSize);
             }
         }
         else if (Constants.difficulty == Constants.Difficulty.MEDIUM)
@@ -40,10 +32,7 @@ public class Section : MonoBehaviour
                 if (i == 2)
                     continue;
                 buildZones[i].SetActive(true);
-                FractionTools.Fraction newGapSize = FractionBuilder.ChooseGapSize();
-                buildZones[i].GetComponent<BuildZone>().SetGapSize(newGapSize);
                 activeBuildZones.Add(buildZones[i].GetComponent<BuildZone>());
-                gapSizes.Add(newGapSize);
             }
         }
         else if (Constants.difficulty == Constants.Difficulty.HARD || Constants.difficulty == Constants.Difficulty.DEIFENBACH)
@@ -51,11 +40,18 @@ public class Section : MonoBehaviour
             for (int i = 0; i < buildZones.Length; i++)
             {
                 buildZones[i].SetActive(true);
-                FractionTools.Fraction newGapSize = FractionBuilder.ChooseGapSize();
-                buildZones[i].GetComponent<BuildZone>().SetGapSize(newGapSize);
                 activeBuildZones.Add(buildZones[i].GetComponent<BuildZone>());
-                gapSizes.Add(newGapSize);
             }
+        }
+
+        foreach (BuildZone bz in activeBuildZones)
+        {
+            FractionData fractionData = Constants.fractionDatabase.GetRandomByDifficulty(Constants.difficulty
+                , (!Constants.gapAllowImproperFractions && !Constants.gapAllowMixedNumbers)
+                , Constants.gapAlwaysOne
+                , Constants.gapAlwaysAtomic);
+            bz.GetComponent<BuildZone>().SetFractionData(fractionData);
+            data.Add(fractionData);
         }
 
         return activeBuildZones;
