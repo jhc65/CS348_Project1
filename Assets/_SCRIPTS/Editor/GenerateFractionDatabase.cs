@@ -6,6 +6,12 @@ using System.Linq;
 
 public class GenerateFractionDatabase {
 
+    /// <summary>
+    /// Creates a "FractionDatabase.bytes" & "FractionDatabase.txt" in the current folder.
+    /// </summary>
+    /// <remarks>
+    /// These files *must* be generated (or moved) under a "Resources" folder to be loaded
+    /// </remarks>
     [MenuItem("Assets/Create/Fraction Database", priority = 21)]
     private static void CreateFractionDatabaseAsset()
     {
