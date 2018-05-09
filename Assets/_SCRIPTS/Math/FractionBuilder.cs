@@ -166,7 +166,7 @@ public static class FractionBuilder
         else
         {
             /* Get the list of atomic pieces, ignoring base 1 */
-            atoms = FractionTools.BreakWithinRange(fraction, 10).ToList<Fraction>();
+            atoms = FractionTools.AtomizeFraction(fraction, true).ToList<Fraction>();
         }
 
         foreach(Fraction f in atoms)

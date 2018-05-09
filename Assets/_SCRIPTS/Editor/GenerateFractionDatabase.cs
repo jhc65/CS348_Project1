@@ -26,6 +26,9 @@ public class GenerateFractionDatabase {
                 /* Generate the FractionDatabase */
                 FractionDatabase database = BuildFractionDatabase();
 
+                /* TESTING: Save the database as a text file for viewing */
+                IOHelper<FractionDatabase>.ToTextFile(database, directoryPath + "/database.txt");
+
                 /* Save the database */
                 IOHelper<FractionDatabase>.SerializeObject(database, filePath);
 
@@ -81,12 +84,14 @@ public class GenerateFractionDatabase {
                     Fraction sum = fractionFromPreviousLevel.Value + fraction;
                     if (sum.denominator > 1 && sum.denominator <= 10)
                     {
-                        FractionData data = new FractionData(fractionFromPreviousLevel);
-                        data.Value = fraction;
+                        FractionData data = new FractionData(fractionFromPreviousLevel)
+                        {
+                            Value = sum
+                        };
                         data.Components.Add(fraction);
 
                         /* Ensure this new item is unique (1/2 + 1/4 === 1/4 + 1/2) */
-                        if (isDistinct(data, fractionList))
+                        if (IsDistinct(data, fractionList))
                         {
                             /* Add this fraction data to the list */
                             fractionList.Add(data);
@@ -101,7 +106,7 @@ public class GenerateFractionDatabase {
         return database;
     }
 
-    private static bool isDistinct(FractionData item, List<FractionData> list)
+    private static bool IsDistinct(FractionData item, List<FractionData> list)
     {
         bool result = true;
         
@@ -109,30 +114,25 @@ public class GenerateFractionDatabase {
         a.Sort();
         foreach(FractionData toCheck in list)
         {
-            if (item.Value == toCheck.Value)
+            if (item.Value == toCheck.Value && item.Components.Count == toCheck.Components.Count)
             {
                 List<Fraction> b = toCheck.Components;
                 b.Sort();
 
                 /* Iterate over both lists. If we reach the end of both, then the lists are the same */
-                int i = 0, j = 0;
-                while (i < a.Count && j < b.Count)
+                int counter;
+                for (counter = 0; counter < item.Components.Count; counter++)
                 {
-                    if (a[i] == b[j])
-                    {
-                        i++;
-                        j++;
-                    }
-                    else if (a[i] < b[j])
-                        i++;
-                    else
-                        j++;
+                    if (item.Components[counter] != toCheck.Components[counter])
+                        break;
                 }
-                /* If both i & j are at the ends of the lists, these fractionData's are equivalent */
-                if (i == a.Count && j == b.Count)
+
+                /* If the counter reached the end of the array, these two lists were equal */
+                if (counter == item.Components.Count)
                 {
                     Debug.Log("Duplicate found!");
-                    //Debug.Log("    " + item.Value + ": " + item.Components.Aggregate((x, y) => x.ToString() + ", " + y.ToString())));
+                    Debug.Log("    " + item.Value + ": " + item.Components.ToDelimitedString());
+                    Debug.Log("    " + toCheck.Value + ": " + toCheck.Components.ToDelimitedString());
                     return false;
                 }
             }

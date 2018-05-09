@@ -48,4 +48,13 @@ public class FractionDatabase {
 
         return choice;
     }
+
+    public override string ToString()
+    {
+        string result = "";
+        foreach(int key in Data.Keys)
+            result += "Difficulty Level " + key + ":\r\n" + Data[key].ToDelimitedString() + "\r\n";
+
+        return result;
+    }
 }

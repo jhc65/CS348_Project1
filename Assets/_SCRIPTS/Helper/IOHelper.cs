@@ -40,4 +40,11 @@ public static class IOHelper<T> {
         else
             throw new FileNotFoundException();
     }
+
+    public static void ToTextFile(T objectToSave, string filePath)
+    {
+        StreamWriter writer = new StreamWriter(filePath);
+        writer.Write(objectToSave.ToString());
+        writer.Close();
+    }
 }
