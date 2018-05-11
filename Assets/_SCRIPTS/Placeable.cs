@@ -16,10 +16,15 @@ public class Placeable : MonoBehaviour {
     //[SerializeField] private int denominator;
     [SerializeField] private Constants.PieceLength length;
     [SerializeField] SpriteRenderer sprite;
+    [SerializeField] GameObject animatedPiece;
 
     #region Getters and Setters
     public Constants.PieceLength Length {
         get { return length; }
+    }
+
+    public GameObject AnimatedPiece {
+        get { return animatedPiece; }
     }
     #endregion
     #endregion

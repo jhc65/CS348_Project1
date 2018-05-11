@@ -39,8 +39,9 @@ public class BuildZone : MonoBehaviour {
 		{
 			successful = true;
             EffectsManager.Instance.PlayEffect(EffectsManager.Effects.Correct);
-			SnapPiece(p);
-			piecesInZone.Add(p);
+            //SnapPiece(p);
+            p.gameObject.SetActive(false);
+            piecesInZone.Add(p);
 			gapFilled += p.Value;
             gapMask.transform.localScale = new Vector3(4 * (1f - (float)(gapFilled / gapSize)), 2, 1);
             UpdateEquationUI();
@@ -63,69 +64,69 @@ public class BuildZone : MonoBehaviour {
 		return successful;
 	}
 
-	private void SnapPiece(Placeable p)
-	{
-        GameController.Instance.LastInteractedBuildZone = this;
-        Vector3 targetPos;
-        /* Scale the piece down to within the build area
-		 * 
-		 * pieceSize (1/2) / gapSize (3/2) = Percent to fill 1/3
-		 */
-		float PercentToFill = (float)(p.Value / gapSize);
+	//private void SnapPiece(Placeable p)
+	//{
+ //       GameController.Instance.LastInteractedBuildZone = this;
+ //       Vector3 targetPos;
+ //       /* Scale the piece down to within the build area
+	//	 * 
+	//	 * pieceSize (1/2) / gapSize (3/2) = Percent to fill 1/3
+	//	 */
+	//	float PercentToFill = (float)(p.Value / gapSize);
 
-        /* Set the previousTransform to either SnapStart, or the previous piece */
-		if (piecesInZone.Count == 0)
-		{
-            /* Setting target to SnapPoint's local transform */
-			targetPos = snapStart.localPosition;
-            switch (SnapPivot)
-            {
-                case PivotType.Left:
-                    break;
-                case PivotType.Center:
-                    targetPos.x += PercentToFill / 2;
-                    break;
-                case PivotType.Right:
-                    targetPos.x += PercentToFill;
-                    break;
-            }
-		}
-		else
-		{
-			/* Setting target to previous piece + previous piece's length */
-            Placeable previous = piecesInZone[piecesInZone.Count - 1];
-            targetPos = previous.transform.localPosition;
-            switch (SnapPivot)
-            {
-                case PivotType.Left:
-                    targetPos.x += (float)(previous.Value / gapSize);
-                    break;
-                case PivotType.Center:
-                    targetPos.x += (float)(previous.Value / gapSize) / 2;
-                    targetPos.x += PercentToFill / 2;
-                    break;
-                case PivotType.Right:
-                    targetPos.x += PercentToFill;
-                    break;
-            }
-		}
+ //       /* Set the previousTransform to either SnapStart, or the previous piece */
+	//	if (piecesInZone.Count == 0)
+	//	{
+ //           /* Setting target to SnapPoint's local transform */
+	//		targetPos = snapStart.localPosition;
+ //           switch (SnapPivot)
+ //           {
+ //               case PivotType.Left:
+ //                   break;
+ //               case PivotType.Center:
+ //                   targetPos.x += PercentToFill / 2;
+ //                   break;
+ //               case PivotType.Right:
+ //                   targetPos.x += PercentToFill;
+ //                   break;
+ //           }
+	//	}
+	//	else
+	//	{
+	//		/* Setting target to previous piece + previous piece's length */
+ //           Placeable previous = piecesInZone[piecesInZone.Count - 1];
+ //           targetPos = previous.transform.localPosition;
+ //           switch (SnapPivot)
+ //           {
+ //               case PivotType.Left:
+ //                   targetPos.x += (float)(previous.Value / gapSize);
+ //                   break;
+ //               case PivotType.Center:
+ //                   targetPos.x += (float)(previous.Value / gapSize) / 2;
+ //                   targetPos.x += PercentToFill / 2;
+ //                   break;
+ //               case PivotType.Right:
+ //                   targetPos.x += PercentToFill;
+ //                   break;
+ //           }
+	//	}
 
-		/// TODO: Animate this
-		/* Set the piece as a child of this build zone, then move and rotate the piece */
-        p.transform.SetParent(this.transform); /* Make the piece a child of the parent */
-        p.transform.localRotation = Quaternion.identity; /* Set the local rotation to identity (0,0,0) */
-        //Debug.Log("<color=blue>" + p.transform.localPosition + ", " + targetPos);
-        p.transform.localPosition = targetPos; /* Set the local position to target */
+	//	/// TODO: Animate this
+	//	/* Set the piece as a child of this build zone, then move and rotate the piece */
+ //       p.transform.SetParent(this.transform); /* Make the piece a child of the parent */
+ //       p.transform.localRotation = Quaternion.identity; /* Set the local rotation to identity (0,0,0) */
+ //       //Debug.Log("<color=blue>" + p.transform.localPosition + ", " + targetPos);
+ //       p.transform.localPosition = targetPos; /* Set the local position to target */
 		
-        Vector3 scale = p.transform.localScale;
-        /* This black magic is what the local x scale of the piece needs to be to fill the entire build zone
-         *  When we get a build zone sprite, it won't have a 4x scale itself, and this will need to change*/
-        float scaleToGapWidth = (float)p.Value.denominator / 16f;
-        p.transform.localScale = new Vector3(scaleToGapWidth * PercentToFill, scale.y, scale.z);
-        p.gameObject.SetActive(false);
+ //       Vector3 scale = p.transform.localScale;
+ //       /* This black magic is what the local x scale of the piece needs to be to fill the entire build zone
+ //        *  When we get a build zone sprite, it won't have a 4x scale itself, and this will need to change*/
+ //       float scaleToGapWidth = (float)p.Value.denominator / 16f;
+ //       p.transform.localScale = new Vector3(scaleToGapWidth * PercentToFill, scale.y, scale.z);
+ //       p.gameObject.SetActive(false);
 		
-		//yield return null; // For when this becomes a coroutine
-	}
+	//	//yield return null; // For when this becomes a coroutine
+	//}
 
 	public void SetGapSize(FractionTools.Fraction value)
 	{
@@ -133,25 +134,6 @@ public class BuildZone : MonoBehaviour {
 		gapDenominator = value.denominator;
 		gapSize = new FractionTools.Fraction(value);
 
-		UpdateEquationUI();
-	}
-
-	public void ClearBuildZone()
-	{
-		/* Clear out gapFilled */
-		gapFilled = FractionTools.Fraction.Zero;
-		/* Clear out gapSize */
-		gapSize = FractionTools.Fraction.Zero;
-		/* Clear out piecesInZone */
-		if (piecesInZone.Count > 0)
-		{
-			for (int i = piecesInZone.Count - 1; i >= 0; i--)
-			{
-				GameObject.Destroy(piecesInZone[i].gameObject);
-				piecesInZone.RemoveAt(i);
-			}
-		}
-		/* Clear out Equation UI */
 		UpdateEquationUI();
 	}
 
@@ -241,10 +223,19 @@ public class BuildZone : MonoBehaviour {
     public void OnUndoButtonClicked()
     {
         if (piecesInZone.Count > 0 && (gapFilled < gapSize)) {
-            gapFilled -= piecesInZone[piecesInZone.Count - 1].Value;
-            inv.Increase(piecesInZone[piecesInZone.Count - 1].Length, 1);
-            GameObject.Destroy(piecesInZone[piecesInZone.Count - 1].gameObject);
-            piecesInZone.RemoveAt(piecesInZone.Count - 1);
+            int pieceIndex = piecesInZone.Count - 1;
+
+            gapFilled -= piecesInZone[pieceIndex].Value;
+
+            // animation of returning to inventory
+            piecesInZone[pieceIndex].AnimatedPiece.transform.parent = null;
+            piecesInZone[pieceIndex].AnimatedPiece.SetActive(true);
+
+            // cleanup original object
+            Destroy(piecesInZone[pieceIndex].gameObject);
+            piecesInZone.RemoveAt(pieceIndex);
+
+            // update visual
             gapMask.transform.localScale = new Vector3(4 * (1f - (float)(gapFilled / gapSize)), 2, 1);
             UpdateEquationUI();
         }

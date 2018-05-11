@@ -165,8 +165,6 @@ public class GameController : MonoBehaviour
 
     public IEnumerator OnGapFilled()
     {
-        /* Play a confetti effect and wait a few seconds for it to finish */
-        //EffectsManager.Instance.PlayEffect(EffectsManager.Effects.Confetti);
         EffectsManager.Instance.PlayEffect(EffectsManager.Effects.Construction);
         lastInteractedBuildZone.Sparkle();
 
@@ -217,37 +215,8 @@ public class GameController : MonoBehaviour
         ActiveCursor = activeCursor;
     }
 
-    public void UndoClick()
-    {
-        // TODO:
-        // 1) Get active Build Zone
-        if(lastInteractedBuildZone)
-        {
-            // 2) Remove the top piece from the queue
-            // 3) Update the equation and build zone image
-            // 4) Animate it going back to the inventory?
-            // 5) Increase the inventory number
-        }
-
-    }
-
-    public void RestartClick()
-    {
-        // TODO:
-        // 1) Get active Build Zone
-        if (lastInteractedBuildZone)
-        {
-            // 2) Loop until Build Zone is empty:
-            // a) Remove the top piece from the queue
-            // b) Update the equation and build zone image
-            // c) Animate it going back to the inventory?
-            // d) Increase the inventory number
-        }
-    }
-
     public void PauseClick()
     {
-        // TODO: pause de game
         Time.timeScale = 0; /* Manipulate timeScale to pause the game */
         pauseMenu.SetActive(true);
         MenuCursorSet();
@@ -255,7 +224,6 @@ public class GameController : MonoBehaviour
 
     public void PlayClick()
     {
-        // TODO: unpause de game
         Time.timeScale = 1f; /* Change timeScale back from 0 */
         pauseMenu.SetActive(false);
         MenuCursorUnSet();

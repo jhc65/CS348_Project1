@@ -7,7 +7,7 @@ public class Inventory : MonoBehaviour
 {
     static private Inventory instance;      // instance of the GameController
     [SerializeField] private Text[] countTexts;
-    [SerializeField] private Piece[] pieces;
+    public Piece[] pieces;
     private int[] counts = new int[9];
 
     public static Inventory Instance
