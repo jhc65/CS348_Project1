@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using UnityEngine;
 
 public static class FractionTools
 {
@@ -41,7 +42,8 @@ public static class FractionTools
     #endregion // Helpful Exception Definitions
 
     #region Improper Fractions
-    public class Fraction
+    [Serializable]
+    public class Fraction : IComparable<Fraction>
     {
         public int numerator;
         public int denominator;
@@ -174,6 +176,16 @@ public static class FractionTools
         {
             /// TODO: Handle 0/0
             return (a.numerator * b.denominator > b.numerator * a.denominator);
+        }
+
+        public int CompareTo(Fraction other)
+        {
+            if (this < other)
+                return -1;
+            else if (this == other)
+                return 0;
+            else
+                return 1;
         }
         #endregion //Comparison Operator Overloads
 

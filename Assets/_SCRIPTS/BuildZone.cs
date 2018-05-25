@@ -9,14 +9,6 @@ public class BuildZone : MonoBehaviour {
     [SerializeField]
     private PivotType SnapPivot;
     [SerializeField] Transform snapStart;
-    /*
-	 * Need to have numerator and denominator vars since Inspector won't display Fraction struct by default
-	 *
-	 * I will write an editor script to resolve this workaround eventually... (Corwin)
-	 */
-
-    [SerializeField] private int gapNumerator;
-	[SerializeField] private int gapDenominator;
     [SerializeField] private Text equation;
     [SerializeField] private GameObject slowDownTrigger;
     [SerializeField] private SpriteMask gapMask;
@@ -24,7 +16,7 @@ public class BuildZone : MonoBehaviour {
     [SerializeField] private GameObject sparkle;
     [SerializeField] private GameObject dustCloud;
     [SerializeField] private AudioSource explosion;
-    public FractionTools.Fraction gapSize;
+    private FractionData fractionData;
 	private FractionTools.Fraction gapFilled = FractionTools.Fraction.Zero;
     private List<Placeable> piecesInZone = new List<Placeable>();
     private Inventory inv;
@@ -32,10 +24,10 @@ public class BuildZone : MonoBehaviour {
 	public bool TryPlacePiece(Placeable p)
 	{
 		//Debug.Log("Trying to place the piece...");
-		//Debug.Log("Gap: " + gapSize + ", piece:" + p.Value + ", filled: " + gapFilled);
+		//Debug.Log("Gap: " + fractionData.Value + ", piece:" + p.Value + ", filled: " + gapFilled);
 		bool successful = false;
 
-		if (p.Value + gapFilled <= gapSize)
+		if (p.Value + gapFilled <= fractionData.Value)
 		{
 			successful = true;
             EffectsManager.Instance.PlayEffect(EffectsManager.Effects.Correct);
@@ -43,11 +35,11 @@ public class BuildZone : MonoBehaviour {
             p.gameObject.SetActive(false);
             piecesInZone.Add(p);
 			gapFilled += p.Value;
-            gapMask.transform.localScale = new Vector3(4 * (1f - (float)(gapFilled / gapSize)), 2, 1);
+            gapMask.transform.localScale = new Vector3(4 * (1f - (float)(gapFilled / fractionData.Value)), 2, 1);
             UpdateEquationUI();
 			/* Check if the gap has been filled */
-			//Debug.Log("Gap filled: " + gapFilled + ", gap size: " + gapSize);
-            if (gapFilled == gapSize)
+			//Debug.Log("Gap filled: " + gapFilled + ", gap size: " + fractionData.Value);
+            if (gapFilled == fractionData.Value)
             {
                 /* Disable the slow zone in case the coaster didn't even hit it yet (player was really quick) */
                 if (slowDownTrigger != null)
@@ -57,7 +49,7 @@ public class BuildZone : MonoBehaviour {
             }
 		}
 		else{
-			Debug.Log("Piece doesn't want to take a fit! Gap filled: " + gapFilled + ", piece size: " + p.Value + ", gap size: " + gapSize);
+			Debug.Log("Piece doesn't want to take a fit! Gap filled: " + gapFilled + ", piece size: " + p.Value + ", gap size: " + fractionData.Value);
             EffectsManager.Instance.PlayEffect(EffectsManager.Effects.Incorrect);
 		}
 
@@ -128,11 +120,9 @@ public class BuildZone : MonoBehaviour {
 	//	//yield return null; // For when this becomes a coroutine
 	//}
 
-	public void SetGapSize(FractionTools.Fraction value)
+	public void SetFractionData(FractionData data)
 	{
-		gapNumerator = value.numerator;
-		gapDenominator = value.denominator;
-		gapSize = new FractionTools.Fraction(value);
+        fractionData = data;
 
 		UpdateEquationUI();
 	}
@@ -170,7 +160,7 @@ public class BuildZone : MonoBehaviour {
             /* Remove the last + */
             result = result.Remove(result.Length - 3);
 
-            if (gapFilled != gapSize)
+            if (gapFilled != fractionData.Value)
             {
                 /* Append the "you aren't done yet" part */
                 result += " + ...";
@@ -178,14 +168,14 @@ public class BuildZone : MonoBehaviour {
         }
 
         /* Append the total gap size */
-        if (gapSize == FractionTools.Fraction.One)
+        if (fractionData.Value == FractionTools.Fraction.One)
             result += " = 1";
         else
         {
             if(!Constants.gapAllowImproperFractions)
             {
                 // if improper fractions not allowed, must display as mixed number
-                FractionTools.MixedNumber gapAsMixedNumber = gapSize.ToMixedNumber();
+                FractionTools.MixedNumber gapAsMixedNumber = fractionData.Value.ToMixedNumber();
                 result += " = " + gapAsMixedNumber;
             }
             else if (Constants.gapAllowImproperFractions && Constants.gapAllowMixedNumbers)
@@ -193,18 +183,18 @@ public class BuildZone : MonoBehaviour {
                 // if both improper fractions and mixed numbers are allowed, randomly choose how to display
                 if (Random.Range(0f, 1f) <= .5f)
                 {
-                    FractionTools.MixedNumber gapAsMixedNumber = gapSize.ToMixedNumber();
+                    FractionTools.MixedNumber gapAsMixedNumber = fractionData.Value.ToMixedNumber();
                     result += " = " + gapAsMixedNumber;
                 }
                 else
                 {
-                    result += " = " + gapSize;
+                    result += " = " + fractionData.Value;
                 }
             }
             else
             {
                 // just display as improper fraction
-                result += " = " + gapSize;
+                result += " = " + fractionData.Value;
             }
         }
         return result;
@@ -217,12 +207,12 @@ public class BuildZone : MonoBehaviour {
 
     public bool IsGapFilled()
     {
-        return gapFilled == gapSize;
+        return gapFilled == fractionData.Value;
     }
 
     public void OnUndoButtonClicked()
     {
-        if (piecesInZone.Count > 0 && (gapFilled < gapSize)) {
+        if (piecesInZone.Count > 0 && (gapFilled < fractionData.Value)) {
             int pieceIndex = piecesInZone.Count - 1;
 
             gapFilled -= piecesInZone[pieceIndex].Value;
@@ -236,7 +226,7 @@ public class BuildZone : MonoBehaviour {
             piecesInZone.RemoveAt(pieceIndex);
 
             // update visual
-            gapMask.transform.localScale = new Vector3(4 * (1f - (float)(gapFilled / gapSize)), 2, 1);
+            gapMask.transform.localScale = new Vector3(4 * (1f - (float)(gapFilled / fractionData.Value)), 2, 1);
             UpdateEquationUI();
         }
     }
@@ -246,12 +236,17 @@ public class BuildZone : MonoBehaviour {
         /* Toggle on the dust cloud particle effect */
         dustCloud.SetActive(true);
         explosion.Play();
-        while (piecesInZone.Count > 0 && gapFilled < gapSize) {
+        while (piecesInZone.Count > 0 && gapFilled < fractionData.Value) {
             OnUndoButtonClicked();
         }
     }
 
     private void Awake() {
         inv = Inventory.Instance;
+    }
+
+    public FractionTools.Fraction[] GetGapComponents()
+    {
+        return fractionData.Components.ToArray();
     }
 }

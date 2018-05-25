@@ -638,7 +638,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 250400961}
-  - component: {fileID: 250400962}
   m_Layer: 0
   m_Name: Game Settings Menu
   m_TagString: Untagged
@@ -661,19 +660,6 @@ Transform:
   m_Father: {fileID: 1193756779}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &250400962
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 250400960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5887a0fdbf37ae94789d761cc4facf0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  toast: {fileID: 0}
-  backing: {fileID: 0}
 --- !u!1 &261821535
 GameObject:
   m_ObjectHideFlags: 0
@@ -779,7 +765,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 496557688}
+        - m_Target: {fileID: 0}
           m_MethodName: TurnOn
           m_Mode: 5
           m_Arguments:
@@ -796,7 +782,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 496557688}
+        - m_Target: {fileID: 0}
           m_MethodName: TurnOff
           m_Mode: 1
           m_Arguments:
@@ -1114,7 +1100,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 496557688}
+        - m_Target: {fileID: 0}
           m_MethodName: TurnOn
           m_Mode: 5
           m_Arguments:
@@ -1131,7 +1117,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 496557688}
+        - m_Target: {fileID: 0}
           m_MethodName: TurnOff
           m_Mode: 1
           m_Arguments:
@@ -1508,7 +1494,6 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 496557687}
-  - component: {fileID: 496557688}
   m_Layer: 0
   m_Name: Game Settings Menu
   m_TagString: Untagged
@@ -1539,19 +1524,6 @@ Transform:
   m_Father: {fileID: 467745785}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &496557688
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 496557686}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5887a0fdbf37ae94789d761cc4facf0d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  toast: {fileID: 0}
-  backing: {fileID: 0}
 --- !u!1001 &501864475
 Prefab:
   m_ObjectHideFlags: 0
@@ -3319,7 +3291,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 496557688}
+        - m_Target: {fileID: 0}
           m_MethodName: TurnOn
           m_Mode: 5
           m_Arguments:
@@ -3336,7 +3308,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 496557688}
+        - m_Target: {fileID: 0}
           m_MethodName: TurnOff
           m_Mode: 1
           m_Arguments:
@@ -6120,7 +6092,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 496557688}
+        - m_Target: {fileID: 0}
           m_MethodName: TurnOn
           m_Mode: 5
           m_Arguments:
@@ -6137,7 +6109,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 496557688}
+        - m_Target: {fileID: 0}
           m_MethodName: TurnOff
           m_Mode: 1
           m_Arguments:
@@ -7671,7 +7643,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 496557688}
+        - m_Target: {fileID: 0}
           m_MethodName: TurnOn
           m_Mode: 5
           m_Arguments:
@@ -7688,7 +7660,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 496557688}
+        - m_Target: {fileID: 0}
           m_MethodName: TurnOff
           m_Mode: 1
           m_Arguments:
@@ -7799,7 +7771,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 496557688}
+        - m_Target: {fileID: 0}
           m_MethodName: TurnOn
           m_Mode: 5
           m_Arguments:
@@ -7816,7 +7788,7 @@ MonoBehaviour:
     callback:
       m_PersistentCalls:
         m_Calls:
-        - m_Target: {fileID: 496557688}
+        - m_Target: {fileID: 0}
           m_MethodName: TurnOff
           m_Mode: 1
           m_Arguments:
