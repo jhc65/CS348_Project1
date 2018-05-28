@@ -11,6 +11,7 @@ public class Placeable : MonoBehaviour {
     private bool placed = false;
     private bool isPickedUp = true;
     private FractionTools.Fraction value;
+    private BuildZone bz;
 
     //[SerializeField] private int numerator;
     //[SerializeField] private int denominator;
@@ -59,7 +60,6 @@ public class Placeable : MonoBehaviour {
 #region Unity Overrides
 
     void Start () {
-        startPos = transform.position;
         gc = GameController.Instance;
         inv = Inventory.Instance;
         value = new FractionTools.Fraction(1, (int)length);
@@ -68,29 +68,41 @@ public class Placeable : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        //Zak's return to base method
-        //if (Input.GetMouseButton(0) && !placed)     // follow mouse
-        //{
-        //    cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-        //    transform.position = Vector2.Lerp(transform.position, cursorPos, 0.5f);
-        //}
-        //if (!Input.GetMouseButton(0) && !placed)         // return to start if mouse is released
-        //{
-        //    transform.position = Vector2.Lerp(transform.position, startPos, 0.2f);
-        //    gc.ActiveCursor = Constants.Global.CursorType.HAND;
-        //}
-        //if (!Input.GetMouseButton(0) && IsWithin(transform.position, startPos))     // destroy when back to start position
-        //{
-        //    Destroy(gameObject);
-        //    inv.Increase(length, 1);
-        //}
 
-        // Joe's preferred method
-        if (isPickedUp && !placed)
+        if (Input.GetMouseButtonUp(0))
+        {
+            Debug.Log("mouse up");
+            if (!placed && bz != null && bz.TryPlacePiece(this))
+            {
+                Debug.Log("Piece dropped in zone!");
+                placed = true;
+                gc.ActiveCursor = Constants.CursorType.HAND;
+            }
+        }
+        //Zak's return to base method
+        if (Input.GetMouseButton(0) && !placed)     // follow mouse
         {
             cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             transform.position = Vector2.Lerp(transform.position, cursorPos, 0.5f);
         }
+        if (!Input.GetMouseButton(0) && !placed)         // return to start if mouse is released
+        {
+            startPos = inv.pieces[(int)length - 2].transform.position;
+            transform.position = Vector2.Lerp(transform.position, startPos, 0.2f);
+            gc.ActiveCursor = Constants.CursorType.HAND;
+        }
+        if (!Input.GetMouseButton(0) && IsWithin(transform.position, startPos))     // destroy when back to start position
+        {
+            Destroy(gameObject);
+            inv.Increase(length, 1);
+        }
+
+        //// Joe's preferred method
+        //if (isPickedUp && !placed)
+        //{
+        //    cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+        //    transform.position = Vector2.Lerp(transform.position, cursorPos, 0.5f);
+        //}
     }
 
     // OnTriggerSTAY (2D)
@@ -101,25 +113,37 @@ public class Placeable : MonoBehaviour {
 
         if (collision.CompareTag("BuildZone"))
         {
-            if (Input.GetMouseButtonUp(0))
-            {
-                Debug.Log("Piece dropped in zone!");
-                BuildZone bz = collision.GetComponentInParent<BuildZone>();
-                if (bz != null && bz.TryPlacePiece(this))
-                {
-                    placed = true;
-                    gc.ActiveCursor = Constants.CursorType.HAND;
-                }
-            }
+            bz = collision.GetComponentInParent<BuildZone>();
         }
     }
 
-    private void OnMouseOver()
+    private void OnTriggerExit2D(Collider2D collision)
     {
-        if (Input.GetMouseButtonDown(0) && !placed)
+        if (collision.CompareTag("BuildZone"))
+        {
+            bz = null;
+        }
+    }
+
+    private void OnMouseDown()
+    {
+        if(!placed)
         {
             ToggleIsPickedUp();
         }
     }
+
+    // OnMouseUp is not called unless MouseDown was called on the same object first,
+        // which is not the case since we're instantiating this placeable on click
+    //private void OnMouseUp()
+    //{
+    //    Debug.Log("mouse up");
+    //    if (!placed && bz != null && bz.TryPlacePiece(this))
+    //    {
+    //        Debug.Log("Piece dropped in zone!");
+    //        placed = true;
+    //        gc.ActiveCursor = Constants.CursorType.HAND;
+    //    }
+    //}
     #endregion
 }
