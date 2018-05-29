@@ -11,7 +11,8 @@ public class CoasterManager : MonoBehaviour {
         PlaySectionB,
         PlaySectionC,
         PlayFullSection,
-        PlayEnterScreen
+        PlayEnter,
+        PlayExit
     }
     private static string PlaySpeedMultipier = "PlaySpeedMultipier"; /* Float parameter name on Animator */
 
@@ -80,6 +81,12 @@ public class CoasterManager : MonoBehaviour {
     public void StopTrackAudio()
     {
         trackAudio.Stop();
+    }
+
+    public void ExitScreenFinished()
+    {
+        trackAudio.Stop();
+        SceneManager.LoadScene("Main");
     }
 
     public void PlayTrackAudio()

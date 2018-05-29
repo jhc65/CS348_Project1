@@ -77,23 +77,23 @@ public class MenuController : MonoBehaviour
     public IEnumerator ExitTheStation()
     {
         /* Play the coaster leaving the station */
-        CoasterManager.Instance.PlaySection(CoasterManager.SectionTriggers.PlayEnterScreen);
-        yield return new WaitForSeconds(5f);
+        CoasterManager.Instance.PlaySection(CoasterManager.SectionTriggers.PlayExit);
 
-        SceneManager.LoadScene("Main");
+        //SceneManager.LoadScene("Main"); //CB: Moved this to be triggered by an animation event on "Coaster@ExitScreen" animation in CoasterManager.cs
+        yield return null;
     }
 
     public void GameSettingsClick()
     {
         gameSettingsMenu.SetActive(true);
-        CoasterManager.Instance.PlaySection(CoasterManager.SectionTriggers.PlayEnterScreen);
+        CoasterManager.Instance.PlaySection(CoasterManager.SectionTriggers.PlayEnter);
         startMenu.SetActive(false);
     }
 
     public void PlayAgainClick()
     {
         gameSettingsMenu.SetActive(true);
-        CoasterManager.Instance.PlaySection(CoasterManager.SectionTriggers.PlayEnterScreen);
+        CoasterManager.Instance.PlaySection(CoasterManager.SectionTriggers.PlayEnter);
         endgameMenu.SetActive(false);
     }
 
