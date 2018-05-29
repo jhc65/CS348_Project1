@@ -22,6 +22,7 @@ public class MenuController : MonoBehaviour
     [SerializeField] private Toggle gapWidthImproperFractionsToggle;
     [SerializeField] private Toggle gapWidthMixedNumbersToggle;
     [SerializeField] private ToggleGroup colorToggles;
+    [SerializeField] private Text difficultyText;
 
     [SerializeField] private Texture2D cursorTexture;
     [SerializeField] private Image track;
@@ -167,5 +168,11 @@ public class MenuController : MonoBehaviour
             track.color = t.colors.normalColor;
             CoasterManager.Instance.ChangeColor(t.colors.normalColor);
         }
+    }
+
+    public void OnDifficultyChanged(Slider s)
+    {
+        Constants.difficulty = (Constants.Difficulty)s.value;
+        difficultyText.text = Constants.difficulty.ToString();
     }
 }

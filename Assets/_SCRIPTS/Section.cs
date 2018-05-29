@@ -17,7 +17,7 @@ public class Section : MonoBehaviour
     public List<BuildZone> SetupBuildZones()
     {
         List<FractionData> data = new List<FractionData>();
-        if(Constants.difficulty == Constants.Difficulty.EASY)
+        if (Constants.difficulty == Constants.Difficulty.EASY || Constants.difficulty == Constants.Difficulty.BEGINNER)
         {
             for (int i = 1; i < buildZones.Length; i+=2)
             {
@@ -35,7 +35,7 @@ public class Section : MonoBehaviour
                 activeBuildZones.Add(buildZones[i].GetComponent<BuildZone>());
             }
         }
-        else if (Constants.difficulty == Constants.Difficulty.HARD || Constants.difficulty == Constants.Difficulty.DEIFENBACH)
+        else if (Constants.difficulty == Constants.Difficulty.HARD || Constants.difficulty == Constants.Difficulty.IMPOSSIBLE)
         {
             for (int i = 0; i < buildZones.Length; i++)
             {
