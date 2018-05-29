@@ -83,12 +83,12 @@ public class Placeable : MonoBehaviour {
         if (Input.GetMouseButton(0) && !placed)     // follow mouse
         {
             cursorPos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            transform.position = Vector2.Lerp(transform.position, cursorPos, 0.5f);
+            transform.position = Vector2.MoveTowards(transform.position, cursorPos, Time.deltaTime * 50f);
         }
         if (!Input.GetMouseButton(0) && !placed)         // return to start if mouse is released
         {
             startPos = inv.pieces[(int)length - 2].transform.position;
-            transform.position = Vector2.Lerp(transform.position, startPos, 0.2f);
+            transform.position = Vector2.MoveTowards(transform.position, startPos, Time.deltaTime * 20f);
             gc.ActiveCursor = Constants.CursorType.HAND;
         }
         if (!Input.GetMouseButton(0) && IsWithin(transform.position, startPos))     // destroy when back to start position
