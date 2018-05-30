@@ -20,6 +20,8 @@ public class CoasterManager : MonoBehaviour {
     private Animator animator;
 
     [SerializeField] private SpriteRenderer[] sprites;
+    public SpriteRenderer[] decalSprites;
+    public Sprite[] decals;
     [SerializeField] private AudioSource trackAudio;
     private Vector3 startPosition;
 
@@ -39,6 +41,11 @@ public class CoasterManager : MonoBehaviour {
     {
         foreach (SpriteRenderer sp in sprites)
             sp.color = c;
+        foreach (SpriteRenderer sp in decalSprites)
+        {
+            sp.sprite = decals[Constants.decalIndex];
+            sp.color = new Color(1 - c.r, 1 - c.g, 1 - c.b);
+        }
     }
 
     private void Start()
