@@ -25,13 +25,13 @@ public class DrawBezier : MonoBehaviour {
     {
         for (int j = 0; j < (int)controlPoints.Length / 3; j++)
         {
-            for (int i = 1; i <= SEGMENT_COUNT; i++)
+            for (int i = 0; i <= SEGMENT_COUNT; i++)
             {
                 float t = i / (float)SEGMENT_COUNT;
                 int nodeIndex = j * 3;
                 Vector3 pixel = CalculateCubicBezierPoint(t, controlPoints[nodeIndex].position, controlPoints[nodeIndex + 1].position, controlPoints[nodeIndex + 2].position, controlPoints[nodeIndex + 3].position);
-                lineRenderer.positionCount = ((j * SEGMENT_COUNT) + i);
-                lineRenderer.SetPosition((j * SEGMENT_COUNT) + (i - 1), pixel);
+                lineRenderer.positionCount = ((j * SEGMENT_COUNT) + i + 1);
+                lineRenderer.SetPosition((j * SEGMENT_COUNT) + i, pixel);
             }
 
         }
@@ -47,5 +47,15 @@ public class DrawBezier : MonoBehaviour {
         p += Mathf.Pow(t, 3) * endPoint;
 
         return p;
+    }
+
+    /* Taken from: https://stackoverflow.com/a/4091430 */
+    Vector3 CalculateCubicBezierTangent(float t, Vector3 startPoint, Vector3 startTangent, Vector3 endTangent, Vector3 endPoint)
+    {
+        return
+            -3 * Mathf.Pow(1 - t, 2) * startPoint
+            + 3 * Mathf.Pow(1 - t, 2) * startTangent - 6 * t * (1 - t) * startTangent
+            - 3 * Mathf.Pow(t, 2) * endTangent + 6 * t * (1 - t) * endTangent
+            + 3 * Mathf.Pow(t, 2) * endPoint; 
     }
 }
