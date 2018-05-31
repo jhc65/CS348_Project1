@@ -11,32 +11,63 @@ public class DrawBezier : MonoBehaviour {
 
     [SerializeField] private Transform[] controlPoints;
     [SerializeField] private LineRenderer lineRenderer;
-    [SerializeField] private int SEGMENT_COUNT = 50;
+    [SerializeField] private float distance = 0.1f;
+    [SerializeField] private int precision = 100;
+    private Vector3[] points;
+    private Vector3[] tangents;
 
     void Start()
     {
         if (lineRenderer == null)
             lineRenderer = GetComponent<LineRenderer>();
+        DrawCurve();
     }
 
 	void Update () {
+        if (distance == 0f)
+            return;
         DrawCurve();
 	}
 
     void DrawCurve()
     {
+        /* Calculate the points with high precision */
+        Vector3[] precisionPoints = new Vector3[((int)controlPoints.Length / 3) * precision];
+        Vector3[] precicionTangents = new Vector3[((int)controlPoints.Length / 3) * precision];
         for (int j = 0; j < (int)controlPoints.Length / 3; j++)
         {
-            for (int i = 1; i <= SEGMENT_COUNT; i++)
+            for (int i = 0; i < precision; i++)
             {
-                float t = i / (float)SEGMENT_COUNT;
                 int nodeIndex = j * 3;
-                Vector3 pixel = CalculateCubicBezierPoint(t, controlPoints[nodeIndex].position, controlPoints[nodeIndex + 1].position, controlPoints[nodeIndex + 2].position, controlPoints[nodeIndex + 3].position);
-                lineRenderer.positionCount = ((j * SEGMENT_COUNT) + i);
-                lineRenderer.SetPosition((j * SEGMENT_COUNT) + i - 1, pixel);
+                float t = (float)i / (float)precision;
+                precisionPoints[j * precision + i] = CalculateCubicBezierPoint(t, controlPoints[nodeIndex].position, controlPoints[nodeIndex + 1].position, controlPoints[nodeIndex + 2].position, controlPoints[nodeIndex + 3].position);
+                precicionTangents[j * precision + i] = CalculateCubicBezierTangent(t, controlPoints[nodeIndex].position, controlPoints[nodeIndex + 1].position, controlPoints[nodeIndex + 2].position, controlPoints[nodeIndex + 3].position);
             }
-
         }
+
+        /* Filter out points that are above the distance threshold */
+        List<Vector3> reducedPoints = new List<Vector3>
+        {
+            precisionPoints[0]
+        };
+        List<Vector3> reducedTangents = new List<Vector3>();
+        Vector3 previous = precisionPoints[0];
+        for (int i = 1; i < precisionPoints.Length; i++)
+        {
+            if (Vector3.Distance(previous, precisionPoints[i]) > distance)
+            {
+                reducedPoints.Add(precisionPoints[i]);
+                reducedTangents.Add(precicionTangents[i]);
+                previous = precisionPoints[i];
+            }
+        }
+
+        /* Populate the Line renderer */
+        points = reducedPoints.ToArray();
+        tangents = reducedTangents.ToArray();
+
+        lineRenderer.positionCount = reducedPoints.Count;
+        lineRenderer.SetPositions(points);
     }
 
     Vector3 CalculateCubicBezierPoint(float t, Vector3 startPoint, Vector3 startTangent, Vector3 endTangent, Vector3 endPoint)
@@ -63,17 +94,13 @@ public class DrawBezier : MonoBehaviour {
 
     public IEnumerable<Vector3> GetPositionAnimations(float timeStep)
     {
-        for (int segment = 0; segment < (int) controlPoints.Length / 3; segment++)
-        {
-            for (float t = 0f; t <= 1f; t += timeStep)
-            {
-                yield return CalculateCubicBezierPoint(t,
-                    controlPoints[segment * 3].position,
-                    controlPoints[segment * 3 + 1].position,
-                    controlPoints[segment * 3 + 2].position,
-                    controlPoints[segment * 3 + 3].position);
-            }
+        foreach (Vector3 point in points)
+            yield return point;
+    }
 
-        }
+    public IEnumerable<Vector3> GetTangentAnimations(float timeStep)
+    {
+        foreach (Vector3 tangent in tangents)
+            yield return tangent;
     }
 }
