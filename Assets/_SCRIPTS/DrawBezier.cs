@@ -1,4 +1,6 @@
-﻿using UnityEngine;
+﻿using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
 
 /// <summary>
 /// Taken from: http://www.theappguruz.com/blog/bezier-curve-in-games
@@ -25,13 +27,13 @@ public class DrawBezier : MonoBehaviour {
     {
         for (int j = 0; j < (int)controlPoints.Length / 3; j++)
         {
-            for (int i = 0; i <= SEGMENT_COUNT; i++)
+            for (int i = 1; i <= SEGMENT_COUNT; i++)
             {
                 float t = i / (float)SEGMENT_COUNT;
                 int nodeIndex = j * 3;
                 Vector3 pixel = CalculateCubicBezierPoint(t, controlPoints[nodeIndex].position, controlPoints[nodeIndex + 1].position, controlPoints[nodeIndex + 2].position, controlPoints[nodeIndex + 3].position);
-                lineRenderer.positionCount = ((j * SEGMENT_COUNT) + i + 1);
-                lineRenderer.SetPosition((j * SEGMENT_COUNT) + i, pixel);
+                lineRenderer.positionCount = ((j * SEGMENT_COUNT) + i);
+                lineRenderer.SetPosition((j * SEGMENT_COUNT) + i - 1, pixel);
             }
 
         }
@@ -57,5 +59,21 @@ public class DrawBezier : MonoBehaviour {
             + 3 * Mathf.Pow(1 - t, 2) * startTangent - 6 * t * (1 - t) * startTangent
             - 3 * Mathf.Pow(t, 2) * endTangent + 6 * t * (1 - t) * endTangent
             + 3 * Mathf.Pow(t, 2) * endPoint; 
+    }
+
+    public IEnumerable<Vector3> GetPositionAnimations(float timeStep)
+    {
+        for (int segment = 0; segment < (int) controlPoints.Length / 3; segment++)
+        {
+            for (float t = 0f; t <= 1f; t += timeStep)
+            {
+                yield return CalculateCubicBezierPoint(t,
+                    controlPoints[segment * 3].position,
+                    controlPoints[segment * 3 + 1].position,
+                    controlPoints[segment * 3 + 2].position,
+                    controlPoints[segment * 3 + 3].position);
+            }
+
+        }
     }
 }
