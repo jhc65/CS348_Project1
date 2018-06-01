@@ -14,6 +14,7 @@ public static class Constants {
     public static bool gapAllowMixedNumbers = false;
     public static bool unlimitedInventory = false;
     public static bool showCutLengths = false;
+    public static int numSections = 2;
     public static Color trackColor = new Color32(164, 29, 49, 255);
     public static int decalIndex = 0;
     public static float chanceToBreakPiece = .25f;

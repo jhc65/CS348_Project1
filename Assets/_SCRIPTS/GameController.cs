@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Dreamteck.Splines;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -9,8 +10,8 @@ public class GameController : MonoBehaviour
     [SerializeField] private Texture2D[] cursorTextures;    // custom cursor sprites
     private Constants.CursorType activeCursor;
     [SerializeField] private Piece[] pieces;
-    //[SerializeField] private GameObject[] sections;
-    [SerializeField] private Section section;
+    [SerializeField] private GameObject[] sections;
+    [SerializeField] private SplineComputer[] splines;
     [SerializeField] private GameObject cam;
 
     [SerializeField] private GameObject pauseMenu;
@@ -87,9 +88,25 @@ public class GameController : MonoBehaviour
         // setup build zones and add pieces
         spawnedSections = new List<Section>();
         activeBuildZones = new List<BuildZone>();
+        List<SplinePoint> splinePoints = new List<SplinePoint>();
+        splinePoints.AddRange(splines[0].GetPoints());
+        splinePoints.RemoveAt(splinePoints.Count - 1);
+        
+        for (int i = 0; i < Constants.numSections; i++)
+        {
+            int ind = Random.Range(0, sections.Length);
+            GameObject go = Instantiate(sections[ind], new Vector3(28.8f + (38.4f * i), sections[ind].transform.position.y, 0), Quaternion.identity);
+            Section section = go.GetComponent<Section>();
+            spawnedSections.Add(section);
+            //activeBuildZones.AddRange(section.SetupBuildZones());
+            splines[i + 1] = go.GetComponentInChildren<SplineComputer>();
+            splinePoints.AddRange(splines[i + 1].GetPoints());
+            splinePoints.RemoveAt(splinePoints.Count - 1);
+        }
 
-        spawnedSections.Add(section);
-        activeBuildZones.AddRange(section.SetupBuildZones());
+        splinePoints.AddRange(splines[Constants.numSections + 1].GetPoints());
+        splines[0].SetPoints(splinePoints.ToArray());
+
 
         if (Constants.unlimitedInventory)    // set inventory unlimited
         {
