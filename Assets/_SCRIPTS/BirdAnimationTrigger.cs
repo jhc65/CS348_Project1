@@ -20,6 +20,8 @@ public class BirdAnimationTrigger : MonoBehaviour {
 	
 	void OnTriggerEnter2D(Collider2D collider)
     {
+        if (collider.tag != "coaster")
+            return;
         /* Trigger the fly animation on each bird */
         foreach (Animator animator in birdAnimators)
         {
