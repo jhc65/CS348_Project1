@@ -36,18 +36,17 @@ public class CrossFadeAudio : MonoBehaviour {
         if (!ReferenceEquals(fadeIn, null))
             StopCoroutine(fadeIn);
 
-        AudioSource old = owner.GetComponent<AudioSource>();
-        StartCoroutine(Fade(old, old.volume, 0f, fadeDuration));
+        AudioSource old = this.GetComponent<AudioSource>();
+        StartCoroutine(Fade(old, old.volume, 0f, fadeDuration, true));
 
         if (owner == this)
             owner = null;
-        Destroy(this.gameObject);
     }
 
     /// <summary>
     /// Adapted from https://forum.unity.com/threads/audiosource-cross-fade-component.443257/#post-3187561
     /// </summary>
-    private IEnumerator Fade(AudioSource sourceToFade, float startVolume, float endVolume, float duration)
+    private IEnumerator Fade(AudioSource sourceToFade, float startVolume, float endVolume, float duration, bool destroyOnFinished = false)
     {
         float startTime = Time.time;
 
@@ -59,5 +58,8 @@ public class CrossFadeAudio : MonoBehaviour {
 
             yield return null;
         }
+
+        if (destroyOnFinished)
+            Destroy(this.gameObject);
     }
 }
