@@ -176,8 +176,8 @@ public class MenuController : MonoBehaviour
         difficultyText.text = Constants.difficulty.ToString();
     }
 
-    public void ToggleSettingsBar()
+    public void ToggleSettingsBar(Animator panelAnimator)
     {
-
+        panelAnimator.SetTrigger("Toggle");
     }
 }
