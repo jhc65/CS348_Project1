@@ -9691,6 +9691,11 @@ SpriteRenderer:
   m_PrefabParentObject: {fileID: 212896947112156056, guid: 75e9435cd0062eb4da29f5972c31105c,
     type: 2}
   m_PrefabInternal: {fileID: 2103856364}
+--- !u!4 &282560659 stripped
+Transform:
+  m_PrefabParentObject: {fileID: 4374734275506764, guid: c9739f92c0757994288eb50b0488b980,
+    type: 2}
+  m_PrefabInternal: {fileID: 775706415}
 --- !u!1 &294831843
 GameObject:
   m_ObjectHideFlags: 0
@@ -10078,8 +10083,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SnapPivot: 1
   snapStart: {fileID: 2094000366}
-  gapNumerator: 0
-  gapDenominator: 0
   equation: {fileID: 594203298}
   slowDownTrigger: {fileID: 736483485}
   gapMask: {fileID: 152916443}
@@ -10736,8 +10739,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SnapPivot: 1
   snapStart: {fileID: 2029464855}
-  gapNumerator: 0
-  gapDenominator: 0
   equation: {fileID: 472692156}
   slowDownTrigger: {fileID: 1073258281}
   gapMask: {fileID: 537251714}
@@ -15252,6 +15253,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 360458381}
+  - {fileID: 282560659}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -15837,8 +15839,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SnapPivot: 1
   snapStart: {fileID: 54904406}
-  gapNumerator: 0
-  gapDenominator: 0
   equation: {fileID: 1396219779}
   slowDownTrigger: {fileID: 56118904}
   gapMask: {fileID: 244381095}
@@ -15975,8 +15975,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SnapPivot: 1
   snapStart: {fileID: 1229944299}
-  gapNumerator: 0
-  gapDenominator: 0
   equation: {fileID: 487754845}
   slowDownTrigger: {fileID: 1721411732}
   gapMask: {fileID: 1383808547}
@@ -16558,8 +16556,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SnapPivot: 1
   snapStart: {fileID: 1938031092}
-  gapNumerator: 0
-  gapDenominator: 0
   equation: {fileID: 1453040050}
   slowDownTrigger: {fileID: 459376972}
   gapMask: {fileID: 399855464}
@@ -17926,6 +17922,48 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 774380033}
+--- !u!1001 &775706415
+Prefab:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 513032649}
+    m_Modifications:
+    - target: {fileID: 4374734275506764, guid: c9739f92c0757994288eb50b0488b980, type: 2}
+      propertyPath: m_LocalPosition.x
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374734275506764, guid: c9739f92c0757994288eb50b0488b980, type: 2}
+      propertyPath: m_LocalPosition.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374734275506764, guid: c9739f92c0757994288eb50b0488b980, type: 2}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374734275506764, guid: c9739f92c0757994288eb50b0488b980, type: 2}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374734275506764, guid: c9739f92c0757994288eb50b0488b980, type: 2}
+      propertyPath: m_LocalRotation.y
+      value: -0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374734275506764, guid: c9739f92c0757994288eb50b0488b980, type: 2}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374734275506764, guid: c9739f92c0757994288eb50b0488b980, type: 2}
+      propertyPath: m_LocalRotation.w
+      value: 0.7071068
+      objectReference: {fileID: 0}
+    - target: {fileID: 4374734275506764, guid: c9739f92c0757994288eb50b0488b980, type: 2}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 100100000, guid: c9739f92c0757994288eb50b0488b980, type: 2}
+  m_IsPrefabParent: 0
 --- !u!1 &776193286
 GameObject:
   m_ObjectHideFlags: 0
@@ -33819,7 +33857,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 1, y: 0}
   m_AnchorMax: {x: 1, y: 0}
-  m_AnchoredPosition: {x: -11.586182, y: 1069.3}
+  m_AnchoredPosition: {x: -11.5859375, y: 1069.3}
   m_SizeDelta: {x: 114, y: 90}
   m_Pivot: {x: 1, y: 1}
 --- !u!114 &1207473999
@@ -36034,8 +36072,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SnapPivot: 1
   snapStart: {fileID: 107884239}
-  gapNumerator: 0
-  gapDenominator: 0
   equation: {fileID: 1043823543}
   slowDownTrigger: {fileID: 511678420}
   gapMask: {fileID: 1014174385}
@@ -40763,8 +40799,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   SnapPivot: 1
   snapStart: {fileID: 484178882}
-  gapNumerator: 0
-  gapDenominator: 0
   equation: {fileID: 1758619615}
   slowDownTrigger: {fileID: 15934351}
   gapMask: {fileID: 1859505333}
