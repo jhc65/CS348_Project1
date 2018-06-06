@@ -5,7 +5,6 @@ using UnityEngine.SceneManagement;
 
 public class GameController : MonoBehaviour
 {
-    static private GameController instance;      // instance of the GameController
     [SerializeField] private Texture2D[] cursorTextures;    // custom cursor sprites
     private Constants.CursorType activeCursor;
     [SerializeField] private Piece[] pieces;
@@ -16,9 +15,9 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject pauseMenu;
     [SerializeField] private GameObject optionsMenu;
 
-    [SerializeField] private GameObject coaster;
-
     [SerializeField] private float delayOnWin; // How long to wait after clearing a gap before moving on
+    [SerializeField] private GameObject winText; /* Reference to canvas gameObject containing the "you win" text */
+    [SerializeField] private GameObject loseText; /* Reference to canvas gameObject containing "you lose" text */
 
     private List<BuildZone> activeBuildZones;
     private BuildZone lastInteractedBuildZone;
@@ -29,10 +28,7 @@ public class GameController : MonoBehaviour
 
     private Inventory inv;
 
-    public static GameController Instance
-    {
-        get { return instance; }
-    }
+    public static GameController Instance { get; private set; }
 
     public Constants.CursorType ActiveCursor
     {
@@ -71,7 +67,7 @@ public class GameController : MonoBehaviour
 
     void Awake()
     {
-        instance = this;
+        Instance = this;
         ActiveCursor = Constants.CursorType.HAND;
 
         /* Load the FractionDatabase */
@@ -173,6 +169,35 @@ public class GameController : MonoBehaviour
     {
         Constants.gameWon = won;
         Constants.gameOver = true;
+
+        if (won)
+            StartCoroutine(VictoryLap());
+        else
+            StartCoroutine(CrashAndBurn());
+    }
+
+    private IEnumerator VictoryLap()
+    {
+        winText.SetActive(true);
+        EffectsManager.Instance.PlayEffect(EffectsManager.Effects.Confetti);
+        EffectsManager.Instance.PlayEffect(EffectsManager.Effects.Yay);
+        yield return new WaitForSeconds(Constants.endGameWaitDelay);
+        SceneManager.LoadScene("Menu");
+    }
+
+    private IEnumerator CrashAndBurn()
+    {
+        /* Play a crashing sound effect */
+        EffectsManager.Instance.PlayEffect(EffectsManager.Effects.Incorrect); /* TODO: replace this with car crash sound effect */
+
+        /* Pop up you lose text */
+        loseText.SetActive(true);
+
+        /* Spawn a dust cloud on the coaster */
+        EffectsManager.Instance.PlayEffect(EffectsManager.Effects.DustCloud, CoasterManager.Instance.transform);
+
+        /* Wait a bit, then load the menu scene */
+        yield return new WaitForSeconds(Constants.endGameWaitDelay);
         SceneManager.LoadScene("Menu");
     }
 

@@ -9,6 +9,7 @@ public class EffectsManager : MonoBehaviour {
 	public enum Effects {
 		// Visual
 		Confetti,
+        DustCloud,
 		
 		//Auditory
 		Yay,
@@ -20,6 +21,7 @@ public class EffectsManager : MonoBehaviour {
     };
 
 	[SerializeField] private GameObject Confetti;
+    [SerializeField] private GameObject DustCloud;
     [SerializeField] private AudioClip Yay;
     [SerializeField] private AudioClip Snap;
     [SerializeField] private AudioClip Correct;
@@ -56,6 +58,9 @@ public class EffectsManager : MonoBehaviour {
 			case Effects.Confetti:
 				Instantiate(Confetti, this.transform, false); /* The Confetti particle system has autoDestroy */
                 break;
+            case Effects.DustCloud:
+                Instantiate(DustCloud, this.transform, false); /* The Confetti particle system has autoDestroy */
+                break;
             case Effects.Yay:
                 audioSource.PlayOneShot(Yay);
                 break;
@@ -79,4 +84,38 @@ public class EffectsManager : MonoBehaviour {
 			break;
 		}
 	}
+
+    public void PlayEffect(Effects effect, Transform parent)
+    {
+        switch (effect)
+        {
+            case Effects.Confetti:
+                Instantiate(Confetti, parent, false); /* The Confetti particle system has autoDestroy */
+                break;
+            case Effects.DustCloud:
+                Instantiate(DustCloud, parent, false); /* The Confetti particle system has autoDestroy */
+                break;
+            case Effects.Yay:
+                audioSource.PlayOneShot(Yay);
+                break;
+            case Effects.Snap:
+                audioSource.PlayOneShot(Snap);
+                break;
+            case Effects.Correct:
+                audioSource.PlayOneShot(Correct);
+                break;
+            case Effects.Incorrect:
+                audioSource.PlayOneShot(Incorrect);
+                break;
+            case Effects.Construction:
+                audioSource.PlayOneShot(Construction);
+                break;
+            case Effects.CutTool:
+                audioSource.PlayOneShot(CutTool);
+                break;
+            default:
+
+                break;
+        }
+    }
 }

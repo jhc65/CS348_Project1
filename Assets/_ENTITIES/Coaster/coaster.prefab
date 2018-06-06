@@ -874,6 +874,7 @@ MonoBehaviour:
   decalSprites: []
   decals: []
   trackAudio: {fileID: 82185702556983724}
+  loseText: {fileID: 0}
 --- !u!212 &212029636245110088
 SpriteRenderer:
   m_ObjectHideFlags: 1

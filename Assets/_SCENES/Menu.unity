@@ -7442,6 +7442,7 @@ MonoBehaviour:
   gapWidthImproperFractionsToggle: {fileID: 926169890}
   gapWidthMixedNumbersToggle: {fileID: 1689404755}
   colorToggles: {fileID: 261821537}
+  difficultySlider: {fileID: 233105025}
   difficultyText: {fileID: 1753651060}
   cursorTexture: {fileID: 2800000, guid: 58189f8edb689cd44bfa6ce7d4e60679, type: 3}
   track: {fileID: 1254357840}

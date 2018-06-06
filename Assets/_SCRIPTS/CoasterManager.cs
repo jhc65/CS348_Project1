@@ -15,8 +15,6 @@ public class CoasterManager : MonoBehaviour {
         PlayExit
     }
     private static string PlaySpeedMultipier = "PlaySpeedMultipier"; /* Float parameter name on Animator */
-
-    private static CoasterManager instance;
     private Animator animator;
 
     [SerializeField] private SpriteRenderer[] sprites;
@@ -25,14 +23,12 @@ public class CoasterManager : MonoBehaviour {
     [SerializeField] private AudioSource trackAudio;
     private Vector3 startPosition;
 
-    public static CoasterManager Instance {
-		get {return instance;}
-	}
+    public static CoasterManager Instance { get; private set; }
 
     public void Awake()
     {
         /* Since the coaster is destroyed onLoad, always update the instance */
-        instance = this;
+        Instance = this;
         animator = GetComponent<Animator>();
         startPosition = this.transform.position;
     }
@@ -69,7 +65,11 @@ public class CoasterManager : MonoBehaviour {
                 animator.SetFloat(PlaySpeedMultipier, Constants.fastCoasterSpeed);
                 break;
             case "lose":
-                    GameController.Instance.EndGame(false);
+                /* Stop the coaster animation */
+                trackAudio.Stop();
+                animator.Rebind();
+                /* Tell GameController to end the game with a lose state */
+                GameController.Instance.EndGame(false);
                 break;
             case "Section":
                 GameController.Instance.TriggerNextSectionAnimation();

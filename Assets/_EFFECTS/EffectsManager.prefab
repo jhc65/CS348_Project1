@@ -134,6 +134,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Confetti: {fileID: 1511489660214414, guid: 34269e7a7a737e242ab6cd16098c4408, type: 2}
+  DustCloud: {fileID: 1482912381277718, guid: 482e9154e58f51042a318574fd400f7a, type: 2}
   Yay: {fileID: 8300000, guid: 62db455e51986364cbb310233fed7fa6, type: 3}
   Snap: {fileID: 8300000, guid: b865e7d83306928499c5bf8a07c50332, type: 3}
   Correct: {fileID: 8300000, guid: 6a8e83aba1fc7e44bb3a69751b5d84c8, type: 3}
