@@ -1,11 +1,13 @@
-﻿using System.Collections;
+﻿using Dreamteck.Splines;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
-public class CoasterManager : MonoBehaviour {
+public class CoasterManager : MonoBehaviour
+{
 
-	public enum SectionTriggers /* Names of triggers on Animator */
+    public enum SectionTriggers /* Names of triggers on Animator */
     {
         PlaySectionA,
         PlaySectionB,
@@ -19,15 +21,22 @@ public class CoasterManager : MonoBehaviour {
     private static CoasterManager instance;
     private Animator animator;
 
-    [SerializeField] private SpriteRenderer[] sprites;
+    [SerializeField]
+    private SpriteRenderer[] sprites;
     public SpriteRenderer[] decalSprites;
     public Sprite[] decals;
-    [SerializeField] private AudioSource trackAudio;
+    [SerializeField]
+    private AudioSource trackAudio;
     private Vector3 startPosition;
+    [SerializeField]
+    private SplineFollower[] cars;
+    [SerializeField]
+    private float splineFollowOffset;
 
-    public static CoasterManager Instance {
-		get {return instance;}
-	}
+    public static CoasterManager Instance
+    {
+        get { return instance; }
+    }
 
     public void Awake()
     {
@@ -53,6 +62,23 @@ public class CoasterManager : MonoBehaviour {
         ChangeColor(Constants.trackColor);
     }
 
+    public void StartCoaster(SplineComputer sc)
+    {
+        StartCoroutine(StartSplineFollow(sc));
+    }
+
+    private IEnumerator StartSplineFollow(SplineComputer sc)
+    {
+        foreach (SplineFollower sf in cars)
+        {
+            Debug.Log("Sending off " + sf.name);
+            sf.computer = sc;
+            sf.autoFollow = true;
+            sf.Restart();
+            yield return new WaitForSeconds(sf.followSpeed * splineFollowOffset);
+        }
+    }
+
     public void PlaySection(SectionTriggers st)
     {
         animator.SetTrigger(st.ToString());
@@ -60,7 +86,7 @@ public class CoasterManager : MonoBehaviour {
 
     void OnTriggerEnter2D(Collider2D collider)
     {
-        switch(collider.tag)
+        switch (collider.tag)
         {
             case "decrease":
                 animator.SetFloat(PlaySpeedMultipier, Constants.slowCoasterSpeed);
@@ -69,7 +95,7 @@ public class CoasterManager : MonoBehaviour {
                 animator.SetFloat(PlaySpeedMultipier, Constants.fastCoasterSpeed);
                 break;
             case "lose":
-                    GameController.Instance.EndGame(false);
+                GameController.Instance.EndGame(false);
                 break;
             case "Section":
                 GameController.Instance.TriggerNextSectionAnimation();

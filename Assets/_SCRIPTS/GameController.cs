@@ -89,23 +89,29 @@ public class GameController : MonoBehaviour
         spawnedSections = new List<Section>();
         activeBuildZones = new List<BuildZone>();
         List<SplinePoint> splinePoints = new List<SplinePoint>();
-        splinePoints.AddRange(splines[0].GetPoints());
-        splinePoints.RemoveAt(splinePoints.Count - 1);
+        int numSections = Constants.numSections + 2;
+        splines = new SplineComputer[numSections];
         
-        for (int i = 0; i < Constants.numSections; i++)
+        for (int i = 0; i < numSections; i++)
         {
-            int ind = Random.Range(0, sections.Length);
-            GameObject go = Instantiate(sections[ind], new Vector3(28.8f + (38.4f * i), sections[ind].transform.position.y, 0), Quaternion.identity);
+            int ind = 0;
+            if (i != 0 && i != numSections - 1)
+                ind = Random.Range(1, sections.Length);
+            GameObject go = Instantiate(sections[ind], new Vector3((38.4f * i), sections[ind].transform.position.y, 0), Quaternion.identity);
             Section section = go.GetComponent<Section>();
             spawnedSections.Add(section);
             //activeBuildZones.AddRange(section.SetupBuildZones());
-            splines[i + 1] = go.GetComponentInChildren<SplineComputer>();
-            splinePoints.AddRange(splines[i + 1].GetPoints());
-            splinePoints.RemoveAt(splinePoints.Count - 1);
+            splines[i] = go.GetComponentInChildren<SplineComputer>();
+            splinePoints.AddRange(splines[i].GetPoints());
+            //splinePoints.RemoveAt(splinePoints.Count - 1);
+            /* Hide this spline */
+            splines[i].gameObject.SetActive(false);
         }
 
-        splinePoints.AddRange(splines[Constants.numSections + 1].GetPoints());
+        /* Turn the first spline into the master spline */
         splines[0].SetPoints(splinePoints.ToArray());
+        splines[0].Rebuild();
+        splines[0].gameObject.SetActive(true);
 
 
         if (Constants.unlimitedInventory)    // set inventory unlimited
@@ -122,11 +128,14 @@ public class GameController : MonoBehaviour
         }
 
         /* If this is the first section, tell the coaster to play its animation */
-        CoasterManager.Instance.PlaySection(spawnedSections[0].GetAnimationTrigger());
+        CoasterManager.Instance.StartCoaster(splines[0]);
         activeSectionIndex = 0;
         numBuildZones = activeBuildZones.Count;
-        lastInteractedBuildZone = activeBuildZones[0];
-        lastInteractedBuildZone.Activate();
+        if (numBuildZones > 0)
+        {
+            lastInteractedBuildZone = activeBuildZones[0];
+            lastInteractedBuildZone.Activate();
+        }
     }
 
     void Update()

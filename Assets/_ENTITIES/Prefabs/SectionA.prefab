@@ -20,6 +20,10 @@ GameObject:
   m_Component:
   - component: {fileID: 4036441647449038}
   - component: {fileID: 114526959649661808}
+  - component: {fileID: 23538236393950698}
+  - component: {fileID: 33089707414786080}
+  - component: {fileID: 114679730805488932}
+  - component: {fileID: 114030393931758892}
   m_Layer: 0
   m_Name: Spline
   m_TagString: Untagged
@@ -129,6 +133,60 @@ Transform:
   m_Father: {fileID: 4360101199412770}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!23 &23538236393950698
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1195946377262880}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_Materials:
+  - {fileID: 2100000, guid: 8faa06c186b9f8f47a3bd94f967ba06a, type: 2}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 0
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 1266543385
+  m_SortingLayer: 4
+  m_SortingOrder: 0
+--- !u!33 &33089707414786080
+MeshFilter:
+  m_ObjectHideFlags: 2
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1195946377262880}
+  m_Mesh: {fileID: 0}
+--- !u!114 &114030393931758892
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1195946377262880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6eecb4c7c05ed0442a80bad16196fb09, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  layerName: Track
+  order: 0
 --- !u!114 &114526959649661808
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -147,14 +205,14 @@ MonoBehaviour:
   is2D: 1
   spline:
     points:
-    - _type: 0
+    - _type: 1
       position: {x: -9.6, y: 1, z: 0}
       color: {r: 1, g: 1, b: 1, a: 1}
       normal: {x: 0, y: 0, z: -1}
       size: 1
       tangent: {x: -9.6, y: 1, z: 0}
       tangent2: {x: -9.6, y: 1, z: 0}
-    - _type: 0
+    - _type: 1
       position: {x: 28.8, y: 1, z: 0}
       color: {r: 1, g: 1, b: 1, a: 1}
       normal: {x: 0, y: 0, z: -1}
@@ -162,7 +220,7 @@ MonoBehaviour:
       tangent: {x: 28.8, y: 1, z: 0}
       tangent2: {x: 28.8, y: 1, z: 0}
     closed: 0
-    type: 3
+    type: 2
     customValueInterpolation:
       serializedVersion: 2
       m_Curve: []
@@ -181,8 +239,66 @@ MonoBehaviour:
     morphStates: []
     initialized: 0
   _space: 1
-  subscribers: []
+  subscribers:
+  - {fileID: 114679730805488932}
   _nodeLinks: []
+--- !u!114 &114679730805488932
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1195946377262880}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf69cfa06c48dba428c5c4d626d57ab7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _address:
+    _elements:
+    - computer: {fileID: 114526959649661808}
+      _startPoint: 0
+      _endPoint: -1
+  subscribers: []
+  updateMethod: 0
+  _user: {fileID: 0}
+  _resolution: 1
+  _clipTo: 1
+  _clipFrom: 0
+  _autoUpdate: 1
+  _loopSamples: 0
+  _averageResultVectors: 1
+  _uniformSample: 0
+  _uniformPreserveClipRange: 0
+  _samples: []
+  _clippedSamples: []
+  animClipFrom: 0
+  animClipTo: 1
+  animResolution: 1
+  sampleUser: 0
+  multithreaded: 0
+  buildOnAwake: 0
+  _baked: 0
+  _size: 1
+  _color: {r: 1, g: 1, b: 1, a: 1}
+  _offset: {x: 0, y: 0, z: 0}
+  _normalMethod: 1
+  _tangents: 1
+  _rotation: 0
+  _flipFaces: 0
+  _doubleSided: 0
+  _uvMode: 1
+  _uvScale: {x: 1, y: 1}
+  _uvOffset: {x: 0, y: 0}
+  _uvRotation: 0
+  meshCollider: {fileID: 0}
+  filter: {fileID: 33089707414786080}
+  meshRenderer: {fileID: 23538236393950698}
+  mesh: {fileID: 0}
+  colliderUpdateRate: 0.2
+  autoOrient: 1
+  updateFrameInterval: 0
+  _slices: 1
+  vertexDirection: {x: 0, y: 1, z: 0}
 --- !u!212 &212200869944125842
 SpriteRenderer:
   m_ObjectHideFlags: 1
