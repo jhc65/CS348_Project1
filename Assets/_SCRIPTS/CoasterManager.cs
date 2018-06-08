@@ -74,6 +74,9 @@ public class CoasterManager : MonoBehaviour {
             case "Section":
                 GameController.Instance.TriggerNextSectionAnimation();
                 break;
+            case "CameraZoomToggle":
+                EffectsManager.Instance.PlayEffect(EffectsManager.Effects.CameraZoom);
+                break;
             default:
 
                 break;

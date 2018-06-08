@@ -10,6 +10,7 @@ public class EffectsManager : MonoBehaviour {
 		// Visual
 		Confetti,
         DustCloud,
+        CameraZoom,
 		
 		//Auditory
 		Yay,
@@ -61,6 +62,9 @@ public class EffectsManager : MonoBehaviour {
             case Effects.DustCloud:
                 Instantiate(DustCloud, this.transform, false); /* The Confetti particle system has autoDestroy */
                 break;
+            case Effects.CameraZoom:
+                Camera.main.GetComponent<Animator>().SetTrigger("ToggleZoom");
+                break;
             case Effects.Yay:
                 audioSource.PlayOneShot(Yay);
                 break;
@@ -95,26 +99,8 @@ public class EffectsManager : MonoBehaviour {
             case Effects.DustCloud:
                 Instantiate(DustCloud, parent, false); /* The Confetti particle system has autoDestroy */
                 break;
-            case Effects.Yay:
-                audioSource.PlayOneShot(Yay);
-                break;
-            case Effects.Snap:
-                audioSource.PlayOneShot(Snap);
-                break;
-            case Effects.Correct:
-                audioSource.PlayOneShot(Correct);
-                break;
-            case Effects.Incorrect:
-                audioSource.PlayOneShot(Incorrect);
-                break;
-            case Effects.Construction:
-                audioSource.PlayOneShot(Construction);
-                break;
-            case Effects.CutTool:
-                audioSource.PlayOneShot(CutTool);
-                break;
             default:
-
+                PlayEffect(effect);
                 break;
         }
     }
