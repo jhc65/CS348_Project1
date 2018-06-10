@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour
 {
@@ -17,8 +18,9 @@ public class GameController : MonoBehaviour
     [SerializeField] private GameObject optionsMenu;
 
     [SerializeField] private float delayOnWin; // How long to wait after clearing a gap before moving on
-    [SerializeField] private GameObject winText; /* Reference to canvas gameObject containing the "you win" text */
-    [SerializeField] private GameObject loseText; /* Reference to canvas gameObject containing "you lose" text */
+    [SerializeField] private Text winText; /* Reference to "you win" text */
+    [SerializeField] private GameObject winSparkle; /* Reference to sparkle effect */
+    [SerializeField] private Text loseText; /* Reference to "you lose" text */
 
     private List<BuildZone> activeBuildZones;
     private BuildZone lastInteractedBuildZone;
@@ -195,7 +197,8 @@ public class GameController : MonoBehaviour
 
     private IEnumerator VictoryLap()
     {
-        winText.SetActive(true);
+        StartCoroutine(FadeInText(Time.realtimeSinceStartup, winText));
+        winSparkle.SetActive(true);
         EffectsManager.Instance.PlayEffect(EffectsManager.Effects.Confetti);
         EffectsManager.Instance.PlayEffect(EffectsManager.Effects.Yay);
         yield return new WaitForSeconds(Constants.endGameWaitDelay);
@@ -208,14 +211,28 @@ public class GameController : MonoBehaviour
         EffectsManager.Instance.PlayEffect(EffectsManager.Effects.Incorrect); /* TODO: replace this with car crash sound effect */
 
         /* Pop up you lose text */
-        loseText.SetActive(true);
+        StartCoroutine(FadeInText(Time.realtimeSinceStartup, loseText));
 
         /* Spawn a dust cloud on the coaster */
         EffectsManager.Instance.PlayEffect(EffectsManager.Effects.DustCloud, CoasterManager.Instance.transform);
 
         /* Wait a bit, then load the menu scene */
-        yield return new WaitForSeconds(Constants.endGameWaitDelay);
+        yield return new WaitForSeconds(Constants.endGameWaitDelay + 5.0f);
         SceneManager.LoadScene("Menu");
+    }
+
+    private IEnumerator FadeInText(float startTime, Text t)
+    {
+        float timer = (Time.realtimeSinceStartup - startTime);
+        float fracJourney = timer / 30f;
+        t.color = Color.Lerp(t.color, new Color32(186, 188, 190, 255), fracJourney);
+        if (timer > 3.5f)
+        {
+            StopCoroutine(FadeInText(startTime, t));
+            yield break;
+        }
+        yield return new WaitForSecondsRealtime(0.05f);
+        StartCoroutine(FadeInText(startTime, t));
     }
 
     public void MenuCursorSet()
