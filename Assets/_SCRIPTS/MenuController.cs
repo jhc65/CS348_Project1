@@ -22,6 +22,7 @@ public class MenuController : MonoBehaviour
     [SerializeField] private Toggle gapWidthImproperFractionsToggle;
     [SerializeField] private Toggle gapWidthMixedNumbersToggle;
     [SerializeField] private ToggleGroup colorToggles;
+    [SerializeField] private Slider difficultySlider;
     [SerializeField] private Text difficultyText;
 
     [SerializeField] private Texture2D cursorTexture;
@@ -33,6 +34,19 @@ public class MenuController : MonoBehaviour
     {
         Time.timeScale = 1;
 
+        /* Set all of the settings options using the values in Constants */
+        SetUIFromConstants();
+
+        Vector2 cursorHotSpot = new Vector2(cursorTexture.width * 0.25f, cursorTexture.height * 0.25f);
+        Cursor.SetCursor(cursorTexture, cursorHotSpot, CursorMode.ForceSoftware);
+        /* If coming from a finished game, load straight into the station */
+        if (Constants.gameOver)
+            GameSettingsClick();
+    }
+
+    private void SetUIFromConstants()
+    {
+        /* Coaster color settings */
         track.color = Constants.trackColor;
         CoasterManager.Instance.ChangeColor(Constants.trackColor);
         colorToggles.SetAllTogglesOff();
@@ -43,18 +57,15 @@ public class MenuController : MonoBehaviour
                 t.isOn = true;
         }
 
-
-        Vector2 cursorHotSpot = new Vector2(cursorTexture.width * 0.25f, cursorTexture.height * 0.25f);
-        Cursor.SetCursor(cursorTexture, cursorHotSpot, CursorMode.ForceSoftware);
-        if(Constants.gameOver)
-        {
-            startMenu.SetActive(false);
-            endgameMenu.SetActive(true);
-            if (Constants.gameWon)
-                wonMenu.SetActive(true);
-            else
-                lostMenu.SetActive(true);
-        }
+        /* Game Settings */
+        gapWidthAlwaysOneToggle.isOn = Constants.gapAlwaysOne;
+        gapWidthAlwaysAtomicToggle.isOn = Constants.gapAlwaysAtomic;
+        gapWidthImproperFractionsToggle.isOn = Constants.gapAllowImproperFractions;
+        gapWidthMixedNumbersToggle.isOn = Constants.gapAllowMixedNumbers;
+        unlimitedInventoryToggle.isOn = Constants.unlimitedInventory;
+        showCutLengthsToggle.isOn = Constants.showCutLengths;
+        difficultySlider.value = (float)Constants.difficulty;
+        difficultyText.text = Constants.difficulty.ToString();
     }
 
     public void PlayClick()
@@ -174,5 +185,10 @@ public class MenuController : MonoBehaviour
     {
         Constants.difficulty = (Constants.Difficulty)s.value;
         difficultyText.text = Constants.difficulty.ToString();
+    }
+
+    public void ToggleSettingsBar(Animator panelAnimator)
+    {
+        panelAnimator.SetTrigger("Toggle");
     }
 }
