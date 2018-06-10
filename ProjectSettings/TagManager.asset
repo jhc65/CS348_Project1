@@ -68,8 +68,11 @@ TagManager:
   - name: Coaster
     uniqueID: 1091072793
     locked: 0
-  - name: HoverPreview
+  - name: MovingPieces
     uniqueID: 3363938005
+    locked: 0
+  - name: Effects
+    uniqueID: 964437351
     locked: 0
   - name: UI
     uniqueID: 3966375629
