@@ -9,7 +9,7 @@ public class TrackObject : MonoBehaviour {
     [SerializeField] private bool trackY;
     [SerializeField] private bool trackZ;
     [SerializeField] private float offsetX;
-    private bool paused = true;
+    public bool paused = true;
 	
 	// Update is called once per frame
 	void Update () {

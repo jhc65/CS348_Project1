@@ -211,7 +211,7 @@ public class GameController : MonoBehaviour
         EffectsManager.Instance.PlayEffect(EffectsManager.Effects.DustCloud, CoasterManager.Instance.transform);
 
         /* Wait a bit, then load the menu scene */
-        yield return new WaitForSeconds(Constants.endGameWaitDelay + 5.0f);
+        yield return new WaitForSeconds(Constants.endGameWaitDelay);
         SceneManager.LoadScene("Menu");
     }
 

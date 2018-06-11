@@ -46,6 +46,23 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!1 &1740833967866664
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4618306666100898}
+  - component: {fileID: 61738210552313904}
+  - component: {fileID: 114238642456761068}
+  m_Layer: 0
+  m_Name: CamaraStartTrigger
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
 --- !u!1 &1810216347969754
 GameObject:
   m_ObjectHideFlags: 0
@@ -91,8 +108,22 @@ Transform:
   - {fileID: 4648911555938980}
   - {fileID: 4676259297678726}
   - {fileID: 4815915986768546}
+  - {fileID: 4618306666100898}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4618306666100898
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1740833967866664}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: -1.5, y: 0.5, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4332242177567576}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4648911555938980
 Transform:
@@ -174,6 +205,42 @@ MeshFilter:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1246056318993292}
   m_Mesh: {fileID: 0}
+--- !u!61 &61738210552313904
+BoxCollider2D:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1740833967866664}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0.5, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0, y: 0}
+    oldSize: {x: 0, y: 0}
+    newSize: {x: 0, y: 0}
+    adaptiveTilingThreshold: 0
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1}
+  m_EdgeRadius: 0
+--- !u!114 &114238642456761068
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1740833967866664}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 097838998d09b7b4e968331e3b5450d9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114401355622216040
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -202,61 +269,61 @@ MonoBehaviour:
   _uniformSample: 0
   _uniformPreserveClipRange: 0
   _samples:
-  - position: {x: -9.6, y: 0, z: 0}
+  - position: {x: -5.25, y: 0, z: 0}
     normal: {x: 0, y: 0, z: -1}
     direction: {x: 1, y: 0, z: 0}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0
-  - position: {x: -9.0624, y: 0, z: 0}
+  - position: {x: -4.8341994, y: 0, z: 0}
     normal: {x: 0, y: 0, z: -1}
     direction: {x: 1, y: 0, z: 0}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0.1
-  - position: {x: -7.6032004, y: 0, z: 0}
+  - position: {x: -3.7056003, y: 0, z: 0}
     normal: {x: 0, y: 0, z: -1}
     direction: {x: 1, y: 0, z: 0}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0.2
-  - position: {x: -5.4528003, y: 0, z: 0}
+  - position: {x: -2.0424, y: 0, z: 0}
     normal: {x: 0, y: 0, z: -1}
     direction: {x: 1, y: 0, z: 0}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0.3
-  - position: {x: -2.8416, y: 0, z: 0}
+  - position: {x: -0.02279985, y: 0, z: 0}
     normal: {x: 0, y: 0, z: -1}
     direction: {x: 1, y: 0, z: 0}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0.4
-  - position: {x: 0, y: 0, z: 0}
+  - position: {x: 2.1750002, y: 0, z: 0}
     normal: {x: 0, y: 0, z: -1}
     direction: {x: 1, y: 0, z: 0}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0.5
-  - position: {x: 2.8416004, y: 0, z: 0}
+  - position: {x: 4.3728004, y: 0, z: 0}
     normal: {x: 0, y: 0, z: -1}
     direction: {x: 1, y: 0, z: 0}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0.6
-  - position: {x: 5.4528, y: 0, z: 0}
+  - position: {x: 6.3924003, y: 0, z: 0}
     normal: {x: 0, y: 0, z: -1}
     direction: {x: 1, y: 0, z: 0}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0.7
-  - position: {x: 7.6032004, y: 0, z: 0}
+  - position: {x: 8.0556, y: 0, z: 0}
     normal: {x: 0, y: 0, z: -1}
     direction: {x: 1, y: 0, z: 0}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0.8
-  - position: {x: 9.0624, y: 0, z: 0}
+  - position: {x: 9.1842, y: 0, z: 0}
     normal: {x: 0, y: 0, z: -1}
     direction: {x: 1, y: 0, z: 0}
     color: {r: 1, g: 1, b: 1, a: 1}
@@ -269,61 +336,61 @@ MonoBehaviour:
     size: 1
     percent: 1
   _clippedSamples:
-  - position: {x: -9.6, y: 0, z: 0}
+  - position: {x: -5.25, y: 0, z: 0}
     normal: {x: 0, y: 0, z: -1}
     direction: {x: 1, y: 0, z: 0}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0
-  - position: {x: -9.0624, y: 0, z: 0}
+  - position: {x: -4.8341994, y: 0, z: 0}
     normal: {x: 0, y: 0, z: -1}
     direction: {x: 1, y: 0, z: 0}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0.1
-  - position: {x: -7.6032004, y: 0, z: 0}
+  - position: {x: -3.7056003, y: 0, z: 0}
     normal: {x: 0, y: 0, z: -1}
     direction: {x: 1, y: 0, z: 0}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0.2
-  - position: {x: -5.4528003, y: 0, z: 0}
+  - position: {x: -2.0424, y: 0, z: 0}
     normal: {x: 0, y: 0, z: -1}
     direction: {x: 1, y: 0, z: 0}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0.3
-  - position: {x: -2.8416, y: 0, z: 0}
+  - position: {x: -0.02279985, y: 0, z: 0}
     normal: {x: 0, y: 0, z: -1}
     direction: {x: 1, y: 0, z: 0}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0.4
-  - position: {x: 0, y: 0, z: 0}
+  - position: {x: 2.1750002, y: 0, z: 0}
     normal: {x: 0, y: 0, z: -1}
     direction: {x: 1, y: 0, z: 0}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0.5
-  - position: {x: 2.8416004, y: 0, z: 0}
+  - position: {x: 4.3728004, y: 0, z: 0}
     normal: {x: 0, y: 0, z: -1}
     direction: {x: 1, y: 0, z: 0}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0.6
-  - position: {x: 5.4528, y: 0, z: 0}
+  - position: {x: 6.3924003, y: 0, z: 0}
     normal: {x: 0, y: 0, z: -1}
     direction: {x: 1, y: 0, z: 0}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0.7
-  - position: {x: 7.6032004, y: 0, z: 0}
+  - position: {x: 8.0556, y: 0, z: 0}
     normal: {x: 0, y: 0, z: -1}
     direction: {x: 1, y: 0, z: 0}
     color: {r: 1, g: 1, b: 1, a: 1}
     size: 1
     percent: 0.8
-  - position: {x: 9.0624, y: 0, z: 0}
+  - position: {x: 9.1842, y: 0, z: 0}
     normal: {x: 0, y: 0, z: -1}
     direction: {x: 1, y: 0, z: 0}
     color: {r: 1, g: 1, b: 1, a: 1}
@@ -395,12 +462,12 @@ MonoBehaviour:
   spline:
     points:
     - _type: 0
-      position: {x: -9.6, y: 0, z: 0}
+      position: {x: -5.25, y: 0, z: 0}
       color: {r: 1, g: 1, b: 1, a: 1}
       normal: {x: 0, y: 0, z: -1}
       size: 1
-      tangent: {x: -9.6, y: 0, z: 0}
-      tangent2: {x: -9.6, y: 0, z: 0}
+      tangent: {x: -5.25, y: 0, z: 0}
+      tangent2: {x: -5.25, y: 0, z: 0}
     - _type: 0
       position: {x: 9.6, y: 0, z: 0}
       color: {r: 1, g: 1, b: 1, a: 1}
@@ -429,8 +496,8 @@ MonoBehaviour:
     initialized: 0
   _space: 1
   subscribers:
-  - {fileID: 114401355622216040}
   - {fileID: 0}
+  - {fileID: 114401355622216040}
   _nodeLinks: []
 --- !u!212 &212001051377495360
 SpriteRenderer:

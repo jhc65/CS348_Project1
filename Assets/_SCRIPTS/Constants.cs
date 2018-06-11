@@ -14,7 +14,7 @@ public static class Constants {
     public static bool gapAllowMixedNumbers = false;
     public static bool unlimitedInventory = false;
     public static bool showCutLengths = false;
-    public static int numSections = 2;
+    public static int numSections = 1;
     public static Color trackColor = new Color32(164, 29, 49, 255);
     public static int decalIndex = 0;
     public static float chanceToBreakPiece = .25f;
@@ -43,7 +43,7 @@ public static class Constants {
     public static float backgroundVolume = 10f;
     public static float effectsVolume = 10f;
     public static float backgroundPitch = 1f;
-    public static float endGameWaitDelay = 4f; /* Seconds to wait before going back to the menu (allowing animations and sounds to play) */
+    public static float endGameWaitDelay = 15f; /* Seconds to wait before going back to the menu (allowing animations and sounds to play) */
     public const string dictionaryFileName = "FractionDatabase";
     public const string dictionaryFileExtension = ".bytes";
     public static FractionDatabase fractionDatabase;
