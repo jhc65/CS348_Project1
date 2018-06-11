@@ -36583,21 +36583,16 @@ Prefab:
       propertyPath: m_RootOrder
       value: 9
       objectReference: {fileID: 0}
-    - target: {fileID: 33164700101554440, guid: a939a07f927f3df46a8daa112184cc2a,
-        type: 2}
-      propertyPath: m_Mesh
-      value: 
-      objectReference: {fileID: 1841091425}
     - target: {fileID: 114401355622216040, guid: a939a07f927f3df46a8daa112184cc2a,
         type: 2}
       propertyPath: mesh
       value: 
       objectReference: {fileID: 1841091425}
-    - target: {fileID: 114477829141114092, guid: a939a07f927f3df46a8daa112184cc2a,
+    - target: {fileID: 33164700101554440, guid: a939a07f927f3df46a8daa112184cc2a,
         type: 2}
-      propertyPath: subscribers.Array.data[0]
+      propertyPath: m_Mesh
       value: 
-      objectReference: {fileID: 0}
+      objectReference: {fileID: 1841091425}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a939a07f927f3df46a8daa112184cc2a, type: 2}
   m_IsPrefabParent: 0
@@ -39236,6 +39231,11 @@ Prefab:
         type: 2}
       propertyPath: ShapeModule.radiusThickness
       value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 198257057391302242, guid: c18ca18b3de654f94b39a4f2c4dfee2b,
+        type: 2}
+      propertyPath: ShapeModule.radiusThickness
+      value: 1.0000
       objectReference: {fileID: 0}
     - target: {fileID: 198257057391302242, guid: c18ca18b3de654f94b39a4f2c4dfee2b,
         type: 2}

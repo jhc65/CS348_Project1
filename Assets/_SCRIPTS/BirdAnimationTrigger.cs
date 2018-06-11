@@ -25,7 +25,10 @@ public class BirdAnimationTrigger : MonoBehaviour {
         /* Trigger the fly animation on each bird */
         foreach (Animator animator in birdAnimators)
         {
-            animator.SetTrigger("Fly");
+            if (Random.Range(0, 10) > 3 || birdAnimators.Length > 1)
+                animator.SetTrigger("Fly");
+            else
+                animator.SetTrigger("Smack");
             Destroy(gameObject, 6f);
         }
     }
