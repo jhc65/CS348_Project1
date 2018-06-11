@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using Dreamteck.Splines;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -22,6 +23,9 @@ public class CoasterManager : MonoBehaviour {
     public Sprite[] decals;
     [SerializeField] private AudioSource trackAudio;
     private Vector3 startPosition;
+    private SplineFollower[] splineFollowers;
+    [SerializeField] private float normalSpeed;
+    [SerializeField] private float slowedSpeed;
 
     public static CoasterManager Instance { get; private set; }
 
@@ -31,6 +35,7 @@ public class CoasterManager : MonoBehaviour {
         Instance = this;
         animator = GetComponent<Animator>();
         startPosition = this.transform.position;
+        splineFollowers = GetComponentsInChildren<SplineFollower>();
     }
 
     public void ChangeColor(Color c)
@@ -59,10 +64,12 @@ public class CoasterManager : MonoBehaviour {
         switch(collider.tag)
         {
             case "decrease":
-                animator.SetFloat(PlaySpeedMultipier, Constants.slowCoasterSpeed);
+                //animator.SetFloat(PlaySpeedMultipier, Constants.slowCoasterSpeed);
+                foreach (SplineFollower sf in splineFollowers)
+                    sf.followSpeed = slowedSpeed;
                 break;
             case "increase":
-                animator.SetFloat(PlaySpeedMultipier, Constants.fastCoasterSpeed);
+                SpeedUp();
                 break;
             case "lose":
                 /* Stop the coaster animation */
@@ -82,7 +89,9 @@ public class CoasterManager : MonoBehaviour {
 
     public void SpeedUp()
     {
-        animator.SetFloat(PlaySpeedMultipier, Constants.fastCoasterSpeed);
+        //animator.SetFloat(PlaySpeedMultipier, Constants.fastCoasterSpeed);
+        foreach (SplineFollower sf in splineFollowers)
+            sf.followSpeed = normalSpeed;
     }
 
     public void StopTrackAudio()

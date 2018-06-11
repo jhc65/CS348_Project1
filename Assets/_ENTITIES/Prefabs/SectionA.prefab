@@ -367,7 +367,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!1 &1506995476172516
 GameObject:
   m_ObjectHideFlags: 1
@@ -1027,7 +1027,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1776711788408460}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.28, y: 3.12, z: 0}
+  m_LocalPosition: {x: -7.4, y: -1.76, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4322233676133724}
@@ -1055,7 +1055,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1543560491716284}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -6.28, y: 3.12, z: 0}
+  m_LocalPosition: {x: -7.49, y: -2.05, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4233825549832518}
@@ -5521,8 +5521,7 @@ MonoBehaviour:
     morphStates: []
     initialized: 0
   _space: 1
-  subscribers:
-  - {fileID: 114396625721616466}
+  subscribers: []
   _nodeLinks: []
 --- !u!114 &114722591508792554
 MonoBehaviour:
