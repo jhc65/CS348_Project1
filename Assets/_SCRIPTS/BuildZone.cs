@@ -11,7 +11,7 @@ public class BuildZone : MonoBehaviour {
     [SerializeField] Transform snapStart;
     [SerializeField] private Text equation;
     [SerializeField] private GameObject slowDownTrigger;
-    [SerializeField] private SpriteMask gapMask;
+    [SerializeField] private GameObject gapMask;
     [SerializeField] private GameObject interactable;
     [SerializeField] private GameObject sparkle;
     [SerializeField] private GameObject dustCloud;
