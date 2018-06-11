@@ -21,6 +21,7 @@ public class GameController : MonoBehaviour
     [SerializeField] private float delayOnWin; // How long to wait after clearing a gap before moving on
     [SerializeField] private Text winText; /* Reference to "you win" text */
     [SerializeField] private GameObject winSparkle; /* Reference to sparkle effect */
+    [SerializeField] private GameObject[] confettiCannons;
     [SerializeField] private Text loseText; /* Reference to "you lose" text */
 
     private List<BuildZone> activeBuildZones;
@@ -193,7 +194,9 @@ public class GameController : MonoBehaviour
     {
         StartCoroutine(FadeInText(Time.realtimeSinceStartup, winText));
         winSparkle.SetActive(true);
-        EffectsManager.Instance.PlayEffect(EffectsManager.Effects.Confetti);
+        foreach (GameObject go in confettiCannons)
+            go.SetActive(true);
+        //EffectsManager.Instance.PlayEffect(EffectsManager.Effects.Confetti);
         EffectsManager.Instance.PlayEffect(EffectsManager.Effects.Yay);
         yield return new WaitForSeconds(Constants.endGameWaitDelay);
         SceneManager.LoadScene("Menu");
