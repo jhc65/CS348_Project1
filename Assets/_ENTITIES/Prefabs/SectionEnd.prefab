@@ -81,7 +81,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1045542028413626}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: -0.7, z: 0}
+  m_LocalPosition: {x: 0, y: -1.5, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4655631177941238}
@@ -148,19 +148,19 @@ MonoBehaviour:
   spline:
     points:
     - _type: 0
-      position: {x: -9.599998, y: 1, z: 0}
+      position: {x: -9.599998, y: 0, z: 0}
       color: {r: 1, g: 1, b: 1, a: 1}
       normal: {x: 0, y: 0, z: -1}
       size: 1
-      tangent: {x: -9.599998, y: 1, z: 0}
-      tangent2: {x: -9.599998, y: 1, z: 0}
+      tangent: {x: -9.599998, y: 0, z: 0}
+      tangent2: {x: -9.599998, y: 0, z: 0}
     - _type: 0
-      position: {x: 9.599998, y: 1, z: 0}
+      position: {x: 9.599998, y: 0, z: 0}
       color: {r: 1, g: 1, b: 1, a: 1}
       normal: {x: 0, y: 0, z: -1}
       size: 1
-      tangent: {x: 9.599998, y: 1, z: 0}
-      tangent2: {x: 9.599998, y: 1, z: 0}
+      tangent: {x: 9.599998, y: 0, z: 0}
+      tangent2: {x: 9.599998, y: 0, z: 0}
     closed: 0
     type: 3
     customValueInterpolation:
