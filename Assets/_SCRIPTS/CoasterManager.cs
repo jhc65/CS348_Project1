@@ -71,9 +71,9 @@ public class CoasterManager : MonoBehaviour {
                 /* Tell GameController to end the game with a lose state */
                 GameController.Instance.EndGame(false);
                 break;
-            case "Section":
-                GameController.Instance.TriggerNextSectionAnimation();
-                break;
+///            case "Section":
+///                GameController.Instance.TriggerNextSectionAnimation();
+///                break;
             default:
 
                 break;

@@ -1,6 +1,7 @@
 ﻿using Dreamteck.Splines;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -10,8 +11,9 @@ public class GameController : MonoBehaviour
     [SerializeField] private Texture2D[] cursorTextures;    // custom cursor sprites
     private Constants.CursorType activeCursor;
     [SerializeField] private Piece[] pieces;
-    [SerializeField] private GameObject[] sections;
-    [SerializeField] private SplineComputer[] splines;
+    [SerializeField] private GameObject[] sections; // list of all spawnable sections, with the end section always position 0
+///    [SerializeField] private SplineComputer[] splines;
+    [SerializeField] private SplineComputer masterSpline;
     [SerializeField] private GameObject cam;
 
     [SerializeField] private GameObject pauseMenu;
@@ -24,8 +26,8 @@ public class GameController : MonoBehaviour
 
     private List<BuildZone> activeBuildZones;
     private BuildZone lastInteractedBuildZone;
-    private List<Section> spawnedSections; /* Holds the sections spawned for a play session */
-    private int activeSectionIndex; /* Index of active Section in spawnedSections */
+///    private List<Section> spawnedSections; /* Holds the sections spawned for a play session */
+///    private int activeSectionIndex; /* Index of active Section in spawnedSections */
     public int numBuildZones = 0;
     public int clearedBuildZones = 0;
 
@@ -84,26 +86,44 @@ public class GameController : MonoBehaviour
         inv = Inventory.Instance;
 
         // setup build zones and add pieces
-        spawnedSections = new List<Section>();
+///        spawnedSections = new List<Section>();
         activeBuildZones = new List<BuildZone>();
         List<SplinePoint> splinePoints = new List<SplinePoint>();
-        splinePoints.AddRange(splines[0].GetPoints());
-        splinePoints.RemoveAt(splinePoints.Count - 1);
+        splinePoints.AddRange(masterSpline.GetPoints());
+        //splinePoints.RemoveAt(splinePoints.Count - 1);
+///        int numSections = Constants.numSections;    // for static start and end
+        //splines = new SplineComputer[numSections];
         
-        for (int i = 0; i < Constants.numSections; i++)
+        for (int i = 0; i <= Constants.numSections; i++)
         {
-            int ind = Random.Range(0, sections.Length);
-            GameObject go = Instantiate(sections[ind], new Vector3(28.8f + (38.4f * i), sections[ind].transform.position.y, 0), Quaternion.identity);
-            Section section = go.GetComponent<Section>();
-            spawnedSections.Add(section);
+            SplineComputer currentSpline = null;
+            if(i==Constants.numSections)
+            {
+                currentSpline = Instantiate(sections[0], new Vector3(19.2f + (38.4f * i), sections[0].transform.position.y, 0), Quaternion.identity).GetComponentInChildren<SplineComputer>();
+            }
+            else
+            {
+                int ind = Random.Range(1, sections.Length);
+                currentSpline = Instantiate(sections[ind], new Vector3(28.8f + (38.4f * i), sections[ind].transform.position.y, 0), Quaternion.identity).GetComponentInChildren<SplineComputer>();
+            }
+
+
+            //int ind = 0;
+            ///            if (i != 0 && i != numSections - 1)
+            ///                ind = Random.Range(1, sections.Length);
+            ///            GameObject go = Instantiate(sections[ind], new Vector3(28.8f + (38.4f * i), sections[ind].transform.position.y, 0), Quaternion.identity);
+            ///            Section section = go.GetComponent<Section>();
+            ///            spawnedSections.Add(section);
             //activeBuildZones.AddRange(section.SetupBuildZones());
-            splines[i + 1] = go.GetComponentInChildren<SplineComputer>();
-            splinePoints.AddRange(splines[i + 1].GetPoints());
-            splinePoints.RemoveAt(splinePoints.Count - 1);
+            ///            splines[i] = go.GetComponentInChildren<SplineComputer>();
+            splinePoints.AddRange(currentSpline.GetPoints().Skip(1).ToArray());
+            currentSpline.gameObject.SetActive(false);
+///            splinePoints.RemoveAt(splinePoints.Count - 1);
         }
 
-        splinePoints.AddRange(splines[Constants.numSections + 1].GetPoints());
-        splines[0].SetPoints(splinePoints.ToArray());
+///        splinePoints.AddRange(splines[Constants.numSections + 1].GetPoints());
+        masterSpline.SetPoints(splinePoints.ToArray());
+        masterSpline.Rebuild();
 
 
         if (Constants.unlimitedInventory)    // set inventory unlimited
@@ -120,8 +140,8 @@ public class GameController : MonoBehaviour
         }
 
         /* If this is the first section, tell the coaster to play its animation */
-        CoasterManager.Instance.PlaySection(spawnedSections[0].GetAnimationTrigger());
-        activeSectionIndex = 0;
+///        CoasterManager.Instance.PlaySection(spawnedSections[0].GetAnimationTrigger());
+///        activeSectionIndex = 0;
         numBuildZones = activeBuildZones.Count;
         lastInteractedBuildZone = activeBuildZones[0];
         lastInteractedBuildZone.Activate();
@@ -145,15 +165,15 @@ public class GameController : MonoBehaviour
         //cam.transform.position = new Vector3(cam.transform.position.x + 0.001f, cam.transform.position.y, cam.transform.position.z);
     }
 
-    public void TriggerNextSectionAnimation()
-    {
-        /* Set the next section as Active */
-        activeSectionIndex++;
+///    public void TriggerNextSectionAnimation()
+///    {
+///        /* Set the next section as Active */
+///        activeSectionIndex++;
 
         /* If there is a next section trigger its animation */
-        if (activeSectionIndex < spawnedSections.Count)
-            CoasterManager.Instance.PlaySection(spawnedSections[activeSectionIndex].GetAnimationTrigger());
-    }
+///        if (activeSectionIndex < spawnedSections.Count)
+///            CoasterManager.Instance.PlaySection(spawnedSections[activeSectionIndex].GetAnimationTrigger());
+///     }
 
     public IEnumerator OnGapFilled()
     {
