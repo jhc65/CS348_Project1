@@ -9,20 +9,36 @@ Prefab:
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 1882377665067032}
+  m_RootGameObject: {fileID: 1164291729400650}
   m_IsPrefabParent: 1
 --- !u!1 &1063307954591334
 GameObject:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4037584585199976}
   - component: {fileID: 212735392009680472}
+  - component: {fileID: 114347853661717978}
   m_Layer: 0
-  m_Name: cart 5
+  m_Name: cart (5)
   m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!1 &1164291729400650
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 5
+  m_Component:
+  - component: {fileID: 4260318520172360}
+  m_Layer: 0
+  m_Name: coaster
+  m_TagString: coaster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -61,7 +77,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1232737128869622
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
@@ -77,7 +93,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1368513146480488
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
@@ -157,15 +173,16 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1537271674616196
 GameObject:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4065925236160162}
   - component: {fileID: 212485085128490932}
+  - component: {fileID: 114085909436053850}
   m_Layer: 0
-  m_Name: cart 6
+  m_Name: cart (6)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -189,15 +206,16 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1609575729241922
 GameObject:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4963455949985646}
   - component: {fileID: 212081939194053706}
+  - component: {fileID: 114275428183698340}
   m_Layer: 0
-  m_Name: cart 4
+  m_Name: cart (4)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -221,15 +239,16 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1649546353040420
 GameObject:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4801500750282172}
   - component: {fileID: 212750969498936970}
+  - component: {fileID: 114258367062030456}
   m_Layer: 0
-  m_Name: cart 3
+  m_Name: cart (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -237,15 +256,16 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1713695503930154
 GameObject:
-  m_ObjectHideFlags: 1
+  m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4785704309274790}
   - component: {fileID: 212686225922341032}
+  - component: {fileID: 114450655356480628}
   m_Layer: 0
-  m_Name: cart 2
+  m_Name: cart (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -299,7 +319,7 @@ GameObject:
   - component: {fileID: 82185702556983724}
   - component: {fileID: 114260939231462048}
   m_Layer: 0
-  m_Name: coaster
+  m_Name: cart (1)
   m_TagString: coaster
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -355,7 +375,7 @@ GameObject:
   m_IsActive: 1
 --- !u!1 &1986242634012332
 GameObject:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   serializedVersion: 5
@@ -392,14 +412,14 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1063307954591334}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.45, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4665810026372682}
   - {fileID: 4220493728238956}
   - {fileID: 4270612650353362}
-  m_Father: {fileID: 4815358056885764}
-  m_RootOrder: 0
+  m_Father: {fileID: 4260318520172360}
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4065925236160162
 Transform:
@@ -408,13 +428,13 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1537271674616196}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.45, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4172615141592334}
   - {fileID: 4929397973006804}
-  m_Father: {fileID: 4665810026372682}
-  m_RootOrder: 0
+  m_Father: {fileID: 4260318520172360}
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4137124562604798
 Transform:
@@ -423,11 +443,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1368513146480488}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.3050003, y: -0.318, z: 0}
+  m_LocalPosition: {x: -0.769001, y: -0.318, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4946018662735920}
-  m_RootOrder: 2
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4172615141592334
 Transform:
@@ -436,7 +456,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1439053090100790}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.19700032, y: -0.325, z: 0}
+  m_LocalPosition: {x: -0.26700038, y: -0.325, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4065925236160162}
@@ -449,7 +469,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1761540095789582}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.21299946, y: -0.318, z: 0}
+  m_LocalPosition: {x: -0.67700016, y: -0.318, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4963455949985646}
@@ -462,11 +482,30 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1381645814679714}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.21200019, y: -0.325, z: 0}
+  m_LocalPosition: {x: -0.2520005, y: -0.325, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4037584585199976}
   m_RootOrder: 1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!4 &4260318520172360
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1164291729400650}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: -1}
+  m_LocalPosition: {x: -9.6, y: 0.35, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children:
+  - {fileID: 4946018662735920}
+  - {fileID: 4785704309274790}
+  - {fileID: 4801500750282172}
+  - {fileID: 4963455949985646}
+  - {fileID: 4037584585199976}
+  - {fileID: 4065925236160162}
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4267072107093780
 Transform:
@@ -475,7 +514,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1231595142052912}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.19599992, y: -0.325, z: 0}
+  m_LocalPosition: {x: -0.26800078, y: -0.325, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4963455949985646}
@@ -488,7 +527,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1927656028000956}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.19699919, y: -0.318, z: 0}
+  m_LocalPosition: {x: -0.6609999, y: -0.318, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4037584585199976}
@@ -501,11 +540,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1232737128869622}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.10399914, y: -0.325, z: 0}
+  m_LocalPosition: {x: -0.36000156, y: -0.325, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4946018662735920}
-  m_RootOrder: 1
+  m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4303075236069834
 Transform:
@@ -514,7 +553,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1752814525980226}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.214, y: -0.325, z: 0}
+  m_LocalPosition: {x: -0.25000072, y: -0.325, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4785704309274790}
@@ -527,10 +566,9 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1201604303908690}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.45, y: 0, z: 0}
+  m_LocalPosition: {x: -0.9140007, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4065925236160162}
+  m_Children: []
   m_Father: {fileID: 4037584585199976}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -541,10 +579,9 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1944999110706288}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.45, y: 0, z: 0}
+  m_LocalPosition: {x: -0.9140007, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4801500750282172}
+  m_Children: []
   m_Father: {fileID: 4785704309274790}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -555,7 +592,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1478282893366320}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.195, y: -0.318, z: 0}
+  m_LocalPosition: {x: -0.659, y: -0.318, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4785704309274790}
@@ -568,14 +605,14 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1713695503930154}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.45, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4695343837724028}
   - {fileID: 4303075236069834}
   - {fileID: 4732348488436276}
-  m_Father: {fileID: 4975409530671606}
-  m_RootOrder: 0
+  m_Father: {fileID: 4260318520172360}
+  m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4791473301272200
 Transform:
@@ -584,7 +621,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1991350197769010}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.20399916, y: -0.318, z: 0}
+  m_LocalPosition: {x: -0.66799986, y: -0.318, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4801500750282172}
@@ -597,14 +634,14 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1649546353040420}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.45, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4815407853440414}
   - {fileID: 4971737490049408}
   - {fileID: 4791473301272200}
-  m_Father: {fileID: 4695343837724028}
-  m_RootOrder: 0
+  m_Father: {fileID: 4260318520172360}
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4815358056885764
 Transform:
@@ -613,10 +650,9 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1940332395944414}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.45, y: 0, z: 0}
+  m_LocalPosition: {x: -0.9140007, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4037584585199976}
+  m_Children: []
   m_Father: {fileID: 4963455949985646}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -627,10 +663,9 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1405194774778832}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.45, y: 0, z: 0}
+  m_LocalPosition: {x: -0.9140007, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4963455949985646}
+  m_Children: []
   m_Father: {fileID: 4801500750282172}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -641,7 +676,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1609947701376056}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.21199977, y: -0.318, z: 0}
+  m_LocalPosition: {x: -0.6760005, y: -0.318, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4065925236160162}
@@ -653,14 +688,14 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1882377665067032}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: -1}
-  m_LocalPosition: {x: -9.6, y: 0.35, z: 0}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
-  - {fileID: 4975409530671606}
   - {fileID: 4296786314788770}
   - {fileID: 4137124562604798}
-  m_Father: {fileID: 0}
+  - {fileID: 4975409530671606}
+  m_Father: {fileID: 4260318520172360}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4963455949985646
@@ -670,14 +705,14 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1609575729241922}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.45, y: 0, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 4815358056885764}
   - {fileID: 4267072107093780}
   - {fileID: 4184550024618618}
-  m_Father: {fileID: 4815407853440414}
-  m_RootOrder: 0
+  m_Father: {fileID: 4260318520172360}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4971737490049408
 Transform:
@@ -686,7 +721,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1580571796750974}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.20500022, y: -0.325, z: 0}
+  m_LocalPosition: {x: -0.25900048, y: -0.325, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 4801500750282172}
@@ -699,12 +734,11 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 1986242634012332}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.55, y: 0, z: 0}
+  m_LocalPosition: {x: -1.0140009, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children:
-  - {fileID: 4785704309274790}
+  m_Children: []
   m_Father: {fileID: 4946018662735920}
-  m_RootOrder: 0
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!50 &50874733679649490
 Rigidbody2D:
@@ -741,7 +775,7 @@ BoxCollider2D:
   m_Offset: {x: 0, y: -0.13419536}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
+    pivot: {x: 1, y: 0.5}
     oldSize: {x: 1.06, y: 0.7}
     newSize: {x: 1.06, y: 0.7}
     adaptiveTilingThreshold: 0.5
@@ -849,6 +883,239 @@ Animator:
   m_WarningMessage: 
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
+--- !u!114 &114085909436053850
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1537271674616196}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ddc1a2536715a24095c464a2c394d5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _address:
+    _elements:
+    - computer: {fileID: 0}
+      _startPoint: 0
+      _endPoint: -1
+  subscribers: []
+  updateMethod: 0
+  _user: {fileID: 0}
+  _resolution: 1
+  _clipTo: 1
+  _clipFrom: 0
+  _autoUpdate: 1
+  _loopSamples: 0
+  _averageResultVectors: 1
+  _uniformSample: 0
+  _uniformPreserveClipRange: 0
+  _samples:
+  - position: {x: -9.6, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0
+  - position: {x: -9.0624, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.1
+  - position: {x: -7.6032004, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.2
+  - position: {x: -5.4528003, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.3
+  - position: {x: -2.8416, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.4
+  - position: {x: 0, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.5
+  - position: {x: 2.8416004, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.6
+  - position: {x: 5.4528, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.7
+  - position: {x: 7.6032004, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.8
+  - position: {x: 9.0624, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.9
+  - position: {x: 9.6, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 1
+  _clippedSamples:
+  - position: {x: -9.6, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0
+  - position: {x: -9.0624, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.1
+  - position: {x: -7.6032004, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.2
+  - position: {x: -5.4528003, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.3
+  - position: {x: -2.8416, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.4
+  - position: {x: 0, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.5
+  - position: {x: 2.8416004, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.6
+  - position: {x: 5.4528, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.7
+  - position: {x: 7.6032004, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.8
+  - position: {x: 9.0624, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.9
+  - position: {x: 9.6, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 1
+  animClipFrom: 0
+  animClipTo: 1
+  animResolution: 1
+  sampleUser: 0
+  multithreaded: 0
+  buildOnAwake: 0
+  applyDirectionRotation: 1
+  _direction: 1
+  _physicsMode: 0
+  _motion:
+    _offset: {x: -0.35, y: 0}
+    _rotationOffset: {x: 90, y: 0, z: 90}
+    _baseScale: {x: 1, y: 1, z: 1}
+    customRotation:
+      keys: []
+      _blend: 1
+    customOffset:
+      keys: []
+      _blend: 1
+    applyPositionX: 1
+    applyPositionY: 1
+    applyPositionZ: 0
+    direction: 1
+    applyRotationX: 1
+    applyRotationY: 1
+    applyRotationZ: 0
+    applyScaleX: 0
+    applyScaleY: 0
+    applyScaleZ: 0
+    targetUser: {fileID: 114085909436053850}
+  triggers_old: []
+  triggers:
+  - name: Trigger 1
+    type: 1
+    workOnce: 1
+    position: 0.2277204394340515
+    enabled: 1
+    color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    actions:
+    - target: {fileID: 0}
+      intValue: 0
+      floatValue: 0
+      doubleValue: 0
+      stringValue: 
+      boolValue: 0
+      goValue: {fileID: 0}
+      transformValue: {fileID: 0}
+      methodName: ResumeTracking
+      paramType: 0
+    gameObjects: []
+  _customRotations:
+    keys: []
+    _blend: 1
+  _customOffsets:
+    keys: []
+    _blend: 1
+  targetRigidbody: {fileID: 0}
+  targetRigidbody2D: {fileID: 0}
+  targetTransform: {fileID: 4065925236160162}
+  _result:
+    position: {x: -9.6, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0
+  wrapMode: 0
+  followMode: 0
+  autoStartPosition: 0
+  autoFollow: 0
+  _followSpeed: 1
+  _followDuration: 1
 --- !u!114 &114232005076483424
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -875,8 +1142,250 @@ MonoBehaviour:
   decalSprites: []
   decals: []
   trackAudio: {fileID: 82185702556983724}
+  splineFollowers:
+  - {fileID: 114260939231462048}
+  - {fileID: 114450655356480628}
+  - {fileID: 114258367062030456}
+  - {fileID: 114275428183698340}
+  - {fileID: 114347853661717978}
+  - {fileID: 114085909436053850}
   normalSpeed: 1
   slowedSpeed: 0.5
+  splineFollowFirstCartStartDelay: 1
+  splineFollowOtherCartStartDelay: 0.85
+--- !u!114 &114258367062030456
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1649546353040420}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ddc1a2536715a24095c464a2c394d5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _address:
+    _elements:
+    - computer: {fileID: 0}
+      _startPoint: 0
+      _endPoint: -1
+  subscribers: []
+  updateMethod: 0
+  _user: {fileID: 0}
+  _resolution: 1
+  _clipTo: 1
+  _clipFrom: 0
+  _autoUpdate: 1
+  _loopSamples: 0
+  _averageResultVectors: 1
+  _uniformSample: 0
+  _uniformPreserveClipRange: 0
+  _samples:
+  - position: {x: -9.6, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0
+  - position: {x: -9.0624, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.1
+  - position: {x: -7.6032004, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.2
+  - position: {x: -5.4528003, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.3
+  - position: {x: -2.8416, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.4
+  - position: {x: 0, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.5
+  - position: {x: 2.8416004, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.6
+  - position: {x: 5.4528, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.7
+  - position: {x: 7.6032004, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.8
+  - position: {x: 9.0624, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.9
+  - position: {x: 9.6, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 1
+  _clippedSamples:
+  - position: {x: -9.6, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0
+  - position: {x: -9.0624, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.1
+  - position: {x: -7.6032004, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.2
+  - position: {x: -5.4528003, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.3
+  - position: {x: -2.8416, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.4
+  - position: {x: 0, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.5
+  - position: {x: 2.8416004, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.6
+  - position: {x: 5.4528, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.7
+  - position: {x: 7.6032004, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.8
+  - position: {x: 9.0624, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.9
+  - position: {x: 9.6, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 1
+  animClipFrom: 0
+  animClipTo: 1
+  animResolution: 1
+  sampleUser: 0
+  multithreaded: 0
+  buildOnAwake: 0
+  applyDirectionRotation: 1
+  _direction: 1
+  _physicsMode: 0
+  _motion:
+    _offset: {x: -0.35, y: 0}
+    _rotationOffset: {x: 90, y: 0, z: 90}
+    _baseScale: {x: 1, y: 1, z: 1}
+    customRotation:
+      keys: []
+      _blend: 1
+    customOffset:
+      keys: []
+      _blend: 1
+    applyPositionX: 1
+    applyPositionY: 1
+    applyPositionZ: 0
+    direction: 1
+    applyRotationX: 1
+    applyRotationY: 1
+    applyRotationZ: 0
+    applyScaleX: 0
+    applyScaleY: 0
+    applyScaleZ: 0
+    targetUser: {fileID: 114258367062030456}
+  triggers_old: []
+  triggers:
+  - name: Trigger 1
+    type: 1
+    workOnce: 1
+    position: 0.2277204394340515
+    enabled: 1
+    color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    actions:
+    - target: {fileID: 0}
+      intValue: 0
+      floatValue: 0
+      doubleValue: 0
+      stringValue: 
+      boolValue: 0
+      goValue: {fileID: 0}
+      transformValue: {fileID: 0}
+      methodName: ResumeTracking
+      paramType: 0
+    gameObjects: []
+  _customRotations:
+    keys: []
+    _blend: 1
+  _customOffsets:
+    keys: []
+    _blend: 1
+  targetRigidbody: {fileID: 0}
+  targetRigidbody2D: {fileID: 0}
+  targetTransform: {fileID: 4801500750282172}
+  _result:
+    position: {x: -9.6, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0
+  wrapMode: 0
+  followMode: 0
+  autoStartPosition: 0
+  autoFollow: 0
+  _followSpeed: 1
+  _followDuration: 1
 --- !u!114 &114260939231462048
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -1107,8 +1616,707 @@ MonoBehaviour:
   wrapMode: 0
   followMode: 0
   autoStartPosition: 0
-  autoFollow: 1
-  _followSpeed: 0.25
+  autoFollow: 0
+  _followSpeed: 1
+  _followDuration: 1
+--- !u!114 &114275428183698340
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1609575729241922}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ddc1a2536715a24095c464a2c394d5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _address:
+    _elements:
+    - computer: {fileID: 0}
+      _startPoint: 0
+      _endPoint: -1
+  subscribers: []
+  updateMethod: 0
+  _user: {fileID: 0}
+  _resolution: 1
+  _clipTo: 1
+  _clipFrom: 0
+  _autoUpdate: 1
+  _loopSamples: 0
+  _averageResultVectors: 1
+  _uniformSample: 0
+  _uniformPreserveClipRange: 0
+  _samples:
+  - position: {x: -9.6, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0
+  - position: {x: -9.0624, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.1
+  - position: {x: -7.6032004, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.2
+  - position: {x: -5.4528003, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.3
+  - position: {x: -2.8416, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.4
+  - position: {x: 0, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.5
+  - position: {x: 2.8416004, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.6
+  - position: {x: 5.4528, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.7
+  - position: {x: 7.6032004, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.8
+  - position: {x: 9.0624, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.9
+  - position: {x: 9.6, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 1
+  _clippedSamples:
+  - position: {x: -9.6, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0
+  - position: {x: -9.0624, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.1
+  - position: {x: -7.6032004, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.2
+  - position: {x: -5.4528003, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.3
+  - position: {x: -2.8416, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.4
+  - position: {x: 0, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.5
+  - position: {x: 2.8416004, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.6
+  - position: {x: 5.4528, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.7
+  - position: {x: 7.6032004, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.8
+  - position: {x: 9.0624, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.9
+  - position: {x: 9.6, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 1
+  animClipFrom: 0
+  animClipTo: 1
+  animResolution: 1
+  sampleUser: 0
+  multithreaded: 0
+  buildOnAwake: 0
+  applyDirectionRotation: 1
+  _direction: 1
+  _physicsMode: 0
+  _motion:
+    _offset: {x: -0.35, y: 0}
+    _rotationOffset: {x: 90, y: 0, z: 90}
+    _baseScale: {x: 1, y: 1, z: 1}
+    customRotation:
+      keys: []
+      _blend: 1
+    customOffset:
+      keys: []
+      _blend: 1
+    applyPositionX: 1
+    applyPositionY: 1
+    applyPositionZ: 0
+    direction: 1
+    applyRotationX: 1
+    applyRotationY: 1
+    applyRotationZ: 0
+    applyScaleX: 0
+    applyScaleY: 0
+    applyScaleZ: 0
+    targetUser: {fileID: 114275428183698340}
+  triggers_old: []
+  triggers:
+  - name: Trigger 1
+    type: 1
+    workOnce: 1
+    position: 0.2277204394340515
+    enabled: 1
+    color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    actions:
+    - target: {fileID: 0}
+      intValue: 0
+      floatValue: 0
+      doubleValue: 0
+      stringValue: 
+      boolValue: 0
+      goValue: {fileID: 0}
+      transformValue: {fileID: 0}
+      methodName: ResumeTracking
+      paramType: 0
+    gameObjects: []
+  _customRotations:
+    keys: []
+    _blend: 1
+  _customOffsets:
+    keys: []
+    _blend: 1
+  targetRigidbody: {fileID: 0}
+  targetRigidbody2D: {fileID: 0}
+  targetTransform: {fileID: 4963455949985646}
+  _result:
+    position: {x: -9.6, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0
+  wrapMode: 0
+  followMode: 0
+  autoStartPosition: 0
+  autoFollow: 0
+  _followSpeed: 1
+  _followDuration: 1
+--- !u!114 &114347853661717978
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1063307954591334}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ddc1a2536715a24095c464a2c394d5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _address:
+    _elements:
+    - computer: {fileID: 0}
+      _startPoint: 0
+      _endPoint: -1
+  subscribers: []
+  updateMethod: 0
+  _user: {fileID: 0}
+  _resolution: 1
+  _clipTo: 1
+  _clipFrom: 0
+  _autoUpdate: 1
+  _loopSamples: 0
+  _averageResultVectors: 1
+  _uniformSample: 0
+  _uniformPreserveClipRange: 0
+  _samples:
+  - position: {x: -9.6, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0
+  - position: {x: -9.0624, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.1
+  - position: {x: -7.6032004, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.2
+  - position: {x: -5.4528003, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.3
+  - position: {x: -2.8416, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.4
+  - position: {x: 0, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.5
+  - position: {x: 2.8416004, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.6
+  - position: {x: 5.4528, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.7
+  - position: {x: 7.6032004, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.8
+  - position: {x: 9.0624, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.9
+  - position: {x: 9.6, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 1
+  _clippedSamples:
+  - position: {x: -9.6, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0
+  - position: {x: -9.0624, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.1
+  - position: {x: -7.6032004, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.2
+  - position: {x: -5.4528003, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.3
+  - position: {x: -2.8416, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.4
+  - position: {x: 0, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.5
+  - position: {x: 2.8416004, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.6
+  - position: {x: 5.4528, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.7
+  - position: {x: 7.6032004, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.8
+  - position: {x: 9.0624, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.9
+  - position: {x: 9.6, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 1
+  animClipFrom: 0
+  animClipTo: 1
+  animResolution: 1
+  sampleUser: 0
+  multithreaded: 0
+  buildOnAwake: 0
+  applyDirectionRotation: 1
+  _direction: 1
+  _physicsMode: 0
+  _motion:
+    _offset: {x: -0.35, y: 0}
+    _rotationOffset: {x: 90, y: 0, z: 90}
+    _baseScale: {x: 1, y: 1, z: 1}
+    customRotation:
+      keys: []
+      _blend: 1
+    customOffset:
+      keys: []
+      _blend: 1
+    applyPositionX: 1
+    applyPositionY: 1
+    applyPositionZ: 0
+    direction: 1
+    applyRotationX: 1
+    applyRotationY: 1
+    applyRotationZ: 0
+    applyScaleX: 0
+    applyScaleY: 0
+    applyScaleZ: 0
+    targetUser: {fileID: 114347853661717978}
+  triggers_old: []
+  triggers:
+  - name: Trigger 1
+    type: 1
+    workOnce: 1
+    position: 0.2277204394340515
+    enabled: 1
+    color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    actions:
+    - target: {fileID: 0}
+      intValue: 0
+      floatValue: 0
+      doubleValue: 0
+      stringValue: 
+      boolValue: 0
+      goValue: {fileID: 0}
+      transformValue: {fileID: 0}
+      methodName: ResumeTracking
+      paramType: 0
+    gameObjects: []
+  _customRotations:
+    keys: []
+    _blend: 1
+  _customOffsets:
+    keys: []
+    _blend: 1
+  targetRigidbody: {fileID: 0}
+  targetRigidbody2D: {fileID: 0}
+  targetTransform: {fileID: 4037584585199976}
+  _result:
+    position: {x: -9.6, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0
+  wrapMode: 0
+  followMode: 0
+  autoStartPosition: 0
+  autoFollow: 0
+  _followSpeed: 1
+  _followDuration: 1
+--- !u!114 &114450655356480628
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1713695503930154}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4ddc1a2536715a24095c464a2c394d5d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _address:
+    _elements:
+    - computer: {fileID: 0}
+      _startPoint: 0
+      _endPoint: -1
+  subscribers: []
+  updateMethod: 0
+  _user: {fileID: 0}
+  _resolution: 1
+  _clipTo: 1
+  _clipFrom: 0
+  _autoUpdate: 1
+  _loopSamples: 0
+  _averageResultVectors: 1
+  _uniformSample: 0
+  _uniformPreserveClipRange: 0
+  _samples:
+  - position: {x: -9.6, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0
+  - position: {x: -9.0624, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.1
+  - position: {x: -7.6032004, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.2
+  - position: {x: -5.4528003, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.3
+  - position: {x: -2.8416, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.4
+  - position: {x: 0, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.5
+  - position: {x: 2.8416004, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.6
+  - position: {x: 5.4528, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.7
+  - position: {x: 7.6032004, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.8
+  - position: {x: 9.0624, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.9
+  - position: {x: 9.6, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 1
+  _clippedSamples:
+  - position: {x: -9.6, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0
+  - position: {x: -9.0624, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.1
+  - position: {x: -7.6032004, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.2
+  - position: {x: -5.4528003, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.3
+  - position: {x: -2.8416, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.4
+  - position: {x: 0, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.5
+  - position: {x: 2.8416004, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.6
+  - position: {x: 5.4528, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.7
+  - position: {x: 7.6032004, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.8
+  - position: {x: 9.0624, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0.9
+  - position: {x: 9.6, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 1
+  animClipFrom: 0
+  animClipTo: 1
+  animResolution: 1
+  sampleUser: 0
+  multithreaded: 0
+  buildOnAwake: 0
+  applyDirectionRotation: 1
+  _direction: 1
+  _physicsMode: 0
+  _motion:
+    _offset: {x: -0.35, y: 0}
+    _rotationOffset: {x: 90, y: 0, z: 90}
+    _baseScale: {x: 1, y: 1, z: 1}
+    customRotation:
+      keys: []
+      _blend: 1
+    customOffset:
+      keys: []
+      _blend: 1
+    applyPositionX: 1
+    applyPositionY: 1
+    applyPositionZ: 0
+    direction: 1
+    applyRotationX: 1
+    applyRotationY: 1
+    applyRotationZ: 0
+    applyScaleX: 0
+    applyScaleY: 0
+    applyScaleZ: 0
+    targetUser: {fileID: 114450655356480628}
+  triggers_old: []
+  triggers:
+  - name: Trigger 1
+    type: 1
+    workOnce: 1
+    position: 0.2277204394340515
+    enabled: 1
+    color: {r: 1, g: 0.92156863, b: 0.015686275, a: 1}
+    actions:
+    - target: {fileID: 0}
+      intValue: 0
+      floatValue: 0
+      doubleValue: 0
+      stringValue: 
+      boolValue: 0
+      goValue: {fileID: 0}
+      transformValue: {fileID: 0}
+      methodName: ResumeTracking
+      paramType: 0
+    gameObjects: []
+  _customRotations:
+    keys: []
+    _blend: 1
+  _customOffsets:
+    keys: []
+    _blend: 1
+  targetRigidbody: {fileID: 0}
+  targetRigidbody2D: {fileID: 0}
+  targetTransform: {fileID: 4785704309274790}
+  _result:
+    position: {x: -9.6, y: 0, z: 0}
+    normal: {x: 0, y: 0, z: -1}
+    direction: {x: 1, y: 0, z: 0}
+    color: {r: 1, g: 1, b: 1, a: 1}
+    size: 1
+    percent: 0
+  wrapMode: 0
+  followMode: 0
+  autoStartPosition: 0
+  autoFollow: 0
+  _followSpeed: 1
   _followDuration: 1
 --- !u!212 &212029636245110088
 SpriteRenderer:

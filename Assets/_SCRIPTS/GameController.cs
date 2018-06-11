@@ -121,8 +121,14 @@ public class GameController : MonoBehaviour
         }
 
         numBuildZones = activeBuildZones.Count;
-        lastInteractedBuildZone = activeBuildZones[0];
-        lastInteractedBuildZone.Activate();
+        if (numBuildZones != 0)
+        {
+            lastInteractedBuildZone = activeBuildZones[0];
+            lastInteractedBuildZone.Activate();
+        }
+
+        /* Start the coaster */
+        CoasterManager.Instance.StartCoasterAlongSpline(masterSpline);
     }
 
     void Update()

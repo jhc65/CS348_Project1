@@ -23,9 +23,11 @@ public class CoasterManager : MonoBehaviour {
     public Sprite[] decals;
     [SerializeField] private AudioSource trackAudio;
     private Vector3 startPosition;
-    private SplineFollower[] splineFollowers;
+    [SerializeField] private SplineFollower[] splineFollowers;
     [SerializeField] private float normalSpeed;
     [SerializeField] private float slowedSpeed;
+    [SerializeField] private float splineFollowFirstCartStartDelay;
+    [SerializeField] private float splineFollowOtherCartStartDelay;
 
     public static CoasterManager Instance { get; private set; }
 
@@ -35,7 +37,6 @@ public class CoasterManager : MonoBehaviour {
         Instance = this;
         animator = GetComponent<Animator>();
         startPosition = this.transform.position;
-        splineFollowers = GetComponentsInChildren<SplineFollower>();
     }
 
     public void ChangeColor(Color c)
@@ -59,6 +60,27 @@ public class CoasterManager : MonoBehaviour {
         animator.SetTrigger(st.ToString());
     }
 
+    public void StartCoasterAlongSpline(SplineComputer sc)
+    {
+        StartCoroutine(SplineFollowWithDelay(sc));
+    }
+
+    private IEnumerator SplineFollowWithDelay(SplineComputer sc)
+    {
+        float delay = splineFollowFirstCartStartDelay;
+        foreach (SplineFollower sf in splineFollowers)
+        {
+            /* Set the spline computer to the new spline */
+            sf.computer = sc;
+            /* Turn autoFollow back on and restart the follow */
+            sf.autoFollow = true;
+            sf.Restart();
+            /* Wait before starting the next cart */
+            yield return new WaitForSeconds(delay);
+            delay = splineFollowOtherCartStartDelay;
+        }
+    }
+
     void OnTriggerEnter2D(Collider2D collider)
     {
         switch(collider.tag)
@@ -73,8 +95,10 @@ public class CoasterManager : MonoBehaviour {
                 break;
             case "lose":
                 /* Stop the coaster animation */
-                trackAudio.Stop();
-                animator.Rebind();
+                foreach (SplineFollower sf in splineFollowers)
+                {
+                    sf.followSpeed = 0f;
+                }
                 /* Tell GameController to end the game with a lose state */
                 GameController.Instance.EndGame(false);
                 break;
