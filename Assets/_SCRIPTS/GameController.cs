@@ -274,6 +274,7 @@ public class GameController : MonoBehaviour
     public void PauseClick()
     {
         Time.timeScale = 0; /* Manipulate timeScale to pause the game */
+        CoasterManager.Instance.StopTrackAudio();
         pauseMenu.SetActive(true);
         MenuCursorSet();
     }
@@ -281,6 +282,7 @@ public class GameController : MonoBehaviour
     public void PlayClick()
     {
         Time.timeScale = 1f; /* Change timeScale back from 0 */
+        CoasterManager.Instance.PlayTrackAudio();
         pauseMenu.SetActive(false);
         MenuCursorUnSet();
     }
