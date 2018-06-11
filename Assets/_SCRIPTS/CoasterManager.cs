@@ -19,6 +19,7 @@ public class CoasterManager : MonoBehaviour {
     private Animator animator;
 
     [SerializeField] private SpriteRenderer[] sprites;
+    [SerializeField] private LineRenderer[] cartConnectors;
     public SpriteRenderer[] decalSprites;
     public Sprite[] decals;
     [SerializeField] private AudioSource trackAudio;
@@ -43,6 +44,11 @@ public class CoasterManager : MonoBehaviour {
     {
         foreach (SpriteRenderer sp in sprites)
             sp.color = c;
+        foreach (LineRenderer lr in cartConnectors)
+        {
+            lr.startColor = c;
+            lr.endColor = c;
+        }
         foreach (SpriteRenderer sp in decalSprites)
         {
             sp.sprite = decals[Constants.decalIndex];
