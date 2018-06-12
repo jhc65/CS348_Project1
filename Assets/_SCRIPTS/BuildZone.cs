@@ -35,7 +35,10 @@ public class BuildZone : MonoBehaviour {
             p.gameObject.SetActive(false);
             piecesInZone.Add(p);
 			gapFilled += p.Value;
-            gapMask.transform.localScale = new Vector3(4 * (1f - (float)(gapFilled / fractionData.Value)), 2, 1);
+            if(gapMask.transform.localScale.x > 0)
+                gapMask.transform.localScale = new Vector3(4 * (1f - (float)(gapFilled / fractionData.Value)), 2, 1);
+            else
+                gapMask.transform.localScale = new Vector3(-4 * (1f - (float)(gapFilled / fractionData.Value)), 2, 1);
             UpdateEquationUI();
 			/* Check if the gap has been filled */
 			//Debug.Log("Gap filled: " + gapFilled + ", gap size: " + fractionData.Value);
@@ -226,7 +229,10 @@ public class BuildZone : MonoBehaviour {
             piecesInZone.RemoveAt(pieceIndex);
 
             // update visual
-            gapMask.transform.localScale = new Vector3(4 * (1f - (float)(gapFilled / fractionData.Value)), 2, 1);
+            if (gapMask.transform.localScale.x > 0)
+                gapMask.transform.localScale = new Vector3(4 * (1f - (float)(gapFilled / fractionData.Value)), 2, 1);
+            else
+                gapMask.transform.localScale = new Vector3(-4 * (1f - (float)(gapFilled / fractionData.Value)), 2, 1);
             UpdateEquationUI();
         }
     }
