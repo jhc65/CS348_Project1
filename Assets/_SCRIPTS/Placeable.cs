@@ -12,12 +12,14 @@ public class Placeable : MonoBehaviour {
     private bool isPickedUp = true;
     private FractionTools.Fraction value;
     private BuildZone bz;
-
-    //[SerializeField] private int numerator;
-    //[SerializeField] private int denominator;
+    [SerializeField] private GameObject cuttableList;
+    private GameObject myCuttables;
+    private Cuttable cu;
+    
     [SerializeField] private Constants.PieceLength length;
     [SerializeField] SpriteRenderer sprite;
     [SerializeField] GameObject animatedPiece;
+    [SerializeField] GameObject[] animatedCuts;
 
     #region Getters and Setters
     public Constants.PieceLength Length {
@@ -64,6 +66,7 @@ public class Placeable : MonoBehaviour {
         inv = Inventory.Instance;
         value = new FractionTools.Fraction(1, (int)length);
         sprite.color = Constants.trackColor;
+       myCuttables = Instantiate(cuttableList, inv.transform);
     }
 	
 	// Update is called once per frame
@@ -76,6 +79,21 @@ public class Placeable : MonoBehaviour {
             {
                 Debug.Log("Piece dropped in zone!");
                 placed = true;
+                gc.ActiveCursor = Constants.CursorType.HAND;
+            }
+            if(!placed && cu != null)
+            {
+                Debug.Log("cutting");
+                //foreach(GameObject g in animatedCuts[((int)cu.CutLength) - 1].transform.c)
+                animatedCuts[((int)cu.CutLength)-1].SetActive(true);
+                animatedCuts[((int)cu.CutLength) - 1].transform.DetachChildren();
+                //{
+                //    GameObject ap = Instantiate(animatedPiece, transform);
+                //    ap.transform.parent = null;
+                //    ap.SetActive(true);
+                //}
+                //inv.Increase(cu.CutLength, cu.CutPieces);
+                Destroy(gameObject);
                 gc.ActiveCursor = Constants.CursorType.HAND;
             }
         }
@@ -115,6 +133,11 @@ public class Placeable : MonoBehaviour {
         {
             bz = collision.GetComponentInParent<BuildZone>();
         }
+        if (collision.CompareTag("Cuttable"))
+        {
+            collision.gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            cu = collision.GetComponent<Cuttable>();
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
@@ -122,6 +145,11 @@ public class Placeable : MonoBehaviour {
         if (collision.CompareTag("BuildZone"))
         {
             bz = null;
+        }
+        if (collision.CompareTag("Cuttable"))
+        {
+            collision.GetComponent<SpriteRenderer>().enabled = false;
+            cu = null;
         }
     }
 

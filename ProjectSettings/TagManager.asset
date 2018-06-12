@@ -10,6 +10,7 @@ TagManager:
   - Section
   - lose
   - coaster
+  - Cuttable
   layers:
   - Default
   - TransparentFX

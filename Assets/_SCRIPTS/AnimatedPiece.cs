@@ -14,43 +14,11 @@ public class AnimatedPiece : MonoBehaviour
     {
         inv = Inventory.Instance;
         sprite.color = Constants.trackColor;
-
-        destination = inv.pieces[(int)length - 2].transform;
-
-        //switch(length)
-        //{
-        //    case Constants.PieceLength.HALF:
-
-        //        break;
-        //    case Constants.PieceLength.THIRD:
-
-        //        break;
-        //    case Constants.PieceLength.FOURTH:
-
-        //        break;
-        //    case Constants.PieceLength.FIFTH:
-
-        //        break;
-        //    case Constants.PieceLength.SIXTH:
-
-        //        break;
-        //    case Constants.PieceLength.SEVENTH:
-
-        //        break;
-        //    case Constants.PieceLength.EIGHTH:
-
-        //        break;
-        //    case Constants.PieceLength.NINTH:
-
-        //        break;
-        //    case Constants.PieceLength.TENTH:
-
-        //        break;
-        //}
     }
 
     void Update()
     {
+        destination = inv.pieces[(int)length - 2].transform;
         transform.position = Vector3.MoveTowards(transform.position, destination.position, Time.deltaTime * speed);
 
         if (IsWithin(transform.position, destination.position))     // destroy when destination is reached
