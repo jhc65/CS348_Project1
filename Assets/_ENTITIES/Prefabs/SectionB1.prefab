@@ -132,6 +132,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4760295225139628}
+  - component: {fileID: 114831148219809014}
   m_Layer: 0
   m_Name: SectionB1
   m_TagString: Untagged
@@ -507,7 +508,7 @@ GameObject:
   - component: {fileID: 114331452553204498}
   - component: {fileID: 82675679597360314}
   m_Layer: 0
-  m_Name: BuildZone 1
+  m_Name: BuildZone 2
   m_TagString: BuildZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -910,7 +911,7 @@ GameObject:
   - component: {fileID: 114293704008160810}
   - component: {fileID: 82326243294523762}
   m_Layer: 0
-  m_Name: BuildZone 2
+  m_Name: BuildZone 1
   m_TagString: BuildZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1864,7 +1865,7 @@ Transform:
   - {fileID: 4364300690216250}
   - {fileID: 4767059407304714}
   m_Father: {fileID: 4760295225139628}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4575798279970580
 Transform:
@@ -2080,8 +2081,8 @@ Transform:
   - {fileID: 4443833928751826}
   - {fileID: 4393343012874172}
   - {fileID: 4781505287670748}
-  - {fileID: 4575760746886548}
   - {fileID: 4940566238611640}
+  - {fileID: 4575760746886548}
   - {fileID: 4815072097224576}
   - {fileID: 4827875057155910}
   - {fileID: 4369936785087786}
@@ -2333,7 +2334,7 @@ Transform:
   - {fileID: 4523101322721906}
   - {fileID: 4168375486287522}
   m_Father: {fileID: 4760295225139628}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4964478589828426
 Transform:
@@ -6541,6 +6542,20 @@ MonoBehaviour:
   m_FallbackScreenDPI: 96
   m_DefaultSpriteDPI: 96
   m_DynamicPixelsPerUnit: 1
+--- !u!114 &114831148219809014
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1071333971596336}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4065b58ff4adccf42a0fb202184be56f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildZones:
+  - {fileID: 114293704008160810}
+  - {fileID: 114331452553204498}
 --- !u!114 &114871475667724460
 MonoBehaviour:
   m_ObjectHideFlags: 1

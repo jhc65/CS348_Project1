@@ -1368,6 +1368,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4464144288827560}
+  - component: {fileID: 114719338419545000}
   m_Layer: 0
   m_Name: SectionD
   m_TagString: Untagged
@@ -5606,6 +5607,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 39f5fa218466eea4892cb930ee6ac665, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &114719338419545000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1931354699088786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4065b58ff4adccf42a0fb202184be56f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildZones:
+  - {fileID: 114492628634683262}
+  - {fileID: 114834066968208754}
 --- !u!114 &114770052099175482
 MonoBehaviour:
   m_ObjectHideFlags: 1

@@ -80,29 +80,36 @@ public class GameController : MonoBehaviour
     void Start()
     {
         Constants.gameOver = false;
+        if (Constants.difficulty == Constants.Difficulty.HARD || Constants.difficulty == Constants.Difficulty.IMPOSSIBLE)
+            Constants.numSections = 3;
+        else
+            Constants.numSections = 2;
         Time.timeScale = 1;
         inv = Inventory.Instance;
         activeBuildZones = new List<BuildZone>();
         List<SplinePoint> splinePoints = new List<SplinePoint>();
         splinePoints.AddRange(masterSpline.GetPoints());
-        
+
         for (int i = 0; i <= Constants.numSections; i++)
         {
-            SplineComputer currentSpline = null;
-            if(i==Constants.numSections)
+            GameObject current = null;
+            if (i == Constants.numSections)
             {
-                currentSpline = Instantiate(sections[0], new Vector3(19.2f + (38.4f * i), sections[0].transform.position.y, 0), Quaternion.identity).GetComponentInChildren<SplineComputer>();
+                current = Instantiate(sections[0], new Vector3(19.2f + (38.4f * i), sections[0].transform.position.y, 0), Quaternion.identity);
             }
             else
             {
                 int ind = Random.Range(1, sections.Length);
-                currentSpline = Instantiate(sections[ind], new Vector3(28.8f + (38.4f * i), sections[ind].transform.position.y, 0), Quaternion.identity).GetComponentInChildren<SplineComputer>();
+                current = Instantiate(sections[ind], new Vector3(28.8f + (38.4f * i), sections[ind].transform.position.y, 0), Quaternion.identity);
+                Section currentSection = current.GetComponent<Section>();
+                activeBuildZones.AddRange(currentSection.SetupBuildZones());
             }
 
+            SplineComputer currentSpline = current.GetComponentInChildren<SplineComputer>();
             splinePoints.AddRange(currentSpline.GetPoints().Skip(1).ToArray());
             currentSpline.gameObject.SetActive(false);
         }
-        
+
         masterSpline.SetPoints(splinePoints.ToArray());
         masterSpline.Rebuild();
         masterSpline.GetComponent<SplineRenderer>().color = Constants.trackColor;

@@ -134,7 +134,7 @@ GameObject:
   - component: {fileID: 114281694527820012}
   - component: {fileID: 82420136559289292}
   m_Layer: 0
-  m_Name: BuildZone 2
+  m_Name: BuildZone 1
   m_TagString: BuildZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -669,6 +669,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4060251999470352}
+  - component: {fileID: 114297784360359246}
   m_Layer: 0
   m_Name: SectionA1
   m_TagString: Untagged
@@ -776,7 +777,7 @@ GameObject:
   - component: {fileID: 114583288673156356}
   - component: {fileID: 82361388178004128}
   m_Layer: 0
-  m_Name: BuildZone 1
+  m_Name: BuildZone 2
   m_TagString: BuildZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1292,8 +1293,8 @@ Transform:
   - {fileID: 4065903339868632}
   - {fileID: 4362246085558128}
   - {fileID: 4761725968885972}
-  - {fileID: 4763949593845380}
   - {fileID: 4121316450203154}
+  - {fileID: 4763949593845380}
   - {fileID: 4103348099693940}
   - {fileID: 4120401806671184}
   m_Father: {fileID: 0}
@@ -1399,7 +1400,7 @@ Transform:
   - {fileID: 4874163482217620}
   - {fileID: 4163820027280626}
   m_Father: {fileID: 4060251999470352}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4127865979304346
 Transform:
@@ -2010,7 +2011,7 @@ Transform:
   - {fileID: 4885456667292392}
   - {fileID: 4621910033822972}
   m_Father: {fileID: 4060251999470352}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4767828712536500
 Transform:
@@ -2849,6 +2850,20 @@ MonoBehaviour:
   sparkle: {fileID: 1909375313069408, guid: c18ca18b3de654f94b39a4f2c4dfee2b, type: 2}
   dustCloud: {fileID: 1200260010123834}
   explosion: {fileID: 82420136559289292}
+--- !u!114 &114297784360359246
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1516129797240814}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4065b58ff4adccf42a0fb202184be56f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildZones:
+  - {fileID: 114281694527820012}
+  - {fileID: 114583288673156356}
 --- !u!114 &114326642359320240
 MonoBehaviour:
   m_ObjectHideFlags: 1

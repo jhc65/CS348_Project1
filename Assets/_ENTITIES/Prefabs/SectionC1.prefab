@@ -288,6 +288,7 @@ GameObject:
   serializedVersion: 5
   m_Component:
   - component: {fileID: 4766842773792380}
+  - component: {fileID: 114248881416105292}
   m_Layer: 0
   m_Name: SectionC1
   m_TagString: Untagged
@@ -908,7 +909,7 @@ GameObject:
   - component: {fileID: 114425448427954518}
   - component: {fileID: 82133212329621422}
   m_Layer: 0
-  m_Name: BuildZone 2
+  m_Name: BuildZone 1
   m_TagString: BuildZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1070,7 +1071,7 @@ GameObject:
   - component: {fileID: 114438086621734038}
   - component: {fileID: 82321431573108616}
   m_Layer: 0
-  m_Name: BuildZone 1
+  m_Name: BuildZone 2
   m_TagString: BuildZone
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1654,7 +1655,7 @@ Transform:
   - {fileID: 4962022038501994}
   - {fileID: 4395629033331252}
   m_Father: {fileID: 4766842773792380}
-  m_RootOrder: 6
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4738442676324530
 Transform:
@@ -1711,8 +1712,8 @@ Transform:
   - {fileID: 4147851063054896}
   - {fileID: 4738442676324530}
   - {fileID: 4325521002754142}
-  - {fileID: 4887766235193690}
   - {fileID: 4683338199239244}
+  - {fileID: 4887766235193690}
   - {fileID: 4746099080059108}
   - {fileID: 4776146474397470}
   - {fileID: 4250601308569292}
@@ -1871,7 +1872,7 @@ Transform:
   - {fileID: 4145311633858364}
   - {fileID: 4831215759668582}
   m_Father: {fileID: 4766842773792380}
-  m_RootOrder: 5
+  m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &4898608333387260
 Transform:
@@ -4985,6 +4986,20 @@ MonoBehaviour:
   updateFrameInterval: 0
   _slices: 1
   vertexDirection: {x: -0, y: -0, z: -1}
+--- !u!114 &114248881416105292
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1304153746178524}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4065b58ff4adccf42a0fb202184be56f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  buildZones:
+  - {fileID: 114425448427954518}
+  - {fileID: 114438086621734038}
 --- !u!114 &114326208376339050
 MonoBehaviour:
   m_ObjectHideFlags: 1
