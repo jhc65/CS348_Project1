@@ -82,7 +82,7 @@ public class CoasterManager : MonoBehaviour {
             sf.autoFollow = true;
             sf.Restart();
             /* Wait before starting the next cart */
-            yield return new WaitForSeconds(delay);
+            yield return new WaitForSeconds(delay / sf.followSpeed);
             delay = splineFollowOtherCartStartDelay;
         }
     }
