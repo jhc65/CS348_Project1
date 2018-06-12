@@ -25,7 +25,6 @@
 
         Pass
         {
-			ZWrite on
 			Blend Zero One
 
 			Stencil
@@ -39,6 +38,7 @@
 
 		Pass
 		{
+			Blend One OneMinusSrcAlpha
 			Stencil
 			{
 				Ref 4
