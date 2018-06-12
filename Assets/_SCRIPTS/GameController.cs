@@ -211,6 +211,9 @@ public class GameController : MonoBehaviour
 
     private IEnumerator CrashAndBurn()
     {
+        /* Stop the coaster audio */
+        CoasterManager.Instance.StopTrackAudio();
+
         /* Play a crashing sound effect */
         EffectsManager.Instance.PlayEffect(EffectsManager.Effects.Incorrect); /* TODO: replace this with car crash sound effect */
 
