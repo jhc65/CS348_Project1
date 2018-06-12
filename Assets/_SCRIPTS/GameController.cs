@@ -205,7 +205,7 @@ public class GameController : MonoBehaviour
             go.SetActive(true);
         //EffectsManager.Instance.PlayEffect(EffectsManager.Effects.Confetti);
         EffectsManager.Instance.PlayEffect(EffectsManager.Effects.Yay);
-        yield return new WaitForSeconds(Constants.endGameWaitDelay - 3.0f);
+        yield return new WaitForSeconds(Constants.endGameWaitDelay - 7.0f);
         SceneManager.LoadScene("Menu");
     }
 
