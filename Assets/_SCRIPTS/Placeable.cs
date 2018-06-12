@@ -66,7 +66,7 @@ public class Placeable : MonoBehaviour {
         inv = Inventory.Instance;
         value = new FractionTools.Fraction(1, (int)length);
         sprite.color = Constants.trackColor;
-       myCuttables = Instantiate(cuttableList, inv.transform);
+        if(cuttableList) myCuttables = Instantiate(cuttableList, inv.transform);
     }
 	
 	// Update is called once per frame
@@ -75,6 +75,7 @@ public class Placeable : MonoBehaviour {
         if (Input.GetMouseButtonUp(0))
         {
             Debug.Log("mouse up");
+            Destroy(myCuttables, 1f);   // can't be zero for whatever reason...give it time to finish the animation
             if (!placed && bz != null && bz.TryPlacePiece(this))
             {
                 Debug.Log("Piece dropped in zone!");
