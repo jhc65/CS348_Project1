@@ -14,8 +14,9 @@ public class CoasterDecalSwap : MonoBehaviour
     private void OnMouseDown()
     {
         Constants.decalIndex++;
-        Constants.decalIndex = Constants.decalIndex % coaster.decalSprites.Length;
-        foreach (SpriteRenderer sp in coaster.decalSprites)
-            sp.sprite = coaster.decals[Constants.decalIndex];
+        Constants.decalIndex = Constants.decalIndex % coaster.decals.Length;
+        coaster.decalSprites[0].sprite = coaster.frontDecals[Constants.decalIndex];
+        for(int i = 1; i<coaster.decalSprites.Length; i++)
+            coaster.decalSprites[i].sprite = coaster.decals[Constants.decalIndex];
     }
 }
