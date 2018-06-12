@@ -22,6 +22,7 @@ public class CoasterManager : MonoBehaviour {
     [SerializeField] private LineRenderer[] cartConnectors;
     public SpriteRenderer[] decalSprites;
     public Sprite[] decals;
+    public Sprite[] frontDecals;
     [SerializeField] private AudioSource trackAudio;
     private Vector3 startPosition;
     [SerializeField] private SplineFollower[] splineFollowers;
@@ -49,11 +50,16 @@ public class CoasterManager : MonoBehaviour {
             lr.startColor = c;
             lr.endColor = c;
         }
-        foreach (SpriteRenderer sp in decalSprites)
-        {
-            sp.sprite = decals[Constants.decalIndex];
-            sp.color = new Color(1 - c.r, 1 - c.g, 1 - c.b);
-        }
+        decalSprites[0].sprite = frontDecals[Constants.decalIndex];
+        for (int i = 1; i < decalSprites.Length; i++)
+            decalSprites[i].sprite = decals[Constants.decalIndex];
+
+
+        //foreach (SpriteRenderer sp in decalSprites)
+        //{
+        //    sp.sprite = decals[Constants.decalIndex];
+        //    //sp.color = new Color(1 - c.r, 1 - c.g, 1 - c.b);
+        //}
     }
 
     private void Start()
@@ -108,9 +114,6 @@ public class CoasterManager : MonoBehaviour {
                 /* Tell GameController to end the game with a lose state */
                 GameController.Instance.EndGame(false);
                 break;
-///            case "Section":
-///                GameController.Instance.TriggerNextSectionAnimation();
-///                break;
             default:
 
                 break;
@@ -119,7 +122,6 @@ public class CoasterManager : MonoBehaviour {
 
     public void SpeedUp()
     {
-        //animator.SetFloat(PlaySpeedMultipier, Constants.fastCoasterSpeed);
         foreach (SplineFollower sf in splineFollowers)
             sf.followSpeed = normalSpeed;
     }
