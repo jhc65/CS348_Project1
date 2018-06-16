@@ -7,7 +7,6 @@ public class Piece : MonoBehaviour
 {
     // all of these things to be toggled on and off or changed opacity
     [SerializeField] GameObject draggable;
-    [SerializeField] GameObject cuttables;
     [SerializeField] SpriteRenderer sprite;
     [SerializeField] SpriteRenderer label;
     [SerializeField] SpriteRenderer countBacking;
@@ -24,13 +23,6 @@ public class Piece : MonoBehaviour
     public void EnableDraggable()
     {
         draggable.SetActive(true);
-        if (cuttables) cuttables.SetActive(false);
-    }
-
-    public void EnableCuttables()
-    {
-        if (cuttables) cuttables.SetActive(true);
-        draggable.SetActive(false);
     }
 
     public void SetInteractable(bool b)
@@ -38,11 +30,7 @@ public class Piece : MonoBehaviour
         if (b && !interactable)    // setting to true when false
         {
             interactable = true;
-            if (gc.ActiveCursor == Constants.CursorType.CUT)
-            {
-                if (cuttables) cuttables.SetActive(true);
-            }
-            else if (gc.ActiveCursor == Constants.CursorType.HAND)
+            if (gc.ActiveCursor == Constants.CursorType.HAND)
             {
                 draggable.SetActive(true);
             }
@@ -55,7 +43,6 @@ public class Piece : MonoBehaviour
         else if (!b && interactable)    // setting to false when true
         {
             interactable = false;
-            if (cuttables) cuttables.SetActive(false);
             draggable.SetActive(false);
 
             sprite.color = new Color(sprite.color.r, sprite.color.g, sprite.color.b, 0.5f);

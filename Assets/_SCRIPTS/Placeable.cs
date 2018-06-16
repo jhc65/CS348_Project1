@@ -124,23 +124,22 @@ public class Placeable : MonoBehaviour {
         //}
     }
 
-    // OnTriggerSTAY (2D)
-    private void OnTriggerStay2D(Collider2D collision)
+    // Case 1: entering a new bz / cuttable's trigger.  Replace any old one indiscriminately
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (placed)
-            return;
-
         if (collision.CompareTag("BuildZone"))
         {
             bz = collision.GetComponentInParent<BuildZone>();
         }
         if (collision.CompareTag("Cuttable"))
         {
-            collision.gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            if(cu) cu.gameObject.GetComponent<SpriteRenderer>().enabled = false;
+            collision.GetComponent<SpriteRenderer>().enabled = true;
             cu = collision.GetComponent<Cuttable>();
         }
     }
 
+    // Case 2: exiting a trigger.  Unset it
     private void OnTriggerExit2D(Collider2D collision)
     {
         if (collision.CompareTag("BuildZone"))
@@ -151,6 +150,23 @@ public class Placeable : MonoBehaviour {
         {
             collision.GetComponent<SpriteRenderer>().enabled = false;
             cu = null;
+        }
+    }
+
+    // Case 3: if a piece happens to be in multiple triggers, then exits one, reset the reference to the other
+    private void OnTriggerStay2D(Collider2D collision)
+    {
+        if (placed)
+            return;
+
+        if (collision.CompareTag("BuildZone"))
+        {
+            bz = collision.GetComponentInParent<BuildZone>();
+        }
+        if (collision.CompareTag("Cuttable") && !cu)
+        {
+            collision.gameObject.GetComponent<SpriteRenderer>().enabled = true;
+            cu = collision.GetComponent<Cuttable>();
         }
     }
 

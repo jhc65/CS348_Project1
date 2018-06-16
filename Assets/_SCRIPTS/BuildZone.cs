@@ -19,7 +19,7 @@ public class BuildZone : MonoBehaviour {
     private FractionData fractionData;
 	private FractionTools.Fraction gapFilled = FractionTools.Fraction.Zero;
     private List<Placeable> piecesInZone = new List<Placeable>();
-    private Inventory inv;
+//    private Inventory inv;
 	
 	public bool TryPlacePiece(Placeable p)
 	{
@@ -183,9 +183,9 @@ public class BuildZone : MonoBehaviour {
         }
     }
 
-    private void Awake() {
-        inv = Inventory.Instance;
-    }
+    //private void Awake() {
+    //    inv = Inventory.Instance;
+    //}
 
     public FractionTools.Fraction[] GetGapComponents()
     {

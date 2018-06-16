@@ -51,12 +51,6 @@ public class GameController : MonoBehaviour
                 case Constants.CursorType.DRAG:
                     index = 1;
                     break;
-                case Constants.CursorType.CUT:
-                    index = 2;
-                    offset = 0.2f;
-                    foreach (Piece piece in pieces)
-                        if (piece.Interactable) piece.EnableCuttables(); // only set if interactable
-                    break;
             }
             Vector2 cursorHotSpot = new Vector2(cursorTextures[index].width * offset, cursorTextures[index].height * offset);
             Cursor.SetCursor(cursorTextures[index], cursorHotSpot, CursorMode.ForceSoftware);
@@ -137,24 +131,6 @@ public class GameController : MonoBehaviour
 
         /* Start the coaster */
         CoasterManager.Instance.StartCoasterAlongSpline(masterSpline);
-    }
-
-    void Update()
-    {
-        if (Input.GetMouseButtonDown(1))
-        {
-            if (activeCursor == Constants.CursorType.CUT)
-            {
-                ActiveCursor = Constants.CursorType.HAND;
-            }
-            else if (activeCursor == Constants.CursorType.HAND)
-            {
-                ActiveCursor = Constants.CursorType.CUT;
-            }
-        }
-
-        /* cmb539: Commenting this out, to instead use a script on the camera that follows the coaster */
-        //cam.transform.position = new Vector3(cam.transform.position.x + 0.001f, cam.transform.position.y, cam.transform.position.z);
     }
 
     public IEnumerator OnGapFilled()

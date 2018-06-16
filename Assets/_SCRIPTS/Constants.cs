@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public static class Constants {
-    public enum CursorType { HAND, DRAG, CUT, PIECE };
+    public enum CursorType { HAND, DRAG };
     public enum PieceLength { WHOLE = 1, HALF = 2, THIRD = 3, FOURTH = 4, FIFTH = 5, SIXTH = 6, SEVENTH = 7, EIGHTH = 8, NINTH = 9, TENTH = 10 };
     public enum Difficulty { BEGINNER = 1, EASY = 2, MEDIUM = 3, HARD = 4, IMPOSSIBLE = 5 };
 
