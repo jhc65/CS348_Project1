@@ -2700,7 +2700,7 @@ MonoBehaviour:
   length: 8
   sprite: {fileID: 212331383385831200}
   destination: {fileID: 0}
-  speed: 100
+  speed: 250
 --- !u!114 &114210775477099220
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2730,7 +2730,7 @@ MonoBehaviour:
   length: 6
   sprite: {fileID: 212096941224426406}
   destination: {fileID: 0}
-  speed: 100
+  speed: 250
 --- !u!114 &114231144071534610
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2745,7 +2745,7 @@ MonoBehaviour:
   length: 4
   sprite: {fileID: 212017687379438954}
   destination: {fileID: 0}
-  speed: 100
+  speed: 250
 --- !u!114 &114241698165866158
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2832,7 +2832,7 @@ MonoBehaviour:
   length: 10
   sprite: {fileID: 212922522790490852}
   destination: {fileID: 0}
-  speed: 100
+  speed: 250
 --- !u!114 &114301846917843808
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2847,7 +2847,7 @@ MonoBehaviour:
   length: 8
   sprite: {fileID: 212566734850436100}
   destination: {fileID: 0}
-  speed: 100
+  speed: 250
 --- !u!114 &114304259493521224
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2862,7 +2862,7 @@ MonoBehaviour:
   length: 4
   sprite: {fileID: 212461594403887078}
   destination: {fileID: 0}
-  speed: 100
+  speed: 250
 --- !u!114 &114327420584012706
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2892,7 +2892,7 @@ MonoBehaviour:
   length: 10
   sprite: {fileID: 212972715767370200}
   destination: {fileID: 0}
-  speed: 100
+  speed: 250
 --- !u!114 &114395736994801528
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2907,7 +2907,7 @@ MonoBehaviour:
   length: 10
   sprite: {fileID: 212770994810172950}
   destination: {fileID: 0}
-  speed: 100
+  speed: 250
 --- !u!114 &114475803061923060
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2952,7 +2952,7 @@ MonoBehaviour:
   length: 10
   sprite: {fileID: 212216975652757710}
   destination: {fileID: 0}
-  speed: 100
+  speed: 250
 --- !u!114 &114583490753502894
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2967,7 +2967,7 @@ MonoBehaviour:
   length: 8
   sprite: {fileID: 212913850328267060}
   destination: {fileID: 0}
-  speed: 100
+  speed: 250
 --- !u!114 &114603158287764942
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -2997,7 +2997,7 @@ MonoBehaviour:
   length: 6
   sprite: {fileID: 212565989645968478}
   destination: {fileID: 0}
-  speed: 100
+  speed: 250
 --- !u!114 &114714956315172978
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3027,7 +3027,7 @@ MonoBehaviour:
   length: 8
   sprite: {fileID: 212738397666342302}
   destination: {fileID: 0}
-  speed: 100
+  speed: 250
 --- !u!114 &114822911483275540
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3042,7 +3042,7 @@ MonoBehaviour:
   length: 10
   sprite: {fileID: 212560133240304076}
   destination: {fileID: 0}
-  speed: 100
+  speed: 250
 --- !u!114 &114861720773551432
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -3087,7 +3087,7 @@ MonoBehaviour:
   length: 6
   sprite: {fileID: 212870458302685934}
   destination: {fileID: 0}
-  speed: 100
+  speed: 250
 --- !u!114 &114995893967115808
 MonoBehaviour:
   m_ObjectHideFlags: 1

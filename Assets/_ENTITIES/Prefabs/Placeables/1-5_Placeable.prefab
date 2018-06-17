@@ -657,7 +657,7 @@ MonoBehaviour:
   length: 10
   sprite: {fileID: 212627977357062466}
   destination: {fileID: 0}
-  speed: 100
+  speed: 250
 --- !u!114 &114851801205727820
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -672,7 +672,7 @@ MonoBehaviour:
   length: 10
   sprite: {fileID: 212161343677641672}
   destination: {fileID: 0}
-  speed: 100
+  speed: 250
 --- !u!114 &114865321007494486
 MonoBehaviour:
   m_ObjectHideFlags: 1
