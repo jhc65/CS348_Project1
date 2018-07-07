@@ -16,14 +16,14 @@ public class MenuController : MonoBehaviour
     [SerializeField] private GameObject lostMenu;
 
     [SerializeField] private Toggle unlimitedInventoryToggle;
-    [SerializeField] private Toggle showCutLengthsToggle;
     [SerializeField] private Toggle gapWidthAlwaysOneToggle;
     [SerializeField] private Toggle gapWidthAlwaysAtomicToggle;
     [SerializeField] private Toggle gapWidthImproperFractionsToggle;
     [SerializeField] private Toggle gapWidthMixedNumbersToggle;
     [SerializeField] private ToggleGroup colorToggles;
-    [SerializeField] private Slider difficultySlider;
+    [SerializeField] private GameObject difficultyNeedle;
     [SerializeField] private Text difficultyText;
+    [SerializeField] private Text helpText;
 
     [SerializeField] private Texture2D cursorTexture;
     [SerializeField] private Image track;
@@ -63,8 +63,7 @@ public class MenuController : MonoBehaviour
         gapWidthImproperFractionsToggle.isOn = Constants.gapAllowImproperFractions;
         gapWidthMixedNumbersToggle.isOn = Constants.gapAllowMixedNumbers;
         unlimitedInventoryToggle.isOn = Constants.unlimitedInventory;
-        showCutLengthsToggle.isOn = Constants.showCutLengths;
-        difficultySlider.value = (float)Constants.difficulty;
+        difficultyNeedle.transform.Rotate(new Vector3(0, 0, 130 + (72 * (((int)Constants.difficulty)-1))));
         difficultyText.text = Constants.difficulty.ToString();
     }
 
@@ -77,7 +76,6 @@ public class MenuController : MonoBehaviour
         Constants.gapAllowImproperFractions = gapWidthImproperFractionsToggle.isOn;
         Constants.gapAllowMixedNumbers = gapWidthMixedNumbersToggle.isOn;
         Constants.unlimitedInventory = unlimitedInventoryToggle.isOn;
-        Constants.showCutLengths = showCutLengthsToggle.isOn;
 
         // track color
         Toggle activeToggle = colorToggles.ActiveToggles().FirstOrDefault();
@@ -185,5 +183,51 @@ public class MenuController : MonoBehaviour
     {
         Constants.difficulty = (Constants.Difficulty)s.value;
         difficultyText.text = Constants.difficulty.ToString();
+    }
+
+    public void ChangeDifficulty()
+    {
+        int newDifficulty = ((int)Constants.difficulty) + 1;
+        if (newDifficulty == 6) newDifficulty = 1;
+        difficultyNeedle.transform.Rotate(new Vector3(0, 0, 72));
+        Constants.difficulty = (Constants.Difficulty)newDifficulty;
+        difficultyText.text = Constants.difficulty.ToString();
+    }
+
+    public void DisplayHelp(int toggleNumber)
+    {
+        switch(toggleNumber)
+        {
+            case 0:
+                helpText.text = "Allows gaps in the track to be displayed as improper fractions";
+                break;
+            case 1:
+                helpText.text = "Allows gaps in the track to be displayed as mixed numbers";
+                break;
+            case 2:
+                helpText.text = "All gaps in the track will have a length of 1";
+                break;
+            case 3:
+                helpText.text = "All gaps in the track will have a length with 1 in the numerator";
+                break;
+            case 4:
+                helpText.text = "Play with an unlimited number of each fractional track piece";
+                break;
+            case 5:
+                helpText.text = "Higher difficulties require more fractional pieces to fill each gap";
+                break;
+            case 6:
+                helpText.text = "Change the color of your coaster and track";
+                break;
+            //case 7:
+            //    helpText.text = "Click to change your coaster's decals";
+            //    break;
+        }
+
+    }
+
+    public void ClearHelp()
+    {
+        helpText.text = "";
     }
 }

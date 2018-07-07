@@ -13,7 +13,6 @@ public static class Constants {
     public static bool gapAllowImproperFractions = true;
     public static bool gapAllowMixedNumbers = false;
     public static bool unlimitedInventory = false;
-    public static bool showCutLengths = false;
     public static int numSections = 2;
     public static Color trackColor = new Color32(164, 29, 49, 255);
     public static int decalIndex = 0;
@@ -39,7 +38,7 @@ public static class Constants {
     public static bool gameWon = false;
     public static float fastCoasterSpeed = 1.25f;
     public static float slowCoasterSpeed = .15f;
-    public static float masterVolume = -40f;
+    public static float masterVolume = -16f;
     public static float backgroundVolume = 10f;
     public static float effectsVolume = 10f;
     public static float backgroundPitch = 1f;
