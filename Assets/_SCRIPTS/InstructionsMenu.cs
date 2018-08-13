@@ -3,21 +3,34 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class InstructionsGif : MonoBehaviour
+public class InstructionsMenu : MonoBehaviour
 {
     [SerializeField] Image image;
     [SerializeField] Sprite[] sprites;
     [SerializeField] GameObject menu;
 
-    private float changeInterval = 5f;
+    //private float changeInterval = 5f;
     private int index;
 
-    void UpdateImage()
+    public void NextImage()
     {
         index++;
         if(index >= sprites.Length)
         {
-            CancelInvoke();
+            //CancelInvoke();
+            menu.SetActive(true);
+            gameObject.SetActive(false);
+            return;
+        }
+        image.sprite = sprites[index];
+    }
+
+    public void PrevImage()
+    {
+        index--;
+        if (index < 0)
+        {
+            //CancelInvoke();
             menu.SetActive(true);
             gameObject.SetActive(false);
             return;
@@ -29,6 +42,6 @@ public class InstructionsGif : MonoBehaviour
     {
         index = 0;
         image.sprite = sprites[index];
-        InvokeRepeating("UpdateImage", changeInterval, changeInterval);
+        //InvokeRepeating("UpdateImage", changeInterval, changeInterval);
     }
 }
